@@ -60,10 +60,22 @@
                                      content
                                      (replace-in-string "{{title}}"
                                                         title
-                                                        template))))
-    (with-temp-file output-file
-      (insert result)))
-    title))
+                                                        template)))
+          (notes-file (concat (file-name-directory input-file)
+                              (file-name-base input-file)
+                              "-notes.org")))
+      (let ((result (if (file-exists-p notes-file)
+                        (concat result
+                                "\n"
+                                (get-string-from-file notes-file))
+                      result)))
+        (princ  (concat
+                 (file-name-directory input-file)
+                 (file-name-base input-file)
+                 "-notes.org\n"))
+        (with-temp-file output-file
+          (insert result)))
+      title)))
 
 (defun generate-output-file-name (year input-file)
   (concat %input-poetry-dir "/" year "/"
