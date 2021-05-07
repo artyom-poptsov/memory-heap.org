@@ -1,0 +1,9 @@
+#+TITLE: memory heap
+#+OPTIONS: toc:nil
+
+- [[./software.html][software]]
+- [[./poetry.html][poetry]]
+- [[./drawings.html][drawings]]
+- [[./photos.html][photos]]
+- [[./cv.html][cv]]
+- [[./about.html][about]]

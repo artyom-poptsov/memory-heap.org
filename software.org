@@ -1,0 +1,14 @@
+#+TITLE: memory heap / software
+
+* GNU Guile
+  I know several programming languages, but in my view Lisp (and especially
+  Scheme) is the most elegant and clean language among them.  So I wrote some
+  free software libraries for GNU Guile, the Scheme implementation of my choice,
+  to help the language grow and mature.
+
+  - [[https://github.com/artyom-poptsov/guile-ssh][Guile-SSH]] -- libssh bindings for GNU Guile.
+  - [[https://github.com/artyom-poptsov/guile-smc][Guile-SMC]] -- GNU Guile State Machine Compiler.
+  - [[https://github.com/artyom-poptsov/guile-dsv][Guile-DSV]] -- Delimiter-separated values (DSV) format parser for GNU Guile.
+  - [[https://github.com/artyom-poptsov/guile-ics][Guile-ICS]] -- iCalendar (RFC5545) format parser for GNU Guile.
+  - [[https://github.com/artyom-poptsov/guile-udev][Guile-Udev]] -- GNU Guile bindings to libudev.
+  - [[https://github.com/artyom-poptsov/guile-deck][Guile-Deck]] -- GNU Guile Matrix network SDK.
