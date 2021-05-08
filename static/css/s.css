@@ -1,0 +1,106 @@
+@charset "utf-8";
+
+/* Body */
+body {
+    width: var(--body-width);
+    overflow-x: hidden;
+    background-color: var(--body-bg);
+}
+
+@media (min-width: 600px) {
+    body {
+        margin-left: calc(var(--side-width) + var(--body-margin));
+        margin-right: var(--body-margin);
+    }
+}
+
+@media (max-width: 600px) {
+    body {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+.topnav {
+    top: 0;
+    left: 0;
+    max-height: var(--nav-height);
+    vertical-align: middle;
+    background-color: var(--nav-bg);
+    width: var(--side-width);
+    font-size: var(--nav-base-font-size);
+}
+
+/* Basic styling (color, font, shadow) common to global and local TOC */
+#table-of-contents, .org-info-js_local-toc {
+    background-color: var(--toc-bg);
+    box-shadow: var(--toc-box-shadow);
+    border-bottom-left-radius: var(--toc-border-radius);
+    font-size: var(--toc-base-font-size);
+}
+
+/* Size (global TOC only) */
+#table-of-contents {
+    width: var(--side-width);
+}
+
+.org-info-js_local-toc {
+    padding: var(--toc-local-padding);
+}
+
+/* Fixed vertical table of content */
+@media screen and (min-width: 600px) {
+    #table-of-contents {
+        position: fixed;
+        left: 0;
+        top: calc(var(--nav-height) + var(--toc-nav-vspacing));
+        bottom: var(--toc-nav-vspacing);
+        padding: var(--toc-base-padding);
+        overflow: auto;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    #table-of-contents > div > ul > li > ul {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    #table-of-contents {
+        position: relative;
+        width: 90%;
+        margin: auto;
+    }
+}
+
+#table-of-contents ul, .org-info-js_local-toc ul {
+    list-style-type: none;
+    margin: 0;
+    padding-left: var(--toc-ul-padding-left);
+}
+
+#table-of-contents ul {
+    font-size: var(--toc-ul-font-size);
+}
+
+.org-info-js_local-toc ul {
+    font-size: var(--toc-ul-local-font-size);
+}
+
+#table-of-contents > div > ul, .org-info-js_local-toc > div > ul {
+    list-style-type: none;
+    margin: 0;
+    padding-left: var(--toc-extra-padding-x);
+}
+
+#table-of-contents > div > ul > li > ul{
+    font-size: var(--toc-ul-2-font-size);
+    vertical-align: middle;
+}
+
+#table-of-contents > div > ul > li > ul > li > ul{
+    font-size: var(--toc-ul-3-font-size);
+    vertical-align: middle;
+}
+

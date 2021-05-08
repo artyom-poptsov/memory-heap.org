@@ -1,3 +1,7 @@
 #+TITLE: memory heap / poetry
+#+HTML_LINK_HOME: ../
+#+HTML_LINK_UP: ./index.html
+#+OPTIONS: html-style:nil
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="static/css/s.css" />
 
 {{content}}
