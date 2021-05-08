@@ -107,7 +107,7 @@
                                                   (file-name-base input-file) ".html")
                                           title)))))
                   (directory-files (concat %input-poetry-dir "/" year) nil ".*txt" nil)))
-          (directory-files %input-poetry-dir nil "[0-9]+" nil))
+          (reverse (directory-files %input-poetry-dir nil "[0-9]+" nil)))
     (let ((output (replace-in-string "{{content}}" list-result list-template)))
       (with-temp-file "poetry.org"
         (insert output)))))
