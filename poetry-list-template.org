@@ -1,8 +1,8 @@
 #+TITLE: memory heap / poetry
-#+HTML_LINK_HOME: ../
-#+HTML_LINK_UP: ./index.html
+#+HTML_LINK_HOME: ./
+#+HTML_LINK_UP:   ./
 #+OPTIONS: html-style:nil
-#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="static/css/s.css" />
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="./static/css/s.css" />
 
 Стихи распространяются на условиях лицензии Creative Commons
 Attribution-ShareAlike, конкретная версия данной лицензии указана в нижней части

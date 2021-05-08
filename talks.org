@@ -1,6 +1,8 @@
 #+TITLE: memory heap / talks
+#+HTML_LINK_HOME: ./
+#+HTML_LINK_UP:   ./
 #+OPTIONS: html-style:nil
-#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="static/css/s.css" />
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="./static/css/s.css" />
 
 - Практика использования ОС "Альт" в системе образования колледжа --
   https://youtu.be/j97K7VaIW5w?t=11173

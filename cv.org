@@ -1,7 +1,9 @@
 #+TITLE: memory heap / cv
+#+HTML_LINK_HOME: ./
+#+HTML_LINK_UP:   ./
 #+OPTIONS: prop:t
 #+OPTIONS: html-style:nil
-#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="static/css/s.css" />
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="./static/css/s.css" />
 
 * Introduction
   My name is Artyom V. Poptsov, I also known as "avp".

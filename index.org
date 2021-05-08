@@ -2,7 +2,7 @@
 #+HTML_LINK_HOME:
 #+HTML_LINK_UP:
 #+OPTIONS: html-style:nil
-#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="static/css/s.css" />
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="./static/css/s.css" />
 #+OPTIONS: toc:nil
 
 - [[./projects.html][projects]]
