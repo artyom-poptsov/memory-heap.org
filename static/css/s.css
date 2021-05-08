@@ -1,10 +1,153 @@
 @charset "utf-8";
 
+/* Loosely based on: https://thibaultmarin.github.io/blog/posts/2016-11-13-Personal_website_in_org.html */
+
+:root {
+    /* Body */
+    /* ---- */
+    --body-bg: white;
+    --body-margin: 30px; /* not used for small screens */
+
+    /* Footer */
+    /* ------ */
+    --footer-border: 1px solid black;
+    --footer-padding: 10px;
+    --footer-buttons-bg: #4C6FB0;
+    --footer-buttons-bg-hover: navy;
+    --footer-buttons-padding: 5px 10px;
+    --footer-buttons-color: white;
+    --footer-buttons-font-size: 90%;
+    --footer-buttons-border: 2px solid navy;
+    --footer-buttons-min-width: 270px;
+
+    /* Table of contents */
+    /* ----------------- */
+
+    /* Basic style */
+    --toc-bg: white;
+    /* --toc-box-shadow: 0 0 0.8em #777777; */
+    --toc-li-color: black;
+    --toc-hover-bg-color: #555;
+    --toc-hover-color: white;
+    --toc-min-height: 100px;
+
+    /* Content */
+    --content-border-left: 2px solid #b7b6ab;
+    --content-left-padding: 10px;
+    --content-bg: white;
+    --content-box-shadow: 0;
+
+    /* Layout */
+    --toc-nav-vspacing: 20px;
+    --toc-base-padding: 5px;
+    --toc-ul-padding-left: 20px;
+    --toc-local-padding: 5px;
+    --toc-extra-padding-x: 4px;
+
+    /* Navigation bar */
+    /* -------------- */
+
+    /* Basic style */
+    --nav-bg: #333;
+    --nav-hover: #111;
+
+    /* Tables */
+    /* ------ */
+    --tbl-border-color: #4E4E4F;
+    --tbl-border-size: 1px;
+
+    /* Fonts */
+
+    /* Text */
+    --font-body-family: Arial, sans-serif;
+    --font-body-size: 14pt;
+
+    /* Code */
+    --font-code-family: DejaVu, Lucida Console, monospace;
+    --font-code-color: #4E4E4F;
+    --font-code-size: 11pt;
+    --font-src-family: DejaVu, Lucida Console, monospace;
+    --font-example-family: DejaVu, Lucida Console, monospace;
+    --font-example-size: 11pt;
+
+    /* Links */
+    --font-a-color: navy;
+    --font-a-coderef-color: #7082BC;
+
+    /* Color scheme */
+    /* ------------ */
+
+    /* Source blocks */
+    --src-bg: #fBF9E7;
+    --lua-bg: var(--src-bg);
+
+}
+
+/** Responsive variables
+ */
+
+/* Large screens */
+@media (min-width: 1024px) {
+    :root {
+        --side-width: 250px;
+        --body-width: calc(92% - var(--side-width));
+        --nav-base-font-size: 80%;
+        --nav-height: 50px;
+        --nav-padding: 14px 16px;
+        --toc-base-font-size: 70%;
+        --toc-ul-font-size: 150%;
+        --toc-ul-local-font-size: 130%;
+        --toc-ul-2-font-size: 80%;
+        --toc-ul-3-font-size: 80%;
+        --font-src-size: 11pt;
+        --rss-padding: 0 0 0 25px;
+        --rss-size: 25px 25px;
+        --rss-pos: 50%;
+    }
+}
+
+/* Medium screens */
+@media (min-width: 600px) and (max-width: 1024px) {
+    :root {
+        --side-width: 150px;
+        --body-width: calc(92% - var(--side-width));
+        --nav-base-font-size: 70%;
+        --nav-height: 30px;
+        --nav-padding: 5px 6px;
+        --toc-base-font-size: 70%;
+        --toc-ul-font-size: 130%;
+        --toc-ul-local-font-size: 130%;
+        --toc-ul-2-font-size: 80%;
+        --font-src-size: 11pt;
+        --rss-padding: 0 0 19px 9px;
+        --rss-size: 10px 10px;
+        --rss-pos: 25%;
+    }
+}
+
+/* Small screens */
+@media (max-width: 600px) {
+    :root {
+        --side-width: 150px; /* unused in this case */
+        --body-width: 100%;
+        --nav-base-font-size: 80%;
+        --nav-height: 30px;
+        --nav-padding: 5px 6px;
+        --toc-base-font-size: 80%;
+        --toc-ul-font-size: 120%;
+        --toc-ul-local-font-size: 130%;
+        --toc-ul-2-font-size: 80%;
+        --font-src-size: 10pt;
+    }
+}
+
 /* Body */
 body {
     width: var(--body-width);
     overflow-x: hidden;
     background-color: var(--body-bg);
+    border-left: var(--content-border-left);
+    padding-left: var(--content-left-padding);
 }
 
 @media (min-width: 600px) {
@@ -39,9 +182,18 @@ body {
     font-size: var(--toc-base-font-size);
 }
 
+#org-div-home-and-up {
+    width: var(--side-width);
+    border-right: var(--toc-border-right);
+}
+
 /* Size (global TOC only) */
 #table-of-contents {
     width: var(--side-width);
+}
+
+#content {
+
 }
 
 .org-info-js_local-toc {
@@ -50,10 +202,16 @@ body {
 
 /* Fixed vertical table of content */
 @media screen and (min-width: 600px) {
+    #org-div-home-and-up {
+        position: fixed;
+        left: 0;
+        overflow: auto;
+        padding: var(--toc-base-padding);
+    }
     #table-of-contents {
         position: fixed;
         left: 0;
-        top: calc(var(--nav-height) + var(--toc-nav-vspacing));
+        top: var(--nav-height);
         bottom: var(--toc-nav-vspacing);
         padding: var(--toc-base-padding);
         overflow: auto;
