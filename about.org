@@ -1,0 +1,25 @@
+#+TITLE: memory heap / about
+#+OPTIONS: html-style:nil
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="static/css/s.css" />
+
+* Introduction
+
+Hello, my name is Artyom V. Poptsov (also known as "avp"), and I'm the
+author of this website.
+
+* Facts
+   - I'm a co-founder of [[https://cadrspace.ru/][CADR Hackerspace]] in Nizhniy Novgorod city.
+   - I teach programming in a [[http://nntc.nnov.ru/][local college]] (for more than five years already.)
+   - I'm using mostly free software and [[./projects.html][I wrote some]] as well.
+   - I know several programming languages but my favorite is Lisp (and
+     especially Scheme.)
+   - I'm a GNU Emacs user and this site is made with Emacs [[https://orgmode.org/][org-mode]].
+   - I wrote some poetry, [[./lyrics.html][here]] you can read the least poor examples of it.
+   - I'm an atheist.
+   - I'm a vegetarian since 2007 and a vegan since 2010.
+
+* Contacts
+   - e-mail: =(string-join (reverse ("gmail.com" "@" "artyom" "." "poptsov")))=
+   - GPG key fingerprint: [[http://pgp.mit.edu:11371/pks/lookup?op=get&search=0xE9C5A2D90898A02F][D0C2 EAC1 3310 822D 98DE B57C E9C5 A2D9 0898 A02F]]
+   - Matrix: =@a_v_p:matrix.org=
+   - [[https://twitter.com/artyom_poptsov][twitter]]
