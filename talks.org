@@ -1,0 +1,18 @@
+#+TITLE: memory heap / talks
+#+OPTIONS: html-style:nil
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="static/css/s.css" />
+
+- Практика использования ОС "Альт" в системе образования колледжа --
+  https://youtu.be/j97K7VaIW5w?t=11173
+- DC7831 0x0B -- Воркшоп: "Введение в автоматное программирование" --
+  https://www.youtube.com/watch?v=7LwqznbApaY
+- "Криптография, которая просто работает" (лекция посвящена технологии OTR) --
+  https://www.youtube.com/watch?v=0uX1gY-c_pE
+- "Интернет вещей. Обзор концепции и фреймворка IoTivity" --
+  http://blog.nntc.nnov.ru/?p=1551
+- "SpaceAPI: Децентралилизованная информационная система для хакерспейсов" --
+  https://www.youtube.com/watch?v=KmBgXg_l640
+
+* Online-курсы
+  - "Системное программирование" --
+    https://www.youtube.com/playlist?list=PLoAJ3BxlddnopWsE_IQYkFYXUkmYA4-Ar
