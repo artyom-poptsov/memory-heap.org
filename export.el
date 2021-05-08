@@ -85,7 +85,7 @@
   (concat "\n* " year "\n"))
 
 (defun make-poetry-record (link title)
-  (concat "** [[" link "][" title "]]\n"))
+  (concat " - [[" link "][" title "]]\n"))
 
 (defun generate-poetry ()
   (let ((template (get-string-from-file %poetry-page-template))
