@@ -1,4 +1,4 @@
-#+TITLE: memory heap / software
+#+TITLE: memory heap / projects
 
 * GNU Guile
   I know several programming languages, but in my view Lisp (and especially
