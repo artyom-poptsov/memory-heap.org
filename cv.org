@@ -1,0 +1,315 @@
+#+TITLE: memory heap / cv
+#+OPTIONS: prop:t
+#+OPTIONS: html-style:nil
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="static/css/s.css" />
+
+* Introduction
+  My name is Artyom V. Poptsov, I also known as "avp".
+
+  I'm creative, self-motivated and hard-working; atheist and skeptic, very
+  interested in science. I enjoy learning of well-designed technologies and
+  gaining experience in things I'm doing. Looking for jobs and opportunities
+  that benefit society and make people's lives better.
+
+  Heavily involved in free/libre software development, working on my own free
+  software projects in my spare time.
+
+  Main technical interests: programming, functional programming, GNU/Linux,
+  free/libre software, operating systems, microkernel-based operating systems,
+  distributed/decentralized systems, IPC, Lisp.
+
+  Co-founder of CADR hackerspace: https://cadrspace.ru
+
+** Contacts
+   - Home page: https://memory-heap.org/~avp/
+   - GitHub account: https://github.com/artyom-poptsov
+   - GitLab account: https://gitlab.com/a_v_p
+   - Email: =(string-join (reverse ("gmail.com" "@" "artyom" "." "poptsov")))=
+   - Matrix: =@a_v_p:matrix.org=
+
+* Current job
+  - CTO @ [[http://gkaz.ru][AZ Company Group LLC]]
+  - Head of "MCU and microprocessor systems programming laboratory" and
+    3D-printing lab in [[https://nntc.nnov.ru/][Nizhniy Novgorod Technical Colledge]].
+
+* Technical Skills
+
+** Operating Systems
+
+*** GNU/Linux
+    :PROPERTIES:
+    :knowledge-level: master
+    :experience: more than 10 years
+    :END:
+    Userspace programs and drivers development, administration, cron user, LVM
+    user.
+
+    CLI tools: =sed=, =awk=, =grep=, =find=, ssh tunneling, =screen= etc.
+
+    - source-based: Gentoo (for several years was my main desktop/server and
+      development system), Gentoo Hardened.
+    - deb-based: Ubuntu (regular use as desktop/development system), Debian.
+    - rpm-based: Fedora (also have an experience with preparing of
+      RPM-packages), ALT Linux.
+
+*** GNU Hurd (a microkernel-based OS)
+    :PROPERTIES:
+    :experience: less than 1 year
+    :knowledge-level: basic
+    :END:
+    Tinkered with it, tried to write a translator (server) for the system.
+
+    - deb-based: Debian GNU/Hurd
+*** Android
+    Application develpment, debugging with ADB. Took a part in [[http://merasws.com/newsroom/news/mera-has-revamped-android-improved-real-time-kernel-characteristics][RT Android
+    project]] in Mera.
+*** Xenomai
+*** RT GNU/Linux
+*** Microsoft Windows (98, XP)
+
+** Programming Languages
+*** C
+    :PROPERTIES:
+    :knowledge-level: master
+    :experience:      more than 10 years
+    :END:
+
+    Client-server applications, libraries, Linux kernel drivers
+    development.
+
+    [[https://git.libssh.org/projects/libssh.git/log/?qt=grep&q=poptsov.artyom][Contributions]] to [[https://libssh.org/][libssh]] library.
+
+    Project examples:
+    - [[https://github.com/artyom-poptsov/guile-ssh][Guile-SSH]]
+    - [[https://github.com/artyom-poptsov/guile-udev][Guile-Udev]]
+
+    Also I started a free online course on system programming (in Russian):
+    https://www.youtube.com/playlist?list=PLoAJ3BxlddnopWsE_IQYkFYXUkmYA4-Ar
+
+*** C++
+    :PROPERTIES:
+    :knowledge-level: basic
+    :experience: more than 2 years
+    :END:
+
+    Examples:
+    - https://gitlab.com/gkaz/mst
+    - https://gitlab.com/gkaz/azbook
+
+*** Scheme
+    :PROPERTIES:
+    :knowledge-level: master
+    :experience: more than 10 years
+    :END:
+    Examples:
+    - https://github.com/artyom-poptsov/guile-smc
+    - https://github.com/artyom-poptsov/guile-ini
+    - https://github.com/artyom-poptsov/guile-deck
+    - https://github.com/artyom-poptsov/guile-dsv
+    - https://github.com/artyom-poptsov/guile-ssh
+    - https://github.com/artyom-poptsov/metabash
+
+*** Java
+    :PROPERTIES:
+    :knowledge-level: good
+    :experience: more than 6 years
+    :END:
+
+    Overview:
+    - Android application development.  JNI.
+    - Alfresco module development.
+    - Teaching object-oriented programming course in Java for students in [[http://nntc.nnov.ru/][NNTC]].
+
+   Examples:
+   - https://sourceforge.net/projects/clustergen/
+   - https://gitlab.com/gkaz/recbot
+
+*** Unix shell scripts
+    :PROPERTIES:
+    :experience: more than 10 years
+    :knowledge-level: master
+    :END:
+    Bash, CShell
+
+    I participated in a commercial Bash/system administration course
+    development.
+*** JavaScript
+    :PROPERTIES:
+    :knowledge-level: good
+    :experience: more than 2 years
+    :END:
+*** Emacs Lisp
+    :PROPERTIES:
+    :knowledge-level: basic
+    :experience: more than 10 years
+    :END:
+*** Ruby
+    :PROPERTIES:
+    :experience: more than 10 years
+    :knowledge-level: basic
+    :END:
+    System automatisation, basic web application development.
+
+*** Python
+    :PROPERTIES:
+    :experience: more than 6 months
+    :knowledge-level: basic
+    :END:
+    Development of an extension for [[https://moinmo.in/][MoinMoin]] wiki engine.
+
+    Examples:
+    - [[https://github.com/artyom-poptsov/moinmoin-abbr-parser][MoinMoin Abbreviation Parser]]
+
+*** AVR Assembly
+    :PROPERTIES:
+    :knowledge-level: basic
+    :experience: less than 6 months
+    :END:
+    Examples:
+    - [[https://github.com/cadrspace/arduino-projects/tree/master/asm/chasing-lights]["Chasing lights"]] in AVR Assembly.
+
+   Started [[https://www.youtube.com/watch?v=_0HFB44Xntc&list=PLoAJ3Bxlddnqzfco6HLxfUt4f8R0VAtAr]["AVR assembly with AVP"]] series on YouTube.
+
+*** Lua
+    :PROPERTIES:
+    :knowledge-level: basic
+    :experience: less than 1 year
+    :END:
+
+** Markup Languages
+   Emacs org-mode, Texinfo, HTML, Wiki syntax, Markdown.
+
+   Texinfo examples:
+   - [[https://github.com/artyom-poptsov/guile-ssh/tree/master/doc][Guile-SSH documentation]]
+
+** Software Testing
+   - GitLab/GitHub CI
+   - JUnit
+   - SRFI-64 (a testing framework for Scheme.)
+
+** Administration
+*** Docker
+    :PROPERTIES:
+    :knowledge-level: good
+    :experience: more than 2 years
+    :END:
+    - Dockerfile
+    - Docker Hub
+    - Docker Compose
+*** LVM
+    :PROPERTIES:
+    :experience: more than 2 years
+    :knowledge-level: basic
+    :END:
+*** SELinux
+    :PROPERTIES:
+    :knowledge-level: basic
+    :experience: less than 1 year
+    :END:
+*** Cron
+*** Init Scripts (openrc, System V, upstart)
+*** SystemD
+
+** Network Protocols
+   SSH, TCP/IP family, ONC RPC, SCTP, CoAP, WebSocket.
+** Server-Side Software
+*** Web Servers
+    lighttpd, apache
+*** Wiki
+    - MediaWiki -- administration, maintenance, usage (I used to write some
+      articles for Wikipedia.)
+    - MoinMoin -- administration, maintenance, usage.
+*** Git Servers
+    - GitLab (deployment, maintenance, interaction with the API.)
+    - Gitolite
+*** "Cloud" Software
+**** ownCloud
+     :PROPERTIES:
+     :experience: more than 1 year
+     :knowledge-level: basic
+     :END:
+     Deployment, maintenance, interaction with the API.
+**** NextCloud
+     :PROPERTIES:
+     :knowledge-level: good
+     :experience: more than 2 years
+     :END:
+     Deployment, maintenance, interaction with the API.
+**** FreedomBox
+** Telecommunication software
+*** Jitsi
+    :PROPERTIES:
+    :experience: more than 1 year
+    :knowledge-level: good
+    :END:
+    - Deployment in a production environment.
+    - Maintenance.
+    - Monitoring.
+    - Patching.
+** Learning Management Systems (LMS)
+*** Moodle
+    :PROPERTIES:
+    :knowledge-level: good
+    :experience: more than 2 years
+    :END:
+    - Maintenance.
+    - Integration with other services.
+    - Course/test development, daily usage.
+** Security
+*** GNU Privacy Guard
+    :PROPERTIES:
+    :experience: more than 1 year
+    :knowledge-level: basic
+    :END:
+
+    Use GPG for email communications and to sign software releases.
+
+    GPG Key: [[https://pgp.mit.edu/pks/lookup?search=0xE9C5A2D90898A02F&op=index][D0C2 EAC1 3310 822D 98DE B57C E9C5 A2D9 0898 A02F]]
+*** Off-the-record (OTR) messaging
+    :PROPERTIES:
+    :knowledge-level: basic
+    :experience: more than 6 months
+    :END:
+*** Let's Encrypt
+    :PROPERTIES:
+    :experience: more than 1 year
+    :knowledge-level: basic
+    :END:
+    Home and production use.
+** Development and Build Tools
+   RCS/Git/SVN, GNU Make, GNU Autotools (Automake, Autoconf, Libtool), scons,
+   GDB/DDD, =strace=, GNU Emacs, NetBeans, Eclipse
+
+   Gave a talk in 2015 on version control systems for students of NNTC. Slides:
+   https://github.com/artyom-poptsov/talks/tree/master/vcs
+** Parametric 3D modeling
+   I'm mostly using FreeCAD nowadays. Some of my works can be found here:
+   https://www.thingiverse.com/a_v_p/designs
+
+** 3D-printing
+   I have experience in:
+   - Building, maintaining and using 3D-printers (RepRap and alike.)
+   - Preparing 3D-models for printing.
+** Other
+   - Good knowledge of Linux kernel standards and GNU coding standards.
+   - Expirience of interaction with free software community. Contributions to:
+     GNU Guile-RPC, libssh.
+   - Backus-Naur Form (BNF), ABNF
+   - Gnuplot
+** Licenses
+   I have basic understanding of the following licenses:
+   - Creative Commons
+   - GNU GPLv3
+* Languages
+** Russian
+   Native speaker.
+** English
+   Good reading/writing skills (techical documentation as well as regular texts
+   such as articles or books, communication through email and IM). Basic verbal
+   skills (I have experience in verbal communication with non-native English
+   speakers), good understanding of spoken English.
+
+   Examples of technical documentation written by me:
+   - [[https://github.com/artyom-poptsov/guile-ssh/tree/master/doc][Guile-SSH documentation]]
+** German
+   Very basic reading/writing skills.
