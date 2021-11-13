@@ -16,3 +16,4 @@
   - [[https://github.com/artyom-poptsov/guile-ics][Guile-ICS]] -- iCalendar (RFC5545) format parser for GNU Guile.
   - [[https://github.com/artyom-poptsov/guile-udev][Guile-Udev]] -- GNU Guile bindings to libudev.
   - [[https://github.com/artyom-poptsov/guile-deck][Guile-Deck]] -- GNU Guile Matrix network SDK.
+  - [[https://github.com/artyom-poptsov/guile-gitlab][Guile-GitLab]] -- GNU Guile interface to GitLab CE REST API.
