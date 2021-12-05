@@ -16,12 +16,22 @@ author of this website.
    - I know several programming languages but my favorite is Lisp (and
      especially Scheme.)
    - I'm a GNU Emacs user and this site is made with Emacs [[https://orgmode.org/][org-mode]].
-   - I wrote some poetry, [[./lyrics.html][here]] you can read the least poor examples of it.
+   - I wrote some poetry, [[./poetry.html][here]] you can read the least poor examples of it.
    - I'm an atheist.
    - I'm a vegetarian since 2007 and a vegan since 2010.
 
 * Contacts
-   - e-mail: =(string-join (reverse ("gmail.com" "@" "artyom" "." "poptsov")))=
+   - e-mail: =(string-join (reverse '("gmail.com" "@" "artyom" "." "poptsov")))=
    - GPG key fingerprint: [[http://pgp.mit.edu:11371/pks/lookup?op=get&search=0xE9C5A2D90898A02F][D0C2 EAC1 3310 822D 98DE B57C E9C5 A2D9 0898 A02F]]
    - Matrix: =@a_v_p:matrix.org=
+   - GitHub: https://github.com/artyom-poptsov
+   - GitLab: https://gitlab.com/a_v_p
    - [[https://twitter.com/artyom_poptsov][twitter]]
+
+* Other social networks
+   I've never owned any account on those social networks:
+   - vk.com
+   - Instagram
+   - TikTok
+
+   All accounts there that claim to be mine are fake.
