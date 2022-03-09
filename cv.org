@@ -315,3 +315,11 @@
    - [[https://github.com/artyom-poptsov/guile-ssh/tree/master/doc][Guile-SSH documentation]]
 ** German
    Very basic reading/writing skills.
+
+#+BEGIN_EXPORT html
+<hr/>
+#+END_EXPORT
+
+Copyright © 2021-2022 Artyom V. Poptsov
+
+Verbatim copying and redistribution of this entire page are permitted provided this notice is preserved.
