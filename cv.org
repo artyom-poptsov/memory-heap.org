@@ -26,7 +26,7 @@
    - Home page: https://memory-heap.org/~avp/
    - GitHub account: https://github.com/artyom-poptsov
    - GitLab account: https://gitlab.com/a_v_p
-   - Email: =(string-join (reverse ("gmail.com" "@" "artyom" "." "poptsov")))=
+   - Email: =(string-join (reverse '("gmail.com" "@" "artyom" "." "poptsov")))=
    - Matrix: =@a_v_p:matrix.org=
 
 * Current job
