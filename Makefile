@@ -1,2 +1,2 @@
 all:
-	./export.el
+	emacs --script ./export.el
