@@ -1,0 +1,11 @@
+* memory-heap.org
+My personal web site that's made with an (un)healthy portion of Emacs Lisp.  The
+live version of it most likely lives here: https://memory-heap.org/~avp/
+
+** How to build
+#+BEGIN_EXAMPLE shell
+$ make
+#+END_EXAMPLE
+
+Obviously you'll need Emacs installed on your system to do that.  The output
+will be stored in =output= directory.
