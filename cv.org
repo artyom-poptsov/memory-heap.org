@@ -6,20 +6,23 @@
 #+OPTIONS: html-style:nil
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="./static/css/s.css" />
 
+[[[https://memory-heap.org/~avp/cv.html][HTML]]][[[https://memory-heap.org/~avp/cv.pdf][PDF]]]
+
 * Introduction
   My name is Artyom V. Poptsov, I also known as "avp".
 
   I'm creative, self-motivated and hard-working; atheist and skeptic, very
-  interested in science. I enjoy learning of well-designed technologies and
-  gaining experience in things I'm doing. Looking for jobs and opportunities
+  interested in science.  I enjoy learning of well-designed technologies and
+  gaining deep knowledge in things I'm doing.  Looking for jobs and opportunities
   that benefit society and make people's lives better.
 
   Heavily involved in free/libre software development, working on my own free
   software projects in my spare time.
 
-  Main technical interests: programming, functional programming, GNU/Linux,
-  free/libre software, operating systems, microkernel-based operating systems,
-  distributed/decentralized systems, IPC, Lisp.
+  *Main technical interests:* programming, functional programming, Lisp,
+  GNU/Linux, free/libre software, operating systems, microkernel-based operating
+  systems, distributed/decentralized systems, text processing, parsers,
+  finite-state machines, compilers.
 
   Co-founder of CADR hackerspace: https://cadrspace.ru
 
@@ -65,7 +68,7 @@
 
     https://guix.gnu.org/
 
-    Installation, day-to-day usage, packaging, debugging.
+    User, [[https://git.savannah.gnu.org/cgit/guix.git/log/?qt=author&q=Artyom+V.+Poptsov][contributor]].
 
 *** Android
     :PROPERTIES:
