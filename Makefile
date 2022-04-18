@@ -1,4 +1,4 @@
-all:
+all: cv
 	emacs --script ./export.el
 
 cv:
