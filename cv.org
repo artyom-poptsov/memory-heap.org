@@ -42,6 +42,7 @@
     :PROPERTIES:
     :knowledge-level: master
     :experience: more than 10 years
+    :active-skill?: yes
     :END:
     Userspace programs and drivers development, administration, cron user, LVM
     user.
@@ -54,19 +55,52 @@
     - rpm-based: Fedora (also have an experience with preparing of
       RPM-packages), ALT Linux.
 
+*** GNU Guix
+    :PROPERTIES:
+    :experience: less than 1 year
+    :knowledge-level: good
+    :active-skill?: yes
+    :END:
+
+    https://guix.gnu.org/
+
+    Installation, day-to-day usage, packaging, debugging.
+
+*** Android
+    :PROPERTIES:
+    :experience: more than 1 year
+    :knowledge-level: basic
+    :active-skill?: yes
+    :END:
+    Application develpment, debugging with ADB. Took a part in [[http://merasws.com/newsroom/news/mera-has-revamped-android-improved-real-time-kernel-characteristics][RT Android
+    project]] in Mera.
+
+    Taught classes on Android development for students in a college.
+
+    Projects:
+    - [[https://gitlab.com/gkaz/recbot][RecBot]]: Automatic remote-controlled multiple camera recorder for Android.
+
 *** GNU Hurd (a microkernel-based OS)
     :PROPERTIES:
     :experience: less than 1 year
     :knowledge-level: basic
+    :active-skill?: no
     :END:
     Tinkered with it, tried to write a translator (server) for the system.
 
     - deb-based: Debian GNU/Hurd
-*** Android
-    Application develpment, debugging with ADB. Took a part in [[http://merasws.com/newsroom/news/mera-has-revamped-android-improved-real-time-kernel-characteristics][RT Android
-    project]] in Mera.
 *** Xenomai
+    :PROPERTIES:
+    :experience: less than 1 year
+    :knowledge-level: basic
+    :active-skill?: no
+    :END:
 *** RT GNU/Linux
+    :PROPERTIES:
+    :experience: less than 1 year
+    :knowledge-level: basic
+    :active-skill?: no
+    :END:
 *** Microsoft Windows (98, XP)
 
 ** Programming Languages
@@ -74,6 +108,7 @@
     :PROPERTIES:
     :knowledge-level: master
     :experience:      more than 10 years
+    :active-skill?:   yes
     :END:
 
     Client-server applications, libraries, Linux kernel drivers
@@ -82,39 +117,44 @@
     [[https://git.libssh.org/projects/libssh.git/log/?qt=grep&q=poptsov.artyom][Contributions]] to [[https://libssh.org/][libssh]] library.
 
     Project examples:
-    - [[https://github.com/artyom-poptsov/guile-ssh][Guile-SSH]]
-    - [[https://github.com/artyom-poptsov/guile-udev][Guile-Udev]]
+    - [[https://github.com/artyom-poptsov/guile-ssh][Guile-SSH]]: GNU Guile libssh bindings.
+    - [[https://github.com/artyom-poptsov/guile-udev][Guile-Udev]]: GNU Guile libudev bindings.
 
     Also I started a free online course on system programming (in Russian):
     https://www.youtube.com/playlist?list=PLoAJ3BxlddnopWsE_IQYkFYXUkmYA4-Ar
 
 *** C++
     :PROPERTIES:
-    :knowledge-level: basic
-    :experience: more than 2 years
+    :knowledge-level: good
+    :experience: more than 4 years
+    :active-skill?:   yes
     :END:
 
     Examples:
-    - https://gitlab.com/gkaz/mst
-    - https://gitlab.com/gkaz/azbook
+    - [[https://gitlab.com/gkaz/mst][MST]]: Multi-seat toolkit that allows to make multi-seat configurations.
+    - [[https://gitlab.com/gkaz/azbook][Azbook]]: Generic authentication and file synchronization system for WebDAV
+      servers.
 
 *** Scheme
     :PROPERTIES:
     :knowledge-level: master
     :experience: more than 10 years
+    :active-skill?:   yes
     :END:
+
     Examples:
-    - https://github.com/artyom-poptsov/guile-smc
-    - https://github.com/artyom-poptsov/guile-ini
-    - https://github.com/artyom-poptsov/guile-deck
-    - https://github.com/artyom-poptsov/guile-dsv
-    - https://github.com/artyom-poptsov/guile-ssh
-    - https://github.com/artyom-poptsov/metabash
+    - [[https://github.com/artyom-poptsov/guile-smc][Guile-SMC]]: GNU Guile State Machine Compiler.
+    - [[https://github.com/artyom-poptsov/guile-ini][Guile-INI]]: GNU Guile INI Format parser.
+    - [[https://github.com/artyom-poptsov/guile-deck][Guile-Deck]]: GNU Guile Matrix client.
+    - [[https://github.com/artyom-poptsov/guile-dsv][Guile-DSV]]: GNU Guile DSV/CSV format parser.
+    - [[https://github.com/artyom-poptsov/guile-ssh][Guile-SSH]]: GNU Guile libssh bindings.
+    - [[https://github.com/artyom-poptsov/metabash][Metabash]]: Distributed pipes for GNU Guile.
 
 *** Java
     :PROPERTIES:
     :knowledge-level: good
     :experience: more than 6 years
+    :active-skill?:   yes
     :END:
 
     Overview:
@@ -130,6 +170,7 @@
     :PROPERTIES:
     :experience: more than 10 years
     :knowledge-level: master
+    :active-skill?:   yes
     :END:
     Bash, CShell
 
@@ -139,16 +180,19 @@
     :PROPERTIES:
     :knowledge-level: good
     :experience: more than 2 years
+    :active-skill?:   yes
     :END:
 *** Emacs Lisp
     :PROPERTIES:
     :knowledge-level: basic
     :experience: more than 10 years
+    :active-skill?:   yes
     :END:
 *** Ruby
     :PROPERTIES:
     :experience: more than 10 years
     :knowledge-level: basic
+    :active-skill?:   no
     :END:
     System automatisation, basic web application development.
 
@@ -156,8 +200,11 @@
     :PROPERTIES:
     :experience: more than 6 months
     :knowledge-level: basic
+    :active-skill?:   yes
     :END:
-    Development of an extension for [[https://moinmo.in/][MoinMoin]] wiki engine.
+    Experience:
+    - Development of an extension for [[https://moinmo.in/][MoinMoin]] wiki engine.
+    - Teaching a beginner Python course for students in a college.
 
     Examples:
     - [[https://github.com/artyom-poptsov/moinmoin-abbr-parser][MoinMoin Abbreviation Parser]]
@@ -166,16 +213,34 @@
     :PROPERTIES:
     :knowledge-level: basic
     :experience: less than 6 months
+    :active-skill?:   no
     :END:
     Examples:
     - [[https://github.com/cadrspace/arduino-projects/tree/master/asm/chasing-lights]["Chasing lights"]] in AVR Assembly.
-
-   Started [[https://www.youtube.com/watch?v=_0HFB44Xntc&list=PLoAJ3Bxlddnqzfco6HLxfUt4f8R0VAtAr]["AVR assembly with AVP"]] series on YouTube.
+    - [[https://www.youtube.com/watch?v=_0HFB44Xntc&list=PLoAJ3Bxlddnqzfco6HLxfUt4f8R0VAtAr]["AVR assembly with AVP"]] series on YouTube.
 
 *** Lua
     :PROPERTIES:
     :knowledge-level: basic
     :experience: less than 1 year
+    :active-skill?:   no
+    :END:
+
+** Frameworks
+*** Qt
+    :PROPERTIES:
+    :knowledge-level: good
+    :experience: more than 3 years
+    :active-skill?:   yes
+    :END:
+
+    Examples:
+    - [[https://gitlab.com/gkaz/mst][MST]]: Multi-seat toolkit that allows to make multi-seat configurations.
+*** Ruby On Rails
+    :PROPERTIES:
+    :knowledge-level: basic
+    :experience: less than 1 years
+    :active-skill?:   no
     :END:
 
 ** Markup Languages
@@ -194,6 +259,7 @@
     :PROPERTIES:
     :knowledge-level: good
     :experience: more than 2 years
+    :active-skill?:   yes
     :END:
     - Dockerfile
     - Docker Hub
@@ -202,11 +268,13 @@
     :PROPERTIES:
     :experience: more than 2 years
     :knowledge-level: basic
+    :active-skill?:   yes
     :END:
 *** SELinux
     :PROPERTIES:
     :knowledge-level: basic
     :experience: less than 1 year
+    :active-skill?:   no
     :END:
 *** Cron
 *** Init Scripts (openrc, System V, upstart)
@@ -229,20 +297,23 @@
      :PROPERTIES:
      :experience: more than 1 year
      :knowledge-level: basic
+    :active-skill?:   no
      :END:
      Deployment, maintenance, interaction with the API.
 **** NextCloud
      :PROPERTIES:
      :knowledge-level: good
-     :experience: more than 2 years
+     :experience: more than 3 years
+    :active-skill?:   yes
      :END:
      Deployment, maintenance, interaction with the API.
 **** FreedomBox
 ** Telecommunication software
 *** Jitsi
     :PROPERTIES:
-    :experience: more than 1 year
+    :experience: more than 2 years
     :knowledge-level: good
+    :active-skill?:   yes
     :END:
     - Deployment in a production environment.
     - Maintenance.
@@ -252,7 +323,8 @@
 *** Moodle
     :PROPERTIES:
     :knowledge-level: good
-    :experience: more than 2 years
+    :experience: more than 4 years
+    :active-skill?:   yes
     :END:
     - Maintenance.
     - Integration with other services.
@@ -260,8 +332,9 @@
 ** Security
 *** GNU Privacy Guard
     :PROPERTIES:
-    :experience: more than 1 year
+    :experience: more than 5 years
     :knowledge-level: basic
+    :active-skill?:   yes
     :END:
 
     Use GPG for email communications and to sign software releases.
@@ -271,20 +344,54 @@
     :PROPERTIES:
     :knowledge-level: basic
     :experience: more than 6 months
+    :active-skill?:   no
     :END:
 *** Let's Encrypt
     :PROPERTIES:
     :experience: more than 1 year
     :knowledge-level: basic
+    :active-skill?:   yes
     :END:
     Home and production use.
 ** Development and Build Tools
    RCS/Git/SVN, GNU Make, GNU Autotools (Automake, Autoconf, Libtool), scons,
-   GDB/DDD, =strace=, GNU Emacs, NetBeans, Eclipse
+   GDB/DDD, =strace=, GNU Emacs, NetBeans, Eclipse, distcc
 
    Gave a talk in 2015 on version control systems for students of NNTC. Slides:
    https://github.com/artyom-poptsov/talks/tree/master/vcs
+** Embedded Development/MCU Firmware Development
+*** Arduino (AVR Family)
+    :PROPERTIES:
+    :knowledge-level: master
+    :experience: more than 4 years
+    :active-skill?:   yes
+    :END:
+*** STM32
+    :PROPERTIES:
+    :knowledge-level: basic
+    :experience: less than 1 year
+    :active-skill?:   yes
+    :END:
+*** ESP8266 / ESP32
+    :PROPERTIES:
+    :knowledge-level: good
+    :experience: more than 3 years
+    :active-skill?:   yes
+    :END:
+*** Raspberry Pi
+    :PROPERTIES:
+    :knowledge-level: good
+    :experience: more than 2 years
+    :active-skill?:   no
+    :END:
+    Kernel compilation, GPIOs, etc.
+
 ** Parametric 3D modeling
+    :PROPERTIES:
+    :experience: more than 3 years
+    :knowledge-level: good
+    :active-skill?:   yes
+    :END:
    I'm mostly using FreeCAD nowadays. Some of my works can be found here:
    https://www.thingiverse.com/a_v_p/designs
 
@@ -309,7 +416,7 @@
    Good reading/writing skills (techical documentation as well as regular texts
    such as articles or books, communication through email and IM). Basic verbal
    skills (I have experience in verbal communication with non-native English
-   speakers), good understanding of spoken English.
+   speakers), very good understanding of spoken English.
 
    Examples of technical documentation written by me:
    - [[https://github.com/artyom-poptsov/guile-ssh/tree/master/doc][Guile-SSH documentation]]
