@@ -1,4 +1,5 @@
 #+TITLE: memory heap / cv
+#+AUTHOR: Artyom V. Poptsov
 #+HTML_LINK_HOME: ./
 #+HTML_LINK_UP:   ./
 #+OPTIONS: prop:t
