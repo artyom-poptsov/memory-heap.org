@@ -1,0 +1,16 @@
+#+TITLE: memory heap / photos / 2009-07-12
+#+HTML_LINK_HOME: ../
+#+HTML_LINK_UP:   ../photos.html
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../static/css/s.css" />
+#+OPTIONS: html-style:nil
+
+[[./2009/07/12/iphiclides-podalirius-640x480.jpg]]
+
+[[./2009/07/12/masarinae1-640x480.jpg]]
+
+#+BEGIN_EXPORT html
+<p><a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">
+<img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png" /></a>
+<br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">
+Creative Commons Attribution-Share Alike 3.0 Unported License</a></p>
+#+END_EXPORT

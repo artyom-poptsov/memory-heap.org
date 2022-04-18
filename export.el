@@ -7,6 +7,7 @@
 (defconst %static-dir    (concat %output-dir "/static"))
 (defconst %poetry-dir    (concat %output-dir "/poetry"))
 (defconst %images-dir    (concat %static-dir "/images"))
+(defconst %photos-dir    (concat %output-dir "/photos"))
 (defconst %poetry-page-template   "poetry-page-template.org")
 (defconst %poetry-list-template   "poetry-list-template.org")
 
@@ -28,6 +29,17 @@
          :section-numbers      nil
          :table-of-contents    nil
          :recursive            t)
+        ("memory-heap-photos"
+         :base-directory       "./photos/"
+         :base-extension       "jpg"
+         :recursive            t
+         :publishing-directory ,%photos-dir
+         :publishing-function  org-publish-attachment)
+        ("memory-heap-photo-albums"
+         :base-directory       "./photos/"
+         :base-extension       "org"
+         :publishing-directory ,%photos-dir
+         :publishing-function  org-html-publish-to-html)
         ("memory-heap-static"
          :base-directory       "./static/"
          :base-extension       any
@@ -122,8 +134,13 @@
     (make-directory %poetry-dir))
   (org-publish-project "memory-heap-poetry")
 
+  (org-publish-project "memory-heap-photos")
+  (org-publish-project "memory-heap-photo-albums")
+
   (unless (file-exists-p %static-dir)
     (make-directory %static-dir))
+  (unless (file-exists-p (concat %static-dir "/css"))
+    (make-directory (concat %static-dir "/css")))
   (org-publish-project "memory-heap-static"))
 
 (generate-poetry)

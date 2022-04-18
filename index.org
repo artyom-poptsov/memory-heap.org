@@ -8,5 +8,10 @@
 - [[./projects.html][projects]]
 - [[./talks.html][talks]]
 - [[./poetry.html][poetry]]
+- [[./photos.html][photos]]
 - [[./cv.html][cv]]
 - [[./about.html][about]]
+
+Copyright © 2021-2022 Artyom V. Poptsov
+
+Verbatim copying and redistribution of this entire page are permitted provided this notice is preserved.

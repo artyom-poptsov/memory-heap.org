@@ -1,0 +1,28 @@
+#+TITLE: memory heap / photos / Мороз в городе N^2 @ 2010-01
+#+HTML_LINK_HOME: ../
+#+HTML_LINK_UP:   ../photos.html
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../static/css/s.css" />
+#+OPTIONS: html-style:nil
+
+[[./2010/01/15/100-5559-GIMPed-480x640.jpg]]
+
+Дымовые трубы @ 2010-01-15
+
+[[./2010/01/19/100-5577-GIMPed-640x480.jpg]]
+
+Птицы @ 2010-01-19
+
+[[./2010/01/21/100-5579-640x480.jpg]]
+
+ЛЭП @ 2010-010-21
+
+[[./2010/01/23/100-5585-GIMPed-640x481.jpg]]
+
+Птицы 2 @ 2010-01-23
+
+#+BEGIN_EXPORT html
+<p><a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">
+<img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png" /></a>
+<br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">
+Creative Commons Attribution-Share Alike 3.0 Unported License</a></p>
+#+END_EXPORT
