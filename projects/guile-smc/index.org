@@ -1,0 +1,48 @@
+#+TITLE: memory heap / projects / guile-smc
+#+OPTIONS: html-style:nil
+#+HTML_LINK_HOME: ../../
+#+HTML_LINK_UP:   ../../projects.html
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../../static/css/s.css" />
+
+
+* Guile-SMC
+
+[[https://www.gnu.org/software/guile/][GNU Guile]] state machine compiler.
+
+Guile-SMC is a state machine compiler that allows to describe finite state
+machines (FSMs) in Scheme in terms of transition tables. It is capable to
+generate such transition tables from a [[https://plantuml.com/state-diagram][PlantUML state diagrams]].
+
+** Features
+
+- A transition table can be verified and checked for dead-ends and
+  infinite loops.
+- Guile-SMC FSMs gather statistics when they run (steps/transitions);
+  the statistics can be used can be used to compare/analyze FSMs..
+- There's an FSM profiler that runs on FSMs trace logs.  The profiler
+  output shows how much time the FSM spends in each state.  This can be
+  useful for optimization.
+- The state machine compiler supports three "targets" for compilation: a
+  regular Guile target where the output FSM depends on Guile-SMC;
+  "guile-standalone" target that produce an FSM that does not depend on
+  Guile-SMC; "guile-standalone-copy" where all the required parts of
+  Guile-SMC are copied alongside with the output FSM to make the code
+  independent.
+- Guile-SMC allows to run a FSM on-the-fly with a single "smc run"
+  command -- see the docs and the examples for more information.
+
+** Source Code Repository
+
+https://github.com/artyom-poptsov/guile-smc
+
+** Documentation
+
+You can read the documentation online [[./manual/][here]] or use =info guile-smc= on your
+GNU/Linux distribution with Guile-SMC installed.
+
+** License
+
+Guile-SMC is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later
+version.

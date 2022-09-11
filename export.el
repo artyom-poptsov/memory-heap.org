@@ -41,6 +41,8 @@
          :base-extension       "org"
          :publishing-directory ,%photos-dir
          :publishing-function  org-html-publish-to-html)
+
+        ;; Guile-SSH
         ("memory-heap-projects-guile-ssh"
          :base-directory       "./projects/guile-ssh/"
          :base-extension       "org"
@@ -51,6 +53,20 @@
          :base-extension       "html"
          :publishing-directory ,(concat %projects-dir "/guile-ssh/manual/")
          :publishing-function  org-publish-attachment)
+
+        ;; Guile-SMC
+        ("memory-heap-projects-guile-smc"
+         :base-directory       "./projects/guile-smc/"
+         :base-extension       "org"
+         :publishing-directory ,(concat %projects-dir "/guile-smc/")
+         :publishing-function  org-html-publish-to-html)
+        ("memory-heap-projects-guile-smc-manual"
+         :base-directory       "./projects/guile-smc/manual/"
+         :base-extension       "html"
+         :publishing-directory ,(concat %projects-dir "/guile-smc/manual/")
+         :publishing-function  org-publish-attachment)
+
+        ;; Static
         ("memory-heap-static"
          :base-directory       "./static/"
          :base-extension       any
@@ -150,6 +166,9 @@
 
   (org-publish-project "memory-heap-projects-guile-ssh")
   (org-publish-project "memory-heap-projects-guile-ssh-manual")
+
+  (org-publish-project "memory-heap-projects-guile-smc")
+  (org-publish-project "memory-heap-projects-guile-smc-manual")
 
   (unless (file-exists-p %static-dir)
     (make-directory %static-dir))
