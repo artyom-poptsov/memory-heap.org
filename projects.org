@@ -10,7 +10,7 @@
   free software libraries for GNU Guile, the Scheme implementation of my choice,
   to help the language grow and mature.
 
-  - [[https://github.com/artyom-poptsov/guile-ssh][Guile-SSH]] -- libssh bindings for GNU Guile.
+  - [[./projects/guile-ssh/index.html][Guile-SSH]] -- libssh bindings for GNU Guile.
   - [[https://github.com/artyom-poptsov/guile-smc][Guile-SMC]] -- GNU Guile State Machine Compiler.
   - [[https://github.com/artyom-poptsov/guile-dsv][Guile-DSV]] -- Delimiter-separated values (DSV) format parser for GNU Guile.
   - [[https://github.com/artyom-poptsov/guile-ics][Guile-ICS]] -- iCalendar (RFC5545) format parser for GNU Guile.

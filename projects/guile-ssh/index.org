@@ -1,0 +1,49 @@
+#+TITLE: memory heap / projects / guile-ssh
+#+OPTIONS: html-style:nil
+#+HTML_LINK_HOME: ../../
+#+HTML_LINK_UP:   ../../projects.html
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../../static/css/s.css" />
+
+
+* Guile-SSH
+
+Guile-SSH is a library that provides access to the [[https://en.wikipedia.org/wiki/Secure_Shell][SSH protocol]] for [[https://www.gnu.org/software/guile/][GNU Guile]]
+programs.  It's built upon the [[https://www.libssh.org/][libssh]] library.
+
+** Features
+  - The API that is sufficient for building of standalone SSH clients and
+    servers, or for embedding client/server functionality in your lispy Scheme
+    applications.
+  - Several authentication methods are supported, including password
+    authentication, public key and SSH agent authentication methods.
+  - Key management procedures: you can make key pairs, read keys from files,
+    get key hashes, get public keys from private keys etc.  DSS, RSA, RSA1 and
+    ECDSA (by means of OpenSSL) are supported.
+  - Port forwarding procedures and high-level API for creating of SSH tunnels.
+  - Distributed forms (=dist-map=, =distribute=, ...) that allow to spread the
+    evaluation of Scheme code between remote hosts.  Or you can just connect
+    to a remote REPL from Scheme using =with-ssh= procedure and evaluate some
+    expressions.  No special server needed on the remote side, just an SSH
+    daemon and GNU Guile installed!
+  - SFTP client API allows you to read and write remote files over the SSH
+    protocol right from the Scheme code.
+  - Remote popen API that allows you to make either input, output or
+    bidirectional pipes to remote processes.
+  - Detailed documentation in Texinfo format with examples included, even more
+    examples in =examples= directory.
+
+** Source Code Repository
+
+https://github.com/artyom-poptsov/guile-ssh
+
+** Documentation
+
+You can read the documentation online [[./manual/][here]] or use =info guile-ssh= on your
+GNU/Linux distribution with Guile-SSH installed.
+
+** License
+
+Guile-SSH is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later
+version.

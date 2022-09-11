@@ -8,6 +8,7 @@
 (defconst %poetry-dir    (concat %output-dir "/poetry"))
 (defconst %images-dir    (concat %static-dir "/images"))
 (defconst %photos-dir    (concat %output-dir "/photos"))
+(defconst %projects-dir  (concat %output-dir "/projects"))
 (defconst %poetry-page-template   "poetry-page-template.org")
 (defconst %poetry-list-template   "poetry-list-template.org")
 
@@ -40,6 +41,16 @@
          :base-extension       "org"
          :publishing-directory ,%photos-dir
          :publishing-function  org-html-publish-to-html)
+        ("memory-heap-projects-guile-ssh"
+         :base-directory       "./projects/guile-ssh/"
+         :base-extension       "org"
+         :publishing-directory ,(concat %projects-dir "/guile-ssh/")
+         :publishing-function  org-html-publish-to-html)
+        ("memory-heap-projects-guile-ssh-manual"
+         :base-directory       "./projects/guile-ssh/manual/"
+         :base-extension       "html"
+         :publishing-directory ,(concat %projects-dir "/guile-ssh/manual/")
+         :publishing-function  org-publish-attachment)
         ("memory-heap-static"
          :base-directory       "./static/"
          :base-extension       any
@@ -136,6 +147,9 @@
 
   (org-publish-project "memory-heap-photos")
   (org-publish-project "memory-heap-photo-albums")
+
+  (org-publish-project "memory-heap-projects-guile-ssh")
+  (org-publish-project "memory-heap-projects-guile-ssh-manual")
 
   (unless (file-exists-p %static-dir)
     (make-directory %static-dir))
