@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- This manual documents Guile-SSH version 0.15.1.
+<!-- This manual documents Guile-SSH version 0.16.0.
 
 Copyright (C) 2014-2022 Artyom V. Poptsov
 
@@ -11,7 +11,7 @@ Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.  A
 copy of the license is included in the section entitled "GNU Free
 Documentation License."
  -->
-<!-- Created on September 11, 2022 by texi2html 5.0
+<!-- Created on September 13, 2022 by texi2html 5.0
 texi2html was written by: 
             Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
@@ -72,12 +72,12 @@ ul.no-bullet {list-style: none}
 <br>
 
 <h1>Guile-SSH Reference Manual</h1>
-<h3 align="right">For Guile-SSH 0.15.1</h3>
+<h3 align="right">For Guile-SSH 0.16.0</h3>
 
 <strong>Artyom V. Poptsov</strong><br>
 
 
-<p>This manual documents Guile-SSH version 0.15.1.
+<p>This manual documents Guile-SSH version 0.16.0.
 </p>
 <p>Copyright (C) 2014-2022 Artyom V. Poptsov
 </p>
@@ -100,7 +100,7 @@ Documentation License.&rdquo;
 <a name="The-Guile_002dSSH-Reference-Manual"></a>
 <h1 class="top">The Guile-SSH Reference Manual</h1>
 
-<p>This manual documents Guile-SSH version 0.15.1.
+<p>This manual documents Guile-SSH version 0.16.0.
 </p>
 <p>Copyright (C) 2014-2022 Artyom V. Poptsov
 </p>
@@ -3205,7 +3205,7 @@ terminal pxheight from the <acronym>PTY</acronym> <var>request</var>.
 <tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Parsing-of-Requests" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#API-Reference" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#SFTP-session" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SFTP-Session" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Examples" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -3222,10 +3222,10 @@ terminal pxheight from the <acronym>PTY</acronym> <var>request</var>.
 <a name="index-SFTP"></a>
 <a name="index-file-transfer"></a>
 
-<p>The <code>(ssh sftp)</code> module provides procedures for working with SFTP.
+<p>The <code>(ssh sftp)</code> module provides procedures for working with <abbr title="Secure File Transfer Protocol">SFTP</abbr> (Secure File Transfer Protocol).
 </p>
 <hr>
-<a name="SFTP-session"></a>
+<a name="SFTP-Session"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#SFTP" title="Previous section in reading order"> &lt; </a>]</td>
@@ -3241,7 +3241,7 @@ terminal pxheight from the <acronym>PTY</acronym> <var>request</var>.
 <td valign="middle" align="left">[<a href="#Type-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection">3.13.1 SFTP session</h3>
+<h3 class="subsection">3.13.1 SFTP Session</h3>
 
 <dl>
 <dt><a name="index-make_002dsftp_002dsession"></a>Scheme Procedure: <strong>make-sftp-session</strong><em> ssh-session</em></dt>
@@ -3361,9 +3361,9 @@ an error.  Return value is undefined.
 <a name="Low_002dLevel-API"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SFTP-session" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SFTP-session" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#SFTP-file" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SFTP-Session" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SFTP-Session" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#SFTP-File" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Examples" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -3393,12 +3393,12 @@ exception on an error, return value is undefined.
 </p></dd></dl>
 
 <hr>
-<a name="SFTP-file"></a>
+<a name="SFTP-File"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Low_002dLevel-API" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#SFTP" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#High_002dlevel-operations-on-remote-files" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SFTP-Directory" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Examples" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -3409,7 +3409,7 @@ exception on an error, return value is undefined.
 <td valign="middle" align="left">[<a href="#Type-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection">3.13.2 SFTP file</h3>
+<h3 class="subsection">3.13.2 SFTP File</h3>
 
 <p>Remote files are represented as regular Guile ports that allow random access
 (see <a href="guile.html#Input-and-Output">Input and Output</a> in <cite>The GNU Guile Reference Manual</cite>.)
@@ -3426,10 +3426,97 @@ port.  Throw <code>guile-ssh-error</code> on an error.
 </p></dd></dl>
 
 <hr>
+<a name="SFTP-Directory"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SFTP-File" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SFTP" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#High_002dlevel-operations-on-remote-files" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Examples" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#Type-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h3 class="subsection">3.13.3 SFTP Directory</h3>
+<a name="index-directory-traversal"></a>
+
+<p>Those procedures allow to read directory contents on the remote side.
+</p>
+<dl>
+<dt><a name="index-sftp_002ddir_003f"></a>Scheme Procedure: <strong>sftp-dir?</strong><em> x</em></dt>
+<dd><p>Check if an <var>x</var> is an SFTP directory instance. Return <code>#t</code> if it is,
+<code>#f</code> otherwise.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-sftp_002ddir_002dopen"></a>Scheme Procedure: <strong>sftp-dir-open</strong><em> sftp-session path</em></dt>
+<dd><p>Open a remote directory with the specified <var>path</var> using
+<var>sftp-session</var>. Return an SFTP directory as opaque object.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-sftp_002ddir_002dopen_002dstream"></a>Scheme Procedure: <strong>sftp-dir-open-stream</strong><em> sftp-session path</em></dt>
+<dd><p>Open a remote directory with the specified <var>path</var> using
+<var>sftp-session</var>. Return an ice-9 stream of SFTP file attributes.
+</p>
+<p>Usage example:
+</p>
+<div class="lisp">
+<pre class="lisp">(use-modules (ice-9 streams)
+             (ice-9 pretty-print)
+             (ssh session)
+             (ssh auth)
+             (ssh sftp))
+
+(define (main args)
+  (let ((session (make-session #:host &quot;example.org&quot;
+                               #:user &quot;avp&quot;)))
+    (connect! session)
+    (userauth-agent! session)
+    (let* ((sftp-session (make-sftp-session session))
+           (stream       (sftp-dir-open-stream sftp-session &quot;/tmp/&quot;)))
+      (stream-for-each (lambda (attrs)
+                         (pretty-print attrs))
+                       stream))))
+</pre></div>
+</dd></dl>
+
+<dl>
+<dt><a name="index-sftp_002ddir_002dpath"></a>Scheme Procedure: <strong>sftp-dir-path</strong><em> sftp-directory</em></dt>
+<dd><p>Get the path associated with an <var>sftp-directory</var>.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-sftp_002ddir_002dsession"></a>Scheme Procedure: <strong>sftp-dir-session</strong><em> sftp-directory</em></dt>
+<dd><p>Get the parent SFTP session for an <var>sftp-directory</var>.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-sftp_002ddir_002dclose"></a>Scheme Procedure: <strong>sftp-dir-close</strong><em> sftp-directory</em></dt>
+<dd><p>Close an <var>sftp-directory</var>.  Return value is undefined.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-sftp_002ddir_002deof_003f"></a>Scheme Procedure: <strong>sftp-dir-eof?</strong><em> sftp-directory</em></dt>
+<dd><p>CHeck if an <var>sftp-directory</var> pointed to an EOF object.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-sftp_002ddir_002dread"></a>Scheme Procedure: <strong>sftp-dir-read</strong><em> sftp-directory</em></dt>
+<dd><p>Read an <var>sftp-directory</var>. Return an alist with the next directory
+attributes.
+</p></dd></dl>
+
+<hr>
 <a name="High_002dlevel-operations-on-remote-files"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#SFTP-file" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#SFTP-Directory" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#SFTP" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="#Distributed-Forms" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Examples" title="Next chapter"> &gt;&gt; </a>]</td>
@@ -3442,7 +3529,7 @@ port.  Throw <code>guile-ssh-error</code> on an error.
 <td valign="middle" align="left">[<a href="#Type-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection">3.13.3 High-level operations on remote files</h3>
+<h3 class="subsection">3.13.4 High-level operations on remote files</h3>
 
 <dl>
 <dt><a name="index-call_002dwith_002dremote_002dinput_002dfile"></a>Scheme Procedure: <strong>call-with-remote-input-file</strong><em> sftp-session filename proc</em></dt>
@@ -4864,8 +4951,8 @@ to permit their use in free software.
 <tr><td></td><td valign="top"><a href="#index-bytevector_002d_003ehex_002dstring"><code>bytevector-&gt;hex-string</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Keys">3.4 Keys</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="Procedure-Index-1_fn_letter-C">C</a></th><td></td><td></td></tr>
-<tr><td></td><td valign="top"><a href="#index-call_002dwith_002dremote_002dinput_002dfile"><code>call-with-remote-input-file</code></a></td><td>&nbsp;</td><td valign="top"><a href="#High_002dlevel-operations-on-remote-files">3.13.3 High-level operations on remote files</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-call_002dwith_002dremote_002doutput_002dfile"><code>call-with-remote-output-file</code></a></td><td>&nbsp;</td><td valign="top"><a href="#High_002dlevel-operations-on-remote-files">3.13.3 High-level operations on remote files</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-call_002dwith_002dremote_002dinput_002dfile"><code>call-with-remote-input-file</code></a></td><td>&nbsp;</td><td valign="top"><a href="#High_002dlevel-operations-on-remote-files">3.13.4 High-level operations on remote files</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-call_002dwith_002dremote_002doutput_002dfile"><code>call-with-remote-output-file</code></a></td><td>&nbsp;</td><td valign="top"><a href="#High_002dlevel-operations-on-remote-files">3.13.4 High-level operations on remote files</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-call_002dwith_002dssh_002dforward"><code>call-with-ssh-forward</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Tunnels">3.6 Tunnels</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-channel_002daccept_002dforward"><code>channel-accept-forward</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Port-Forwarding">3.5.2 Port Forwarding</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-channel_002dcancel_002dforward"><code>channel-cancel-forward</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Port-Forwarding">3.5.2 Port Forwarding</a></td></tr>
@@ -4948,7 +5035,7 @@ to permit their use in free software.
 <tr><td></td><td valign="top"><a href="#index-make_002dnode"><code>make-node</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Distributed-Forms">3.14 Distributed Forms</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-make_002dserver"><code>make-server</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Servers">3.11 Servers</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-make_002dsession"><code>make-session</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Session-Management">3.1.1 Session Management</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-make_002dsftp_002dsession"><code>make-sftp-session</code></a></td><td>&nbsp;</td><td valign="top"><a href="#SFTP-session">3.13.1 SFTP session</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-make_002dsftp_002dsession"><code>make-sftp-session</code></a></td><td>&nbsp;</td><td valign="top"><a href="#SFTP-Session">3.13.1 SFTP Session</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-make_002dtunnel"><code>make-tunnel</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Tunnels">3.6 Tunnels</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-message_002dauth_002dreply_002dpublic_002dkey_002dok"><code>message-auth-reply-public-key-ok</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Message-Handling">3.12.1 Messages Handling</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-message_002dauth_002dreply_002dsuccess"><code>message-auth-reply-success</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Message-Handling">3.12.1 Messages Handling</a></td></tr>
@@ -5023,18 +5110,26 @@ to permit their use in free software.
 <tr><td></td><td valign="top"><a href="#index-set_002dlog_002duserdata_0021"><code>set-log-userdata!</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Logging">3.9 Logging</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-set_002dlog_002dverbosity_0021"><code>set-log-verbosity!</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Logging">3.9 Logging</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-set_002dlogging_002dcallback_0021"><code>set-logging-callback!</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Logging">3.9 Logging</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-sftp_002dchmod"><code>sftp-chmod</code></a></td><td>&nbsp;</td><td valign="top"><a href="#SFTP-session">3.13.1 SFTP session</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-sftp_002dfile_003f"><code>sftp-file?</code></a></td><td>&nbsp;</td><td valign="top"><a href="#SFTP-file">3.13.2 SFTP file</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-sftp_002dget_002derror"><code>sftp-get-error</code></a></td><td>&nbsp;</td><td valign="top"><a href="#SFTP-session">3.13.1 SFTP session</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-sftp_002dget_002dsession"><code>sftp-get-session</code></a></td><td>&nbsp;</td><td valign="top"><a href="#SFTP-session">3.13.1 SFTP session</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-sftp_002dmkdir"><code>sftp-mkdir</code></a></td><td>&nbsp;</td><td valign="top"><a href="#SFTP-session">3.13.1 SFTP session</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-sftp_002dmv"><code>sftp-mv</code></a></td><td>&nbsp;</td><td valign="top"><a href="#SFTP-session">3.13.1 SFTP session</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-sftp_002dopen"><code>sftp-open</code></a></td><td>&nbsp;</td><td valign="top"><a href="#SFTP-file">3.13.2 SFTP file</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-sftp_002dreadlink"><code>sftp-readlink</code></a></td><td>&nbsp;</td><td valign="top"><a href="#SFTP-session">3.13.1 SFTP session</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-sftp_002drmdir"><code>sftp-rmdir</code></a></td><td>&nbsp;</td><td valign="top"><a href="#SFTP-session">3.13.1 SFTP session</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-sftp_002dsession_003f"><code>sftp-session?</code></a></td><td>&nbsp;</td><td valign="top"><a href="#SFTP-session">3.13.1 SFTP session</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-sftp_002dsymlink"><code>sftp-symlink</code></a></td><td>&nbsp;</td><td valign="top"><a href="#SFTP-session">3.13.1 SFTP session</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-sftp_002dunlink"><code>sftp-unlink</code></a></td><td>&nbsp;</td><td valign="top"><a href="#SFTP-session">3.13.1 SFTP session</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-sftp_002dchmod"><code>sftp-chmod</code></a></td><td>&nbsp;</td><td valign="top"><a href="#SFTP-Session">3.13.1 SFTP Session</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-sftp_002ddir_002dclose"><code>sftp-dir-close</code></a></td><td>&nbsp;</td><td valign="top"><a href="#SFTP-Directory">3.13.3 SFTP Directory</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-sftp_002ddir_002deof_003f"><code>sftp-dir-eof?</code></a></td><td>&nbsp;</td><td valign="top"><a href="#SFTP-Directory">3.13.3 SFTP Directory</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-sftp_002ddir_002dopen"><code>sftp-dir-open</code></a></td><td>&nbsp;</td><td valign="top"><a href="#SFTP-Directory">3.13.3 SFTP Directory</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-sftp_002ddir_002dopen_002dstream"><code>sftp-dir-open-stream</code></a></td><td>&nbsp;</td><td valign="top"><a href="#SFTP-Directory">3.13.3 SFTP Directory</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-sftp_002ddir_002dpath"><code>sftp-dir-path</code></a></td><td>&nbsp;</td><td valign="top"><a href="#SFTP-Directory">3.13.3 SFTP Directory</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-sftp_002ddir_002dread"><code>sftp-dir-read</code></a></td><td>&nbsp;</td><td valign="top"><a href="#SFTP-Directory">3.13.3 SFTP Directory</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-sftp_002ddir_002dsession"><code>sftp-dir-session</code></a></td><td>&nbsp;</td><td valign="top"><a href="#SFTP-Directory">3.13.3 SFTP Directory</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-sftp_002ddir_003f"><code>sftp-dir?</code></a></td><td>&nbsp;</td><td valign="top"><a href="#SFTP-Directory">3.13.3 SFTP Directory</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-sftp_002dfile_003f"><code>sftp-file?</code></a></td><td>&nbsp;</td><td valign="top"><a href="#SFTP-File">3.13.2 SFTP File</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-sftp_002dget_002derror"><code>sftp-get-error</code></a></td><td>&nbsp;</td><td valign="top"><a href="#SFTP-Session">3.13.1 SFTP Session</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-sftp_002dget_002dsession"><code>sftp-get-session</code></a></td><td>&nbsp;</td><td valign="top"><a href="#SFTP-Session">3.13.1 SFTP Session</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-sftp_002dmkdir"><code>sftp-mkdir</code></a></td><td>&nbsp;</td><td valign="top"><a href="#SFTP-Session">3.13.1 SFTP Session</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-sftp_002dmv"><code>sftp-mv</code></a></td><td>&nbsp;</td><td valign="top"><a href="#SFTP-Session">3.13.1 SFTP Session</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-sftp_002dopen"><code>sftp-open</code></a></td><td>&nbsp;</td><td valign="top"><a href="#SFTP-File">3.13.2 SFTP File</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-sftp_002dreadlink"><code>sftp-readlink</code></a></td><td>&nbsp;</td><td valign="top"><a href="#SFTP-Session">3.13.1 SFTP Session</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-sftp_002drmdir"><code>sftp-rmdir</code></a></td><td>&nbsp;</td><td valign="top"><a href="#SFTP-Session">3.13.1 SFTP Session</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-sftp_002dsession_003f"><code>sftp-session?</code></a></td><td>&nbsp;</td><td valign="top"><a href="#SFTP-Session">3.13.1 SFTP Session</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-sftp_002dsymlink"><code>sftp-symlink</code></a></td><td>&nbsp;</td><td valign="top"><a href="#SFTP-Session">3.13.1 SFTP Session</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-sftp_002dunlink"><code>sftp-unlink</code></a></td><td>&nbsp;</td><td valign="top"><a href="#SFTP-Session">3.13.1 SFTP Session</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-split"><code>split</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Jobs">3.14.1.2 Jobs</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-ssh_002dagent_002dinfo"><code>ssh-agent-info</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Getting-information-about-SSH-agents">3.3.2 Getting information about SSH agents</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-ssh_002dagent_002dsock_002dget"><code>ssh-agent-sock-get</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Managing-SSH-agent-environment-variables">3.3.3 Managing SSH agent environment variables</a></td></tr>
@@ -5065,8 +5160,8 @@ to permit their use in free software.
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="Procedure-Index-1_fn_letter-W">W</a></th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-which"><code>which</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Shell">3.8 Shell</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-with_002dinput_002dfrom_002dremote_002dfile"><code>with-input-from-remote-file</code></a></td><td>&nbsp;</td><td valign="top"><a href="#High_002dlevel-operations-on-remote-files">3.13.3 High-level operations on remote files</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-with_002doutput_002dto_002dremote_002dfile"><code>with-output-to-remote-file</code></a></td><td>&nbsp;</td><td valign="top"><a href="#High_002dlevel-operations-on-remote-files">3.13.3 High-level operations on remote files</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-with_002dinput_002dfrom_002dremote_002dfile"><code>with-input-from-remote-file</code></a></td><td>&nbsp;</td><td valign="top"><a href="#High_002dlevel-operations-on-remote-files">3.13.4 High-level operations on remote files</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-with_002doutput_002dto_002dremote_002dfile"><code>with-output-to-remote-file</code></a></td><td>&nbsp;</td><td valign="top"><a href="#High_002dlevel-operations-on-remote-files">3.13.4 High-level operations on remote files</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-with_002dssh"><code>with-ssh</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Distributed-Forms">3.14 Distributed Forms</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-write_002dknown_002dhost_0021"><code>write-known-host!</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Session-Management">3.1.1 Session Management</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
@@ -5179,6 +5274,7 @@ to permit their use in free software.
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="Concept-Index-1_cp_letter-D">D</a></th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-data-transferring">data transferring</a></td><td>&nbsp;</td><td valign="top"><a href="#Channel-Management">3.5.1 Channel Management</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-directory-traversal">directory traversal</a></td><td>&nbsp;</td><td valign="top"><a href="#SFTP-Directory">3.13.3 SFTP Directory</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="Concept-Index-1_cp_letter-F">F</a></th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-file-transfer">file transfer</a></td><td>&nbsp;</td><td valign="top"><a href="#SFTP">3.13 SFTP</a></td></tr>
@@ -5314,12 +5410,13 @@ to permit their use in free software.
     </ul></li>
     <li><a name="toc-SFTP-1" href="#SFTP">3.13 SFTP</a>
     <ul class="no-bullet">
-      <li><a name="toc-SFTP-session" href="#SFTP-session">3.13.1 SFTP session</a>
+      <li><a name="toc-SFTP-Session" href="#SFTP-Session">3.13.1 SFTP Session</a>
       <ul class="no-bullet">
         <li><a name="toc-Low_002dLevel-API" href="#Low_002dLevel-API">3.13.1.1 Low-Level API</a></li>
       </ul></li>
-      <li><a name="toc-SFTP-file" href="#SFTP-file">3.13.2 SFTP file</a></li>
-      <li><a name="toc-High_002dlevel-operations-on-remote-files" href="#High_002dlevel-operations-on-remote-files">3.13.3 High-level operations on remote files</a></li>
+      <li><a name="toc-SFTP-File" href="#SFTP-File">3.13.2 SFTP File</a></li>
+      <li><a name="toc-SFTP-Directory" href="#SFTP-Directory">3.13.3 SFTP Directory</a></li>
+      <li><a name="toc-High_002dlevel-operations-on-remote-files" href="#High_002dlevel-operations-on-remote-files">3.13.4 High-level operations on remote files</a></li>
     </ul></li>
     <li><a name="toc-Distributed-Forms-1" href="#Distributed-Forms">3.14 Distributed Forms</a>
     <ul class="no-bullet">
@@ -5355,7 +5452,7 @@ to permit their use in free software.
 <h1>About This Document</h1>
 
 <p>
-  This document was generated on <i>September 11, 2022</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 5.0</i></a>.
+  This document was generated on <i>September 13, 2022</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 5.0</i></a>.
 </p>
 <p>
   The buttons in the navigation panels have the following meaning:
@@ -5457,7 +5554,7 @@ to permit their use in free software.
 <hr>
 <p>
  <font size="-1">
-  This document was generated on <i>September 11, 2022</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 5.0</i></a>.
+  This document was generated on <i>September 13, 2022</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 5.0</i></a>.
  </font>
  <br>
 
