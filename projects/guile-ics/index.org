@@ -1,0 +1,32 @@
+#+TITLE: memory heap / projects / guile-ics
+#+OPTIONS: html-style:nil
+#+HTML_LINK_HOME: ../../
+#+HTML_LINK_UP:   ../../projects.html
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../../static/css/s.css" />
+
+
+* Guile-ICS
+
+[[https://www.gnu.org/software/guile/][GNU Guile]] iCalendar ([[https://tools.ietf.org/html/rfc5545][RFC 5545]]) and vCard ([[https://datatracker.ietf.org/doc/html/rfc6350][RFC 6350]]) parser for GNU Guile.
+
+** Features
+
+- Reading and writing iCalendar and vCard formats.
+- Conversion between formats.
+- CLI tool that provides convenient UI for the library capabilities.
+
+** Source Code Repository
+
+[[https://github.com/artyom-poptsov/guile-ics]]
+
+** Documentation
+
+You can read the documentation online [[./manual/][here]] or use =info guile-ics= on your
+GNU/Linux distribution with Guile-ICS installed.
+
+** License
+
+Guile-ICS is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later
+version.

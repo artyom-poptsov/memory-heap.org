@@ -1,0 +1,2654 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This manual documents Guile-ICS version 0.4.0.
+
+Copyright (C) 2017-2022 Artyom V. Poptsov
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.  A
+copy of the license is included in the section entitled "GNU Free
+Documentation License."
+ -->
+<!-- Created on November 6, 2022 by texi2html 5.0
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Guile-ICS Reference Manual</title>
+
+<meta name="description" content="Guile-ICS Reference Manual">
+<meta name="keywords" content="Guile-ICS Reference Manual">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 5.0">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nocodebreak {white-space:pre}
+span.nolinebreak {white-space:pre}
+span.roman {font-family:serif; font-weight:normal}
+span.sansserif {font-family:sans-serif; font-weight:normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<h1>Guile-ICS Reference Manual</h1>
+<h3 align="right">For Guile-ICS 0.4.0</h3>
+
+<strong>Artyom V. Poptsov</strong><br>
+
+
+<p>This manual documents Guile-ICS version 0.4.0.
+</p>
+<p>Copyright (C) 2017-2022 Artyom V. Poptsov
+</p>
+<p>Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.  A
+copy of the license is included in the section entitled &ldquo;GNU Free
+Documentation License.&rdquo;
+</p><hr>
+<a name="Top"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[ &lt; ]</td>
+<td valign="middle" align="left">[<a href="#Introduction" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="The-Guile_002dICS-Reference-Manual"></a>
+<h1 class="top">The Guile-ICS Reference Manual</h1>
+
+<p>This manual documents Guile-ICS version 0.4.0.
+</p>
+<p>Copyright (C) 2017-2022 Artyom V. Poptsov
+</p>
+<p>Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.  A
+copy of the license is included in the section entitled &ldquo;GNU Free
+Documentation License.&rdquo;
+</p><br>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#Introduction">1 Introduction</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Installation">2 Installation</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#API-Reference">3 API Reference</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Tools">4 Tools</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><th colspan="3" align="left" valign="top"><pre class="menu-comment">
+Appendices
+
+</pre></th></tr><tr><td align="left" valign="top"><a href="#GNU-Free-Documentation-License">Appendix A GNU Free Documentation License</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">  The license of this manual.
+</td></tr>
+<tr><th colspan="3" align="left" valign="top"><pre class="menu-comment">
+</pre></th></tr></table>
+
+
+<hr size="6">
+<a name="Introduction"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Top" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Top" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Installation" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Introduction-1"></a>
+<h1 class="chapter">1 Introduction</h1>
+
+<p>Guile-ICS is a <a href="https://www.gnu.org/software/guile/">GNU Guile</a>
+library that provides API for iCalendar
+<a href="https://tools.ietf.org/html/rfc5545">RFC5545</a> format parsing.
+</p>
+<hr>
+<a name="Installation"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Introduction" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Introduction" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#GNU-Guix" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#API-Reference" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Installation-1"></a>
+<h1 class="chapter">2 Installation</h1>
+
+<p>Guile-ICS sources are available form GitHub at
+<a href="https://github.com/artyom-poptsov/guile-ics">https://github.com/artyom-poptsov/guile-ics</a>.  This section
+describes Guile-ICS requirements and installation process.
+</p>
+<p>Guile-ICS depends on the following packages:
+</p><ul>
+<li> <a href="https://www.gnu.org/software/guile/">GNU Guile</a>, 2.0.12 or later
+</li><li> <a href="https://github.com/artyom-poptsov/guile-smc">Guile-SMC</a>, 0.5.2
+</li><li> <a href="https://github.com/artyom-poptsov/guile-DSV">Guile-DSV</a>, 0.5.1
+      (only required for the DSV converters; the rest of Guile-ICS
+      will work without this library.)
+</li></ul>
+
+<hr>
+<a name="GNU-Guix"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Installation" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Installation" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Installation" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Development-version" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#API-Reference" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h2 class="section">2.1 GNU Guix</h2>
+
+<div class="example">
+<pre class="example">$ guix install guile-ics
+</pre></div>
+
+<hr>
+<a name="Development-version"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Installation" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#GNU-Guix" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#GNU-Guix" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Manual-Installation" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#API-Reference" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h3 class="subsection">2.1.1 Development version</h3>
+<div class="example">
+<pre class="example">$ guix build -f ./guix.scm
+$ guix package -f ./guix.scm
+</pre></div>
+
+<hr>
+<a name="Manual-Installation"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Installation" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Development-version" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Installation" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#API-Reference" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#API-Reference" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h2 class="section">2.2 Manual Installation</h2>
+
+<p>To build the latest version of Guile-ICS from the sources, you need to
+download the sources from GitHub or clone them using Git<a name="DOCF1" href="#FOOT1">(1)</a>.
+</p>
+<p>Cloning can be done as follows:
+</p>
+<div class="example">
+<pre class="example">$ git clone git@github.com:artyom-poptsov/guile-ics.git
+</pre></div>
+
+<p>Next, you should configure the sources:
+</p>
+<div class="example">
+<pre class="example">$ cd guile-ics/
+$ autoreconf -vif
+$ ./configure
+</pre></div>
+
+<p>And finally build and install the library:
+</p>
+<div class="example">
+<pre class="example">$ make
+$ make install
+</pre></div>
+
+<p>For a basic explanation of the installation of the package, see the
+&lsquo;<tt>INSTALL</tt>&rsquo; file.
+</p>
+<p>Please <strong>note</strong> that you will need
+<a href="https://www.gnu.org/software/automake/">Automake</a> version 1.12 or
+later to run self-tests with <code>make check</code> (but the library
+itself can be built with older Automake version such as 1.11).
+</p>
+<p><strong>important</strong> You probably want to call <code>configure</code> with
+the &lsquo;<samp>--with-guilesitedir</samp>&rsquo; option so that this package is
+installed in Guile&rsquo;s default path.  But, if you don&rsquo;t know where your
+Guile site directory is, run <code>configure</code> without the option,
+and it will give you a suggestion.
+</p>
+<hr>
+<a name="API-Reference"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Installation" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Manual-Installation" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#iCalendar-streams" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="API-Reference-1"></a>
+<h1 class="chapter">3 API Reference</h1>
+
+<p>This chapter describes the Guile-ICS API.  The first thing that should
+be discussed are iCalendar streams.
+</p>
+<hr>
+<a name="iCalendar-streams"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#API-Reference" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#API-Reference" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Guile_002dICS-Main-Classes" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h2 class="section">3.1 iCalendar streams</h2>
+
+<p>Main module for Guile-ICS is <code>(ics)</code>.  The module contains main
+procedures for reading and writing iCalendar data.
+</p>
+<p>The data comes in the form of iCalendar streams: these streams consist
+of one or more iCalendar objects (described in the next section.)
+</p>
+<p>Example of an iCalendar stream of one iCalendar object from RFC5545,
+section 3.4:
+</p>
+<div class="example">
+<pre class="example">BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//hacksw/handcal//NONSGML v1.0//EN
+BEGIN:VEVENT
+UID:19970610T172345Z-AF23B2@example.com
+DTSTAMP:19970610T172345Z
+DTSTART:19970714T170000Z
+DTEND:19970715T040000Z
+SUMMARY:Bastille,Day\,Party
+X-WR-TIMEZONE;VALUE=TEXT:Europe/Brussels
+END:VEVENT
+END:VCALENDAR
+</pre></div>
+
+<p>Let&rsquo;s assume that this iCaneldar object is written in a file
+&lsquo;<tt>example.ics</tt>&rsquo;, then we can convert it to a Scheme representation
+using <code>ics-&gt;scm</code> procedure:
+</p>
+<div class="lisp">
+<pre class="lisp">(ics-&gt;scm (open-input-file &quot;example.ics&quot;))
+&rArr; (#&lt;ics-object VCALENDAR 23cf630&gt;)
+</pre></div>
+
+<p>The procedures below can be used to convert iCalendar streams to Scheme
+lists of iCalendar objects and vice versa.
+</p>
+<hr>
+<a name="Guile_002dICS-Main-Classes"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#iCalendar-streams" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#API-Reference" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dcontent_003e" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h2 class="section">3.2 Guile-ICS Main Classes</h2>
+
+<hr>
+<a name="g_t_003cics_002dcontent_003e"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Guile_002dICS-Main-Classes" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Guile_002dICS-Main-Classes" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Fields-3" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h3 class="subsection">3.2.1 &lt;ics-content&gt;</h3>
+
+<p>A common class that represents generic iCalendar contents.  The class is
+defined in <code>(ics content)</code> module.
+</p>
+<hr>
+<a name="Fields-3"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dcontent_003e" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dcontent_003e" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Public-Methods-2" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h4 class="subsubsection">3.2.1.1 Fields</h4>
+
+<table>
+<thead><tr><th width="25%">Init Keyword</th><th width="25%">Type</th><th width="50%">Description</th></tr></thead>
+<tr><td width="25%">#:name</td><td width="25%">&lt;string&gt;</td><td width="50%">The name of an iCalendar content.</td></tr>
+</table>
+
+<hr>
+<a name="Public-Methods-2"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Fields-3" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dcontent_003e" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Miscellaneous-Procedures" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h4 class="subsubsection">3.2.1.2 Public Methods</h4>
+
+<dl>
+<dt><a name="index-ics_002dcontent_002dname"></a>Method: <strong>ics-content-name</strong><em> ics-content</em></dt>
+<dd><p>Returns the name of a <var>ics-content</var> object.
+</p></dd></dl>
+
+<hr>
+<a name="Miscellaneous-Procedures"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Public-Methods-2" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dcontent_003e" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dobject_003e" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h4 class="subsubsection">3.2.1.3 Miscellaneous Procedures</h4>
+
+<dl>
+<dt><a name="index-ics_002dwrite_002dline"></a>Scheme Procedure: <strong>ics-write-line</strong><em> obj [port=(current-output-port)]</em></dt>
+<dd><p>Display an <var>obj</var> to a <var>port</var> with CRLF line ending.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-ics_002dformat"></a>Scheme Procedure: <strong>ics-format</strong><em> dest fmt . arg</em></dt>
+<dd><p>Write output specified by a <var>fmt</var> string to a destination <var>dest</var>
+with CRLF line ending.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-scm_002d_003eics_002dvalue"></a>Scheme Procedure: <strong>scm-&gt;ics-value</strong><em> value</em></dt>
+<dd><p>Convert a <var>value</var> to iCalendar format string.  <var>value</var> can be
+either a list of strings or a string.
+</p></dd></dl>
+
+<hr>
+<a name="g_t_003cics_002dobject_003e"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Miscellaneous-Procedures" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Guile_002dICS-Main-Classes" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Fields" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h3 class="subsection">3.2.2 &lt;ics-object&gt;</h3>
+
+<p>iCalendar object (see RFC5545, section 3) stores calendaring and
+scheduling information.  iCalendar object class consists of a sequence
+of calendar properties and one or more iCalendar component. Each
+component is an iCalendar object (that is, instances of
+<code>&lt;ics-object&gt;</code> class) on its own; that means that this data
+structure can be handled recusively.
+</p>
+<p>The class is defined in <code>(ics object)</code> module.
+</p>
+<hr>
+<a name="Fields"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dobject_003e" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dobject_003e" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Public-Methods" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h4 class="subsubsection">3.2.2.1 Fields</h4>
+
+<table>
+<thead><tr><th width="25%">Init Keyword</th><th width="25%">Type</th><th width="50%">Description</th></tr></thead>
+<tr><td width="25%">#:properties</td><td width="25%">&lt;list&gt;</td><td width="50%">iCalendar object properties (instances of <code>&lt;ics-property&gt;</code> class).</td></tr>
+<tr><td width="25%">#:components</td><td width="25%">&lt;list&gt;</td><td width="50%">iCalendar components (see RFC5545, section 3.6.).
+Components are instances of <code>&lt;ics-object&gt;</code> class themselves.</td></tr>
+</table>
+
+<hr>
+<a name="Public-Methods"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Fields" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dobject_003e" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dproperty_003e" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h4 class="subsubsection">3.2.2.2 Public Methods</h4>
+
+<dl>
+<dt><a name="index-ics_002dobject_002dname"></a>method: <strong>ics-object-name</strong><em> ics-object</em></dt>
+<dd><p>Return an <var>ics-object</var> name.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-ics_002dobject_002dproperties"></a>method: <strong>ics-object-properties</strong><em> ics-object</em></dt>
+<dd><p>Return an <var>ics-object</var> properties list.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-ics_002dobject_002dproperty_002dref"></a>method: <strong>ics-object-property-ref</strong><em> ics-object name</em></dt>
+<dd><p>Return an <var>ics-object</var> property value by a <var>name</var>.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-ics_002dobject_002dcomponents"></a>method: <strong>ics-object-components</strong><em> ics-object</em></dt>
+<dd><p>Return an <var>ics-object</var> components list.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-ics_002dobject_002d_003eics"></a>method: <strong>ics-object-&gt;ics</strong><em> ics-object port</em></dt>
+<dd><p>Convert an <var>ics-object</var> to a iCalendar format and print the result
+to a specified <var>port</var>.
+</p></dd></dl>
+
+<hr>
+<a name="g_t_003cics_002dproperty_003e"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Public-Methods" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Guile_002dICS-Main-Classes" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Fields-2" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h3 class="subsection">3.2.3 &lt;ics-property&gt;</h3>
+
+<p>A property is the definition of an individual attribute describing a
+calendar object (see RFC5545, section 3.5.)  Since Guile-ICS tries to
+unify the way of handling iCalendar information, iCalendar property
+class is used for both iCalendar objects (as defined in RFC5545) and for
+components of iCalendar objects.
+</p>
+<p>The class is defined in <code>(ics type property)</code> module.
+</p>
+<hr>
+<a name="Fields-2"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dproperty_003e" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dproperty_003e" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Public-Methods-6" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h4 class="subsubsection">3.2.3.1 Fields</h4>
+
+<table>
+<thead><tr><th width="25%">Init Keyword</th><th width="25%">Type</th><th width="50%">Description</th></tr></thead>
+<tr><td width="25%">#:type</td><td width="25%">&lt;symbol&gt; || #f</td><td width="50%">iCalendar type name as described in RFC5545, 3.2.20.</td></tr>
+<tr><td width="25%">#:value</td><td width="25%">&lt;string&gt;</td><td width="50%">iCalendar property value.</td></tr>
+<tr><td width="25%">#:parameters</td><td width="25%">&lt;alist&gt;</td><td width="50%">iCalendar property parameters (see RFC5545, section 3.2.),
+stored as an association list.</td></tr>
+</table>
+
+<hr>
+<a name="Public-Methods-6"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Fields-2" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dproperty_003e" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Miscellaneous-Methods" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h4 class="subsubsection">3.2.3.2 Public Methods</h4>
+
+<dl>
+<dt><a name="index-ics_002dproperty_003f"></a>method: <strong>ics-property?</strong><em> x</em></dt>
+<dd><p>Check if <var>x</var> is an instance of <code>&lt;ics-property&gt;</code>, return
+<code>#t</code> if it is, <code>#f</code> otherwise.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-ics_002dproperty_002dtype"></a>method: <strong>ics-property-type</strong><em> ics-property</em></dt>
+<dd><p>Get the type of an <var>ics-property</var>.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-ics_002dproperty_002dname"></a>method: <strong>ics-property-name</strong><em> ics-property</em></dt>
+<dd><p>Return an <var>ics-property</var> name.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-ics_002dproperty_002dvalue"></a>method: <strong>ics-property-value</strong><em> ics-property</em></dt>
+<dd><p>Return an <var>ics-property</var> value.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-ics_002dproperty_002dparameters"></a>method: <strong>ics-property-parameters</strong><em> ics-property</em></dt>
+<dd><p>Return an <var>ics-property</var> parameters association list.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-ics_002dproperty_002dparameter_002dref"></a>method: <strong>ics-property-parameter-ref</strong><em> ics-property name</em></dt>
+<dd><p>Return an <var>ics-property</var> value for a parameter with a given
+<var>name</var>.  Return <code>#f</code> if no parameter found.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-ics_002dproperty_002dparameter_002dset_0021"></a>method: <strong>ics-property-parameter-set!</strong><em> ics-property name value</em></dt>
+<dd><p>Set an iCalendar <var>ics-property</var> parameter <var>name</var> to a
+<var>value</var>.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-ics_002dtyped_002dproperty_002d_003eics_002dproperty"></a>method: <strong>ics-typed-property-&gt;ics-property</strong><em> ics-property</em></dt>
+<dd><p>A generic method.  Convert an <var>ics-property</var> to an untyped version.
+For <code>&lt;ics-property&gt;</code> this methods bascally does nothing and returns
+<var>ics-property</var> as is.
+</p></dd></dl>
+
+<hr>
+<a name="Miscellaneous-Methods"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Public-Methods-6" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dproperty_003e" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dstream_003e" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h4 class="subsubsection">3.2.3.3 Miscellaneous Methods</h4>
+
+<p>These procedures are defined in <code>(ics type property)</code>.
+</p>
+<dl>
+<dt><a name="index-ics_002dproperty_002ddetermine_002dtype"></a>Method: <strong>ics-property-determine-type</strong><em> ics-property</em></dt>
+<dd><p>Determine the type of an <var>ics-property</var>, return the type as a
+symbol.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-ics_002dproperty_002d_003estring"></a>method: <strong>ics-property-&gt;string</strong><em> ics-property</em></dt>
+<dd><p>Convert an <var>ics-property</var> to an iCalendar string, return the string.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-ics_002dproperty_002d_003etyped_002dproperty"></a>method: <strong>ics-property-&gt;typed-property</strong><em> ics-property</em></dt>
+<dd><p>Convert a generic <var>ics-property</var> to a typed version of itself;
+return a new typed property.
+</p></dd></dl>
+
+<hr>
+<a name="g_t_003cics_002dstream_003e"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Miscellaneous-Methods" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Guile_002dICS-Main-Classes" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Fields-1" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h3 class="subsection">3.2.4 &lt;ics-stream&gt;</h3>
+
+<p>The class is defined in <code>(ics stream)</code> module.
+</p>
+<hr>
+<a name="Fields-1"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dstream_003e" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dstream_003e" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Public-Methods-1" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h4 class="subsubsection">3.2.4.1 Fields</h4>
+
+<table>
+<thead><tr><th width="25%">Init Keyword</th><th width="25%">Type</th><th width="50%">Description</th></tr></thead>
+<tr><td width="25%">#:source</td><td width="25%">&lt;port&gt; || &lt;string&gt;</td><td width="50%">iCalendar data source.</td></tr>
+<tr><td width="25%">#:parse-types?</td><td width="25%">&lt;boolean&gt;</td><td width="50%">Should the parser parse the types?</td></tr>
+</table>
+
+<hr>
+<a name="Public-Methods-1"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Fields-1" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dstream_003e" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Guile_002dICS-Property-Types" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h4 class="subsubsection">3.2.4.2 Public Methods</h4>
+
+<dl>
+<dt><a name="index-ics_002dstream_002dsource"></a>method: <strong>ics-stream-source</strong><em> ics-stream</em></dt>
+<dd><p>Return a source of an <var>ics-stream</var>.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-ics_002dstream_002dparser"></a>method: <strong>ics-stream-parser</strong><em> ics-stream</em></dt>
+<dd><p>Make a new iCalendar stream parser for an <var>ics-stream</var>, return a
+new parser.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-ics_002dstream_002dparse_002dtypes_003f"></a>Method: <strong>ics-stream-parse-types?</strong><em> ics-stream</em></dt>
+<dd><p>Return <code>#t</code> if the parser should parse the iCalendar types,
+<code>#f</code> otherwise.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-ics_002dstream_002d_003escm"></a>method: <strong>ics-stream-&gt;scm</strong><em> ics-stream</em></dt>
+<dd><p>Convert an <var>ics-stream</var> to a Scheme list of iCalendar objects
+(<code>&lt;ics-object&gt;</code>).  Return the list.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-ics_002dstream_002d_003escm_002dstream"></a>method: <strong>ics-stream-&gt;scm-stream</strong><em> ics-stream</em></dt>
+<dd><p>Convert an <var>ics-stream</var> to a SRFI-41 stream.  Return the stream.
+</p></dd></dl>
+
+<hr>
+<a name="Guile_002dICS-Property-Types"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Public-Methods-1" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#API-Reference" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dproperty_003abinary_003e" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h2 class="section">3.3 Guile-ICS Property Types</h2>
+
+<hr>
+<a name="g_t_003cics_002dproperty_003abinary_003e"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Guile_002dICS-Property-Types" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Guile_002dICS-Property-Types" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Public-Methods-9" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h3 class="subsection">3.3.1 &lt;ics-property:binary&gt;</h3>
+
+<p>The class is defined in <code>(ics type binary)</code> module.
+</p>
+<hr>
+<a name="Public-Methods-9"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dproperty_003abinary_003e" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dproperty_003abinary_003e" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dproperty_003aboolean_003e" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h4 class="subsubsection">3.3.1.1 Public Methods</h4>
+
+<dl>
+<dt><a name="index-ics_002dproperty_003abinary_003f"></a>method: <strong>ics-property:binary?</strong><em> x</em></dt>
+<dd><p>Check if <var>x</var> is an instance of <code>&lt;ics-property:binary&gt;</code>, return
+<code>#t</code> if it is, <code>#f</code> otherwise.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-ics_002dproperty_002d_003eics_002dproperty_003abinary"></a>method: <strong>ics-property-&gt;ics-property:binary</strong><em> property</em></dt>
+<dd><p>Convert a <var>property</var> to a its typed version.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-ics_002dproperty_003abinary_002dencoding"></a>method: <strong>ics-property:binary-encoding</strong><em> property</em></dt>
+<dd><p>Get binary encoding for a <var>property</var>.  The encoding value is either
+&quot;8BIT&quot; (RFC2045) or &quot;BASE64&quot; (RFC4648).
+</p></dd></dl>
+
+<hr>
+<a name="g_t_003cics_002dproperty_003aboolean_003e"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Public-Methods-9" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Guile_002dICS-Property-Types" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Public-Methods-3" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h3 class="subsection">3.3.2 &lt;ics-property:boolean&gt;</h3>
+
+<p>The class is defined in <code>(ics type boolean)</code> module.
+</p>
+<hr>
+<a name="Public-Methods-3"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dproperty_003aboolean_003e" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dproperty_003aboolean_003e" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dproperty_003acal_002daddress_003e" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h4 class="subsubsection">3.3.2.1 Public Methods</h4>
+
+<dl>
+<dt><a name="index-ics_002dproperty_003aboolean_003f"></a>method: <strong>ics-property:boolean?</strong><em> x</em></dt>
+<dd><p>Check if <var>x</var> is an instance of <code>&lt;ics-property:boolean&gt;</code>, return
+<code>#t</code> if it is, <code>#f</code> otherwise.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-ics_002dproperty_002d_003eics_002dproperty_003aboolean"></a>method: <strong>ics-property-&gt;ics-property:boolean</strong><em> property</em></dt>
+<dd><p>Convert a <var>property</var> to a its typed version.
+</p></dd></dl>
+
+<hr>
+<a name="g_t_003cics_002dproperty_003acal_002daddress_003e"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Public-Methods-3" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Guile_002dICS-Property-Types" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Public-Methods-15" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h3 class="subsection">3.3.3 &lt;ics-property:cal-address&gt;</h3>
+
+<p>The class is defined in <code>(ics type cal-address)</code> module.
+</p>
+<hr>
+<a name="Public-Methods-15"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dproperty_003acal_002daddress_003e" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dproperty_003acal_002daddress_003e" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dproperty_003adate_003e" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h4 class="subsubsection">3.3.3.1 Public Methods</h4>
+
+<dl>
+<dt><a name="index-ics_002dproperty_003aboolean_003f-1"></a>method: <strong>ics-property:boolean?</strong><em> x</em></dt>
+<dd><p>Check if <var>x</var> is an instance of <code>&lt;ics-property:cal-address&gt;</code>, return
+<code>#t</code> if it is, <code>#f</code> otherwise.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-ics_002dproperty_002d_003eics_002dproperty_003acal_002daddress"></a>method: <strong>ics-property-&gt;ics-property:cal-address</strong><em> property</em></dt>
+<dd><p>Convert a <var>property</var> to a its typed version.
+</p></dd></dl>
+
+<hr>
+<a name="g_t_003cics_002dproperty_003adate_003e"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Public-Methods-15" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Guile_002dICS-Property-Types" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Public-Methods-17" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h3 class="subsection">3.3.4 &lt;ics-property:date&gt;</h3>
+
+<p>The class is defined in <code>(ics type date)</code> module.
+</p>
+<hr>
+<a name="Public-Methods-17"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dproperty_003adate_003e" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dproperty_003adate_003e" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dproperty_003adate_002dtime_003e" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h4 class="subsubsection">3.3.4.1 Public Methods</h4>
+
+<dl>
+<dt><a name="index-ics_002dproperty_003adate_003f"></a>method: <strong>ics-property:date?</strong><em> x</em></dt>
+<dd><p>Check if <var>x</var> is an instance of <code>&lt;ics-property:date&gt;</code>, return
+<code>#t</code> if it is, <code>#f</code> otherwise.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-ics_002dproperty_002d_003eics_002dproperty_003adate"></a>method: <strong>ics-property-&gt;ics-property:date</strong><em> property</em></dt>
+<dd><p>Convert a <var>property</var> to a its typed version.
+</p></dd></dl>
+
+<hr>
+<a name="g_t_003cics_002dproperty_003adate_002dtime_003e"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Public-Methods-17" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Guile_002dICS-Property-Types" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Public-Methods-8" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h3 class="subsection">3.3.5 &lt;ics-property:date-time&gt;</h3>
+
+<p>The class is defined in <code>(ics type date-time)</code> module.
+</p>
+<hr>
+<a name="Public-Methods-8"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dproperty_003adate_002dtime_003e" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dproperty_003adate_002dtime_003e" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dproperty_003aduration_003e" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h4 class="subsubsection">3.3.5.1 Public Methods</h4>
+
+<dl>
+<dt><a name="index-ics_002dproperty_003adate_002dtime_003f"></a>method: <strong>ics-property:date-time?</strong><em> x</em></dt>
+<dd><p>Check if <var>x</var> is an instance of <code>&lt;ics-property:date-time&gt;</code>, return
+<code>#t</code> if it is, <code>#f</code> otherwise.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-ics_002dproperty_002d_003eics_002dproperty_003adate_002dtime"></a>method: <strong>ics-property-&gt;ics-property:date-time</strong><em> property</em></dt>
+<dd><p>Convert a <var>property</var> to a its typed version.
+</p></dd></dl>
+
+<hr>
+<a name="g_t_003cics_002dproperty_003aduration_003e"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Public-Methods-8" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Guile_002dICS-Property-Types" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Public-Methods-13" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h3 class="subsection">3.3.6 &lt;ics-property:duration&gt;</h3>
+
+<p>The class is defined in <code>(ics type duration)</code> module.
+</p>
+<hr>
+<a name="Public-Methods-13"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dproperty_003aduration_003e" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dproperty_003aduration_003e" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dproperty_003afloat_003e" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h4 class="subsubsection">3.3.6.1 Public Methods</h4>
+
+<dl>
+<dt><a name="index-ics_002dproperty_003aduration_003f"></a>method: <strong>ics-property:duration?</strong><em> x</em></dt>
+<dd><p>Check if <var>x</var> is an instance of <code>&lt;ics-property:duration&gt;</code>, return
+<code>#t</code> if it is, <code>#f</code> otherwise.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-ics_002dproperty_002d_003eics_002dproperty_003aduration"></a>method: <strong>ics-property-&gt;ics-property:duration</strong><em> property</em></dt>
+<dd><p>Convert a <var>property</var> to a its typed version.
+</p></dd></dl>
+
+<hr>
+<a name="g_t_003cics_002dproperty_003afloat_003e"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Public-Methods-13" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Guile_002dICS-Property-Types" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Public-Methods-10" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h3 class="subsection">3.3.7 &lt;ics-property:float&gt;</h3>
+
+<p>The class is defined in <code>(ics type float)</code> module.
+</p>
+<hr>
+<a name="Public-Methods-10"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dproperty_003afloat_003e" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dproperty_003afloat_003e" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dproperty_003ainteger_003e" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h4 class="subsubsection">3.3.7.1 Public Methods</h4>
+
+<dl>
+<dt><a name="index-ics_002dproperty_003afloat_003f"></a>method: <strong>ics-property:float?</strong><em> x</em></dt>
+<dd><p>Check if <var>x</var> is an instance of <code>&lt;ics-property:float&gt;</code>, return
+<code>#t</code> if it is, <code>#f</code> otherwise.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-ics_002dproperty_002d_003eics_002dproperty_003afloat"></a>method: <strong>ics-property-&gt;ics-property:float</strong><em> property</em></dt>
+<dd><p>Convert a <var>property</var> to a its typed version.
+</p></dd></dl>
+
+<hr>
+<a name="g_t_003cics_002dproperty_003ainteger_003e"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Public-Methods-10" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Guile_002dICS-Property-Types" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Public-Methods-7" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h3 class="subsection">3.3.8 &lt;ics-property:integer&gt;</h3>
+
+<p>The class is defined in <code>(ics type integer)</code> module.
+</p>
+<hr>
+<a name="Public-Methods-7"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dproperty_003ainteger_003e" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dproperty_003ainteger_003e" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dproperty_003aperiod_003e" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h4 class="subsubsection">3.3.8.1 Public Methods</h4>
+
+<dl>
+<dt><a name="index-ics_002dproperty_003ainteger_003f"></a>method: <strong>ics-property:integer?</strong><em> x</em></dt>
+<dd><p>Check if <var>x</var> is an instance of <code>&lt;ics-property:integer&gt;</code>, return
+<code>#t</code> if it is, <code>#f</code> otherwise.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-ics_002dproperty_002d_003eics_002dproperty_003ainteger"></a>method: <strong>ics-property-&gt;ics-property:integer</strong><em> property</em></dt>
+<dd><p>Convert a <var>property</var> to a its typed version.
+</p></dd></dl>
+
+<hr>
+<a name="g_t_003cics_002dproperty_003aperiod_003e"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Public-Methods-7" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Guile_002dICS-Property-Types" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Public-Methods-11" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h3 class="subsection">3.3.9 &lt;ics-property:period&gt;</h3>
+
+<p>The class is defined in <code>(ics type period)</code> module.
+</p>
+<hr>
+<a name="Public-Methods-11"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dproperty_003aperiod_003e" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dproperty_003aperiod_003e" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dproperty_003arecur_003e" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h4 class="subsubsection">3.3.9.1 Public Methods</h4>
+
+<dl>
+<dt><a name="index-ics_002dproperty_003aperiod_003f"></a>method: <strong>ics-property:period?</strong><em> x</em></dt>
+<dd><p>Check if <var>x</var> is an instance of <code>&lt;ics-property:period&gt;</code>, return
+<code>#t</code> if it is, <code>#f</code> otherwise.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-ics_002dproperty_002d_003eics_002dproperty_003aperiod"></a>method: <strong>ics-property-&gt;ics-property:period</strong><em> property</em></dt>
+<dd><p>Convert a <var>property</var> to a its typed version.
+</p></dd></dl>
+
+<hr>
+<a name="g_t_003cics_002dproperty_003arecur_003e"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Public-Methods-11" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Guile_002dICS-Property-Types" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Public-Methods-5" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h3 class="subsection">3.3.10 &lt;ics-property:recur&gt;</h3>
+
+<p>The class is defined in <code>(ics type recur)</code> module.
+</p>
+<hr>
+<a name="Public-Methods-5"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dproperty_003arecur_003e" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dproperty_003arecur_003e" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dproperty_003atext_003e" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h4 class="subsubsection">3.3.10.1 Public Methods</h4>
+
+<dl>
+<dt><a name="index-ics_002dproperty_003arecur_003f"></a>method: <strong>ics-property:recur?</strong><em> x</em></dt>
+<dd><p>Check if <var>x</var> is an instance of <code>&lt;ics-property:recur&gt;</code>, return
+<code>#t</code> if it is, <code>#f</code> otherwise.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-ics_002dproperty_002d_003eics_002dproperty_003arecur"></a>method: <strong>ics-property-&gt;ics-property:recur</strong><em> property</em></dt>
+<dd><p>Convert a <var>property</var> to a its typed version.
+</p></dd></dl>
+
+<hr>
+<a name="g_t_003cics_002dproperty_003atext_003e"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Public-Methods-5" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Guile_002dICS-Property-Types" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Public-Methods-12" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h3 class="subsection">3.3.11 &lt;ics-property:text&gt;</h3>
+
+<p>The class is defined in <code>(ics type text)</code> module.
+</p>
+<hr>
+<a name="Public-Methods-12"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dproperty_003atext_003e" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dproperty_003atext_003e" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dproperty_003atime_003e" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h4 class="subsubsection">3.3.11.1 Public Methods</h4>
+
+<dl>
+<dt><a name="index-ics_002dproperty_003atext_003f"></a>method: <strong>ics-property:text?</strong><em> x</em></dt>
+<dd><p>Check if <var>x</var> is an instance of <code>&lt;ics-property:text&gt;</code>, return
+<code>#t</code> if it is, <code>#f</code> otherwise.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-ics_002dproperty_002d_003eics_002dproperty_003atext"></a>method: <strong>ics-property-&gt;ics-property:text</strong><em> property</em></dt>
+<dd><p>Convert a <var>property</var> to a its typed version.
+</p></dd></dl>
+
+<hr>
+<a name="g_t_003cics_002dproperty_003atime_003e"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Public-Methods-12" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Guile_002dICS-Property-Types" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Public-Methods-16" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h3 class="subsection">3.3.12 &lt;ics-property:time&gt;</h3>
+
+<p>The class is defined in <code>(ics type time)</code> module.
+</p>
+<hr>
+<a name="Public-Methods-16"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dproperty_003atime_003e" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dproperty_003atime_003e" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dproperty_003auri_003e" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h4 class="subsubsection">3.3.12.1 Public Methods</h4>
+
+<dl>
+<dt><a name="index-ics_002dproperty_003atime_003f"></a>method: <strong>ics-property:time?</strong><em> x</em></dt>
+<dd><p>Check if <var>x</var> is an instance of <code>&lt;ics-property:time&gt;</code>, return
+<code>#t</code> if it is, <code>#f</code> otherwise.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-ics_002dproperty_002d_003eics_002dproperty_003atime"></a>method: <strong>ics-property-&gt;ics-property:time</strong><em> property</em></dt>
+<dd><p>Convert a <var>property</var> to a its typed version.
+</p></dd></dl>
+
+<hr>
+<a name="g_t_003cics_002dproperty_003auri_003e"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Public-Methods-16" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Guile_002dICS-Property-Types" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Public-Methods-4" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h3 class="subsection">3.3.13 &lt;ics-property:uri&gt;</h3>
+
+<p>The class is defined in <code>(ics type uri)</code> module.
+</p>
+<hr>
+<a name="Public-Methods-4"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dproperty_003auri_003e" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dproperty_003auri_003e" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dproperty_003autc_002doffset_003e" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h4 class="subsubsection">3.3.13.1 Public Methods</h4>
+
+<dl>
+<dt><a name="index-ics_002dproperty_003auri_003f"></a>method: <strong>ics-property:uri?</strong><em> x</em></dt>
+<dd><p>Check if <var>x</var> is an instance of <code>&lt;ics-property:uri&gt;</code>, return
+<code>#t</code> if it is, <code>#f</code> otherwise.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-ics_002dproperty_002d_003eics_002dproperty_003auri"></a>method: <strong>ics-property-&gt;ics-property:uri</strong><em> property</em></dt>
+<dd><p>Convert a <var>property</var> to a its typed version.
+</p></dd></dl>
+
+<hr>
+<a name="g_t_003cics_002dproperty_003autc_002doffset_003e"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Public-Methods-4" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Guile_002dICS-Property-Types" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Public-Methods-14" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h3 class="subsection">3.3.14 &lt;ics-property:utc-offset&gt;</h3>
+
+<p>The class is defined in <code>(ics type utc-offset)</code> module.
+</p>
+<hr>
+<a name="Public-Methods-14"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dproperty_003autc_002doffset_003e" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_003cics_002dproperty_003autc_002doffset_003e" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#iCalendar-to-Scheme-converters" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h4 class="subsubsection">3.3.14.1 Public Methods</h4>
+
+<dl>
+<dt><a name="index-ics_002dproperty_003autc_002doffset_003f"></a>method: <strong>ics-property:utc-offset?</strong><em> x</em></dt>
+<dd><p>Check if <var>x</var> is an instance of <code>&lt;ics-property:utc-offset&gt;</code>, return
+<code>#t</code> if it is, <code>#f</code> otherwise.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-ics_002dproperty_002d_003eics_002dproperty_003autc_002doffset"></a>method: <strong>ics-property-&gt;ics-property:utc-offset</strong><em> property</em></dt>
+<dd><p>Convert a <var>property</var> to a its typed version.
+</p></dd></dl>
+
+
+<hr>
+<a name="iCalendar-to-Scheme-converters"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Public-Methods-14" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#API-Reference" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Extra-Converters" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h2 class="section">3.4 iCalendar to Scheme converters</h2>
+
+<dl>
+<dt><a name="index-ics_002d_003escm"></a>Scheme Procedure: <strong>ics-&gt;scm</strong><em> [port=(current-input-port)]</em></dt>
+<dd><p>Convert a iCalendar stream from a <var>port</var> to a Scheme representation;
+return a list of iCalendar objects.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-ics_002dstring_002d_003escm"></a>Scheme Procedure: <strong>ics-string-&gt;scm</strong><em> str</em></dt>
+<dd><p>Convert an iCalendar string <var>str</var> to a Scheme representation; return
+a list of iCalendar objects.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-scm_002d_003eics"></a>Scheme Procedure: <strong>scm-&gt;ics</strong><em> ics-object [port=(current-output-port)]</em></dt>
+<dd><p>Convert an <var>ics-object</var> to iCalendar format.  Print the output to a
+<var>port</var>.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-scm_002d_003eics_002dstring"></a>Scheme Procedure: <strong>scm-&gt;ics-string</strong><em> ics-object</em></dt>
+<dd><p>Convert an <var>ics-object</var> to an iCalendar format string; return the
+string.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-ics_002d_003estream"></a>Scheme Procedure: <strong>ics-&gt;stream</strong><em> [port (current-input-port)]</em></dt>
+<dd><p>Convert an ICS stream from a <var>port</var> to an SRFI-41 stream
+(see <a href="guile.html#SRFI_002d41">SRFI-41</a> in <cite>The GNU Guile Reference Manual</cite>).  Return the
+stream.
+</p>
+<p>Example:
+</p>
+<div class="lisp">
+<pre class="lisp">(use-modules (srfi srfi-41)
+             (ice-9 pretty-print)
+             (ics))
+
+(let ((p (open-input-file &quot;data.ics&quot;)))
+  (stream-for-each (lambda (ics-object)
+                     (pretty-print ics-object))
+                   (ics-&gt;stream p)))
+</pre></div>
+
+</dd></dl>
+
+<hr>
+<a name="Extra-Converters"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#iCalendar-to-Scheme-converters" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#API-Reference" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Miscellaneous-Methods-and-Procedures" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h2 class="section">3.5 Extra Converters</h2>
+
+<p><code>(ics conv)</code> module provides procedures for converting iCalendar
+objects to other formats.
+</p>
+<dl>
+<dt><a name="index-ics_002dobject_002d_003eorg_002dmode"></a>Scheme Procedure: <strong>ics-object-&gt;org-mode</strong><em> ics-object [port=(current-output-port)]</em></dt>
+<dd><p>Convert an <var>ics-object</var> to org-mode format (see <a href="org.html#Top">Top</a> in <cite>Org Mode Manual</cite>) and print the results to a <var>port</var>.
+</p></dd></dl>
+
+<hr>
+<a name="Miscellaneous-Methods-and-Procedures"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Extra-Converters" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#API-Reference" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Examples" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h2 class="section">3.6 Miscellaneous Methods and Procedures</h2>
+
+<p>Those methods and procedures are available from <code>(ics)</code> module.
+</p>
+<dl>
+<dt><a name="index-ics_002ddescribe"></a>Method: <strong>ics-describe</strong><em> x</em></dt>
+<dd><p>Describe iCalendar content in a human-readable form.  Return value is
+undefined.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-ics_002dpretty_002dprint"></a>Scheme Procedure: <strong>ics-pretty-print</strong><em> ics-object [port=(current-output-port)] [#:indent=2] [#:show-types?=#f]</em></dt>
+<dd><p>Pretty-print an <var>ics-object</var> to a <var>port</var>.  Note that the output
+is intended for human to comprehent, not to a machine to parse.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-ics_002ddebug_002dset_0021"></a>Scheme Procedure: <strong>ics-debug-set!</strong><em> enabled?</em></dt>
+<dd><p>Enable or disable debug mode for the library.
+</p></dd></dl>
+
+<hr>
+<a name="Examples"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Miscellaneous-Methods-and-Procedures" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#API-Reference" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Finite_002dState-Machine-_0028FSM_0029" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h2 class="section">3.7 Examples</h2>
+
+<p>See the &lsquo;<tt>examples</tt>&rsquo; directory.
+</p>
+<hr>
+<a name="Finite_002dState-Machine-_0028FSM_0029"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Examples" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#API-Reference" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Version" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h2 class="section">3.8 Finite-State Machine (FSM)</h2>
+
+<p>The <code>(ics fsm)</code> module contains an implementation of a FSM that
+parses iCalendar data.
+</p>
+<dl>
+<dt><a name="index-ics_002dtoken_002dbegin_003f"></a>Scheme Procedure: <strong>ics-token-begin?</strong><em> x</em></dt>
+<dd><p>Check if an <var>x</var> is the beginning of an IANA token.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-ics_002dtoken_002dend_003f"></a>Scheme Procedure: <strong>ics-token-end?</strong><em> x</em></dt>
+<dd><p>Check if an <var>x</var> is the ending of an IANA token.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-ics_002dcalendar_002dobject_003f"></a>Scheme Procedure: <strong>ics-calendar-object?</strong><em> x</em></dt>
+<dd><p>Check if <var>x</var> is a iCalendar object.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-fsm_002dread_002dproperty"></a>Scheme Procedure: <strong>fsm-read-property</strong><em> parser</em></dt>
+<dd><p>Read iCalendar property using a <var>parser</var>.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-fsm_002dskip_002dproperty"></a>Scheme Procedure: <strong>fsm-skip-property</strong><em> parser</em></dt>
+<dd><p>Skip current iCalendar property using a <var>parser</var>.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-fsm_002dread_002dical_002dobject"></a>Scheme Procedure: <strong>fsm-read-ical-object</strong><em> parser object-name icalprops component</em></dt>
+<dd><p>Read an iCalendar object <var>object-name</var> from an iCalendar stream
+using a <var>parser</var>.  Return an object with iCalendar properties
+<var>ical-props</var> and a <var>component</var> list.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-fsm_002dread_002dical_002dstream"></a>Scheme Procedure: <strong>fsm-read-ical-stream</strong><em> parser result</em></dt>
+<dd><p>Read iCalendar stream using a <var>parser</var>, return a list of
+<code>&lt;ical-object&gt;</code> instances.
+</p></dd></dl>
+
+<hr>
+<a name="Version"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Finite_002dState-Machine-_0028FSM_0029" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#API-Reference" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Tools" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h2 class="section">3.9 Version</h2>
+
+<p><code>(ics version)</code> contains procedures that allow to acquire
+information about the Guile-ICS version in the
+<a href="https://semver.org/">Semantic Versioning format</a>.
+</p>
+<p>Guile-ICS version consists of three parts: MAJOR.MINOR.PATCH
+</p>
+<p>The procedures below allow to get any of the version part or the version as a
+whole.
+</p>
+<a name="index-Versioning"></a>
+<dl>
+<dt><a name="index-ics_002dversion"></a>Scheme Procedure: <strong>ics-version</strong></dt>
+<dd><p>Return the Guile-ICS version as a list of the following form:
+</p><div class="example">
+<pre class="example">lisp
+'(MAJOR MINOR PATCH)
+</pre></div>
+
+</dd></dl>
+
+<dl>
+<dt><a name="index-ics_002dversion_002fstring"></a>Scheme Procedure: <strong>ics-version/string</strong></dt>
+<dd><p>Get the raw Guile-ICS version as a string.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-ics_002dversion_002fmajor"></a>Scheme Procedure: <strong>ics-version/major</strong></dt>
+<dd><p>Get the &ldquo;MAJOR&rdquo; part of the Guile-ICS version.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-ics_002dversion_002fminor"></a>Scheme Procedure: <strong>ics-version/minor</strong></dt>
+<dd><p>Get the &ldquo;MINOR&rdquo; part of the Guile-ICS version.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-ics_002dversion_002fpatch"></a>Scheme Procedure: <strong>ics-version/patch</strong></dt>
+<dd><p>Get the &ldquo;PATCH&rdquo; part of the Guile-ICS version.
+</p></dd></dl>
+
+<hr>
+<a name="Tools"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Version" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#GNU-Free-Documentation-License" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#GNU-Free-Documentation-License" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Tools-1"></a>
+<h1 class="chapter">4 Tools</h1>
+
+<p>There is a tool called <code>ics</code> that allows to handle iCalendar
+data.
+</p>
+<p>The default behaviour of the program is to read a iCalendar stream from
+stdin and pretty-print it to the stdout.
+</p>
+<p>See <code>ics --help</code> for usage information.
+</p>
+<hr>
+<a name="GNU-Free-Documentation-License"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Tools" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Tools" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[ &gt; ]</td>
+<td valign="middle" align="left">[ &gt;&gt; ]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="GNU-Free-Documentation-License-1"></a>
+<h1 class="appendix">Appendix A GNU Free Documentation License</h1>
+
+<p align="center">Version 1.3, 3 November 2008
+</p>
+
+<div class="display">
+<pre class="display">Copyright &copy; 2000, 2001, 2002, 2007, 2008 Free Software Foundation, Inc.
+<a href="http://fsf.org/">http://fsf.org/</a>
+
+Everyone is permitted to copy and distribute verbatim copies
+of this license document, but changing it is not allowed.
+</pre></div>
+
+<ol>
+<li>
+PREAMBLE
+
+<p>The purpose of this License is to make a manual, textbook, or other
+functional and useful document <em>free</em> in the sense of freedom: to
+assure everyone the effective freedom to copy and redistribute it,
+with or without modifying it, either commercially or noncommercially.
+Secondarily, this License preserves for the author and publisher a way
+to get credit for their work, while not being considered responsible
+for modifications made by others.
+</p>
+<p>This License is a kind of &ldquo;copyleft&rdquo;, which means that derivative
+works of the document must themselves be free in the same sense.  It
+complements the GNU General Public License, which is a copyleft
+license designed for free software.
+</p>
+<p>We have designed this License in order to use it for manuals for free
+software, because free software needs free documentation: a free
+program should come with manuals providing the same freedoms that the
+software does.  But this License is not limited to software manuals;
+it can be used for any textual work, regardless of subject matter or
+whether it is published as a printed book.  We recommend this License
+principally for works whose purpose is instruction or reference.
+</p>
+</li><li>
+APPLICABILITY AND DEFINITIONS
+
+<p>This License applies to any manual or other work, in any medium, that
+contains a notice placed by the copyright holder saying it can be
+distributed under the terms of this License.  Such a notice grants a
+world-wide, royalty-free license, unlimited in duration, to use that
+work under the conditions stated herein.  The &ldquo;Document&rdquo;, below,
+refers to any such manual or work.  Any member of the public is a
+licensee, and is addressed as &ldquo;you&rdquo;.  You accept the license if you
+copy, modify or distribute the work in a way requiring permission
+under copyright law.
+</p>
+<p>A &ldquo;Modified Version&rdquo; of the Document means any work containing the
+Document or a portion of it, either copied verbatim, or with
+modifications and/or translated into another language.
+</p>
+<p>A &ldquo;Secondary Section&rdquo; is a named appendix or a front-matter section
+of the Document that deals exclusively with the relationship of the
+publishers or authors of the Document to the Document&rsquo;s overall
+subject (or to related matters) and contains nothing that could fall
+directly within that overall subject.  (Thus, if the Document is in
+part a textbook of mathematics, a Secondary Section may not explain
+any mathematics.)  The relationship could be a matter of historical
+connection with the subject or with related matters, or of legal,
+commercial, philosophical, ethical or political position regarding
+them.
+</p>
+<p>The &ldquo;Invariant Sections&rdquo; are certain Secondary Sections whose titles
+are designated, as being those of Invariant Sections, in the notice
+that says that the Document is released under this License.  If a
+section does not fit the above definition of Secondary then it is not
+allowed to be designated as Invariant.  The Document may contain zero
+Invariant Sections.  If the Document does not identify any Invariant
+Sections then there are none.
+</p>
+<p>The &ldquo;Cover Texts&rdquo; are certain short passages of text that are listed,
+as Front-Cover Texts or Back-Cover Texts, in the notice that says that
+the Document is released under this License.  A Front-Cover Text may
+be at most 5 words, and a Back-Cover Text may be at most 25 words.
+</p>
+<p>A &ldquo;Transparent&rdquo; copy of the Document means a machine-readable copy,
+represented in a format whose specification is available to the
+general public, that is suitable for revising the document
+straightforwardly with generic text editors or (for images composed of
+pixels) generic paint programs or (for drawings) some widely available
+drawing editor, and that is suitable for input to text formatters or
+for automatic translation to a variety of formats suitable for input
+to text formatters.  A copy made in an otherwise Transparent file
+format whose markup, or absence of markup, has been arranged to thwart
+or discourage subsequent modification by readers is not Transparent.
+An image format is not Transparent if used for any substantial amount
+of text.  A copy that is not &ldquo;Transparent&rdquo; is called &ldquo;Opaque&rdquo;.
+</p>
+<p>Examples of suitable formats for Transparent copies include plain
+<small>ASCII</small> without markup, Texinfo input format, LaTeX input
+format, <acronym>SGML</acronym> or <acronym>XML</acronym> using a publicly available
+<acronym>DTD</acronym>, and standard-conforming simple <acronym>HTML</acronym>,
+PostScript or <acronym>PDF</acronym> designed for human modification.  Examples
+of transparent image formats include <acronym>PNG</acronym>, <acronym>XCF</acronym> and
+<acronym>JPG</acronym>.  Opaque formats include proprietary formats that can be
+read and edited only by proprietary word processors, <acronym>SGML</acronym> or
+<acronym>XML</acronym> for which the <acronym>DTD</acronym> and/or processing tools are
+not generally available, and the machine-generated <acronym>HTML</acronym>,
+PostScript or <acronym>PDF</acronym> produced by some word processors for
+output purposes only.
+</p>
+<p>The &ldquo;Title Page&rdquo; means, for a printed book, the title page itself,
+plus such following pages as are needed to hold, legibly, the material
+this License requires to appear in the title page.  For works in
+formats which do not have any title page as such, &ldquo;Title Page&rdquo; means
+the text near the most prominent appearance of the work&rsquo;s title,
+preceding the beginning of the body of the text.
+</p>
+<p>The &ldquo;publisher&rdquo; means any person or entity that distributes copies
+of the Document to the public.
+</p>
+<p>A section &ldquo;Entitled XYZ&rdquo; means a named subunit of the Document whose
+title either is precisely XYZ or contains XYZ in parentheses following
+text that translates XYZ in another language.  (Here XYZ stands for a
+specific section name mentioned below, such as &ldquo;Acknowledgements&rdquo;,
+&ldquo;Dedications&rdquo;, &ldquo;Endorsements&rdquo;, or &ldquo;History&rdquo;.)  To &ldquo;Preserve the Title&rdquo;
+of such a section when you modify the Document means that it remains a
+section &ldquo;Entitled XYZ&rdquo; according to this definition.
+</p>
+<p>The Document may include Warranty Disclaimers next to the notice which
+states that this License applies to the Document.  These Warranty
+Disclaimers are considered to be included by reference in this
+License, but only as regards disclaiming warranties: any other
+implication that these Warranty Disclaimers may have is void and has
+no effect on the meaning of this License.
+</p>
+</li><li>
+VERBATIM COPYING
+
+<p>You may copy and distribute the Document in any medium, either
+commercially or noncommercially, provided that this License, the
+copyright notices, and the license notice saying this License applies
+to the Document are reproduced in all copies, and that you add no other
+conditions whatsoever to those of this License.  You may not use
+technical measures to obstruct or control the reading or further
+copying of the copies you make or distribute.  However, you may accept
+compensation in exchange for copies.  If you distribute a large enough
+number of copies you must also follow the conditions in section 3.
+</p>
+<p>You may also lend copies, under the same conditions stated above, and
+you may publicly display copies.
+</p>
+</li><li>
+COPYING IN QUANTITY
+
+<p>If you publish printed copies (or copies in media that commonly have
+printed covers) of the Document, numbering more than 100, and the
+Document&rsquo;s license notice requires Cover Texts, you must enclose the
+copies in covers that carry, clearly and legibly, all these Cover
+Texts: Front-Cover Texts on the front cover, and Back-Cover Texts on
+the back cover.  Both covers must also clearly and legibly identify
+you as the publisher of these copies.  The front cover must present
+the full title with all words of the title equally prominent and
+visible.  You may add other material on the covers in addition.
+Copying with changes limited to the covers, as long as they preserve
+the title of the Document and satisfy these conditions, can be treated
+as verbatim copying in other respects.
+</p>
+<p>If the required texts for either cover are too voluminous to fit
+legibly, you should put the first ones listed (as many as fit
+reasonably) on the actual cover, and continue the rest onto adjacent
+pages.
+</p>
+<p>If you publish or distribute Opaque copies of the Document numbering
+more than 100, you must either include a machine-readable Transparent
+copy along with each Opaque copy, or state in or with each Opaque copy
+a computer-network location from which the general network-using
+public has access to download using public-standard network protocols
+a complete Transparent copy of the Document, free of added material.
+If you use the latter option, you must take reasonably prudent steps,
+when you begin distribution of Opaque copies in quantity, to ensure
+that this Transparent copy will remain thus accessible at the stated
+location until at least one year after the last time you distribute an
+Opaque copy (directly or through your agents or retailers) of that
+edition to the public.
+</p>
+<p>It is requested, but not required, that you contact the authors of the
+Document well before redistributing any large number of copies, to give
+them a chance to provide you with an updated version of the Document.
+</p>
+</li><li>
+MODIFICATIONS
+
+<p>You may copy and distribute a Modified Version of the Document under
+the conditions of sections 2 and 3 above, provided that you release
+the Modified Version under precisely this License, with the Modified
+Version filling the role of the Document, thus licensing distribution
+and modification of the Modified Version to whoever possesses a copy
+of it.  In addition, you must do these things in the Modified Version:
+</p>
+<ol>
+<li>
+Use in the Title Page (and on the covers, if any) a title distinct
+from that of the Document, and from those of previous versions
+(which should, if there were any, be listed in the History section
+of the Document).  You may use the same title as a previous version
+if the original publisher of that version gives permission.
+
+</li><li>
+List on the Title Page, as authors, one or more persons or entities
+responsible for authorship of the modifications in the Modified
+Version, together with at least five of the principal authors of the
+Document (all of its principal authors, if it has fewer than five),
+unless they release you from this requirement.
+
+</li><li>
+State on the Title page the name of the publisher of the
+Modified Version, as the publisher.
+
+</li><li>
+Preserve all the copyright notices of the Document.
+
+</li><li>
+Add an appropriate copyright notice for your modifications
+adjacent to the other copyright notices.
+
+</li><li>
+Include, immediately after the copyright notices, a license notice
+giving the public permission to use the Modified Version under the
+terms of this License, in the form shown in the Addendum below.
+
+</li><li>
+Preserve in that license notice the full lists of Invariant Sections
+and required Cover Texts given in the Document&rsquo;s license notice.
+
+</li><li>
+Include an unaltered copy of this License.
+
+</li><li>
+Preserve the section Entitled &ldquo;History&rdquo;, Preserve its Title, and add
+to it an item stating at least the title, year, new authors, and
+publisher of the Modified Version as given on the Title Page.  If
+there is no section Entitled &ldquo;History&rdquo; in the Document, create one
+stating the title, year, authors, and publisher of the Document as
+given on its Title Page, then add an item describing the Modified
+Version as stated in the previous sentence.
+
+</li><li>
+Preserve the network location, if any, given in the Document for
+public access to a Transparent copy of the Document, and likewise
+the network locations given in the Document for previous versions
+it was based on.  These may be placed in the &ldquo;History&rdquo; section.
+You may omit a network location for a work that was published at
+least four years before the Document itself, or if the original
+publisher of the version it refers to gives permission.
+
+</li><li>
+For any section Entitled &ldquo;Acknowledgements&rdquo; or &ldquo;Dedications&rdquo;, Preserve
+the Title of the section, and preserve in the section all the
+substance and tone of each of the contributor acknowledgements and/or
+dedications given therein.
+
+</li><li>
+Preserve all the Invariant Sections of the Document,
+unaltered in their text and in their titles.  Section numbers
+or the equivalent are not considered part of the section titles.
+
+</li><li>
+Delete any section Entitled &ldquo;Endorsements&rdquo;.  Such a section
+may not be included in the Modified Version.
+
+</li><li>
+Do not retitle any existing section to be Entitled &ldquo;Endorsements&rdquo; or
+to conflict in title with any Invariant Section.
+
+</li><li>
+Preserve any Warranty Disclaimers.
+</li></ol>
+
+<p>If the Modified Version includes new front-matter sections or
+appendices that qualify as Secondary Sections and contain no material
+copied from the Document, you may at your option designate some or all
+of these sections as invariant.  To do this, add their titles to the
+list of Invariant Sections in the Modified Version&rsquo;s license notice.
+These titles must be distinct from any other section titles.
+</p>
+<p>You may add a section Entitled &ldquo;Endorsements&rdquo;, provided it contains
+nothing but endorsements of your Modified Version by various
+parties&mdash;for example, statements of peer review or that the text has
+been approved by an organization as the authoritative definition of a
+standard.
+</p>
+<p>You may add a passage of up to five words as a Front-Cover Text, and a
+passage of up to 25 words as a Back-Cover Text, to the end of the list
+of Cover Texts in the Modified Version.  Only one passage of
+Front-Cover Text and one of Back-Cover Text may be added by (or
+through arrangements made by) any one entity.  If the Document already
+includes a cover text for the same cover, previously added by you or
+by arrangement made by the same entity you are acting on behalf of,
+you may not add another; but you may replace the old one, on explicit
+permission from the previous publisher that added the old one.
+</p>
+<p>The author(s) and publisher(s) of the Document do not by this License
+give permission to use their names for publicity for or to assert or
+imply endorsement of any Modified Version.
+</p>
+</li><li>
+COMBINING DOCUMENTS
+
+<p>You may combine the Document with other documents released under this
+License, under the terms defined in section 4 above for modified
+versions, provided that you include in the combination all of the
+Invariant Sections of all of the original documents, unmodified, and
+list them all as Invariant Sections of your combined work in its
+license notice, and that you preserve all their Warranty Disclaimers.
+</p>
+<p>The combined work need only contain one copy of this License, and
+multiple identical Invariant Sections may be replaced with a single
+copy.  If there are multiple Invariant Sections with the same name but
+different contents, make the title of each such section unique by
+adding at the end of it, in parentheses, the name of the original
+author or publisher of that section if known, or else a unique number.
+Make the same adjustment to the section titles in the list of
+Invariant Sections in the license notice of the combined work.
+</p>
+<p>In the combination, you must combine any sections Entitled &ldquo;History&rdquo;
+in the various original documents, forming one section Entitled
+&ldquo;History&rdquo;; likewise combine any sections Entitled &ldquo;Acknowledgements&rdquo;,
+and any sections Entitled &ldquo;Dedications&rdquo;.  You must delete all
+sections Entitled &ldquo;Endorsements.&rdquo;
+</p>
+</li><li>
+COLLECTIONS OF DOCUMENTS
+
+<p>You may make a collection consisting of the Document and other documents
+released under this License, and replace the individual copies of this
+License in the various documents with a single copy that is included in
+the collection, provided that you follow the rules of this License for
+verbatim copying of each of the documents in all other respects.
+</p>
+<p>You may extract a single document from such a collection, and distribute
+it individually under this License, provided you insert a copy of this
+License into the extracted document, and follow this License in all
+other respects regarding verbatim copying of that document.
+</p>
+</li><li>
+AGGREGATION WITH INDEPENDENT WORKS
+
+<p>A compilation of the Document or its derivatives with other separate
+and independent documents or works, in or on a volume of a storage or
+distribution medium, is called an &ldquo;aggregate&rdquo; if the copyright
+resulting from the compilation is not used to limit the legal rights
+of the compilation&rsquo;s users beyond what the individual works permit.
+When the Document is included in an aggregate, this License does not
+apply to the other works in the aggregate which are not themselves
+derivative works of the Document.
+</p>
+<p>If the Cover Text requirement of section 3 is applicable to these
+copies of the Document, then if the Document is less than one half of
+the entire aggregate, the Document&rsquo;s Cover Texts may be placed on
+covers that bracket the Document within the aggregate, or the
+electronic equivalent of covers if the Document is in electronic form.
+Otherwise they must appear on printed covers that bracket the whole
+aggregate.
+</p>
+</li><li>
+TRANSLATION
+
+<p>Translation is considered a kind of modification, so you may
+distribute translations of the Document under the terms of section 4.
+Replacing Invariant Sections with translations requires special
+permission from their copyright holders, but you may include
+translations of some or all Invariant Sections in addition to the
+original versions of these Invariant Sections.  You may include a
+translation of this License, and all the license notices in the
+Document, and any Warranty Disclaimers, provided that you also include
+the original English version of this License and the original versions
+of those notices and disclaimers.  In case of a disagreement between
+the translation and the original version of this License or a notice
+or disclaimer, the original version will prevail.
+</p>
+<p>If a section in the Document is Entitled &ldquo;Acknowledgements&rdquo;,
+&ldquo;Dedications&rdquo;, or &ldquo;History&rdquo;, the requirement (section 4) to Preserve
+its Title (section 1) will typically require changing the actual
+title.
+</p>
+</li><li>
+TERMINATION
+
+<p>You may not copy, modify, sublicense, or distribute the Document
+except as expressly provided under this License.  Any attempt
+otherwise to copy, modify, sublicense, or distribute it is void, and
+will automatically terminate your rights under this License.
+</p>
+<p>However, if you cease all violation of this License, then your license
+from a particular copyright holder is reinstated (a) provisionally,
+unless and until the copyright holder explicitly and finally
+terminates your license, and (b) permanently, if the copyright holder
+fails to notify you of the violation by some reasonable means prior to
+60 days after the cessation.
+</p>
+<p>Moreover, your license from a particular copyright holder is
+reinstated permanently if the copyright holder notifies you of the
+violation by some reasonable means, this is the first time you have
+received notice of violation of this License (for any work) from that
+copyright holder, and you cure the violation prior to 30 days after
+your receipt of the notice.
+</p>
+<p>Termination of your rights under this section does not terminate the
+licenses of parties who have received copies or rights from you under
+this License.  If your rights have been terminated and not permanently
+reinstated, receipt of a copy of some or all of the same material does
+not give you any rights to use it.
+</p>
+</li><li>
+FUTURE REVISIONS OF THIS LICENSE
+
+<p>The Free Software Foundation may publish new, revised versions
+of the GNU Free Documentation License from time to time.  Such new
+versions will be similar in spirit to the present version, but may
+differ in detail to address new problems or concerns.  See
+<a href="http://www.gnu.org/copyleft/">http://www.gnu.org/copyleft/</a>.
+</p>
+<p>Each version of the License is given a distinguishing version number.
+If the Document specifies that a particular numbered version of this
+License &ldquo;or any later version&rdquo; applies to it, you have the option of
+following the terms and conditions either of that specified version or
+of any later version that has been published (not as a draft) by the
+Free Software Foundation.  If the Document does not specify a version
+number of this License, you may choose any version ever published (not
+as a draft) by the Free Software Foundation.  If the Document
+specifies that a proxy can decide which future versions of this
+License can be used, that proxy&rsquo;s public statement of acceptance of a
+version permanently authorizes you to choose that version for the
+Document.
+</p>
+</li><li>
+RELICENSING
+
+<p>&ldquo;Massive Multiauthor Collaboration Site&rdquo; (or &ldquo;MMC Site&rdquo;) means any
+World Wide Web server that publishes copyrightable works and also
+provides prominent facilities for anybody to edit those works.  A
+public wiki that anybody can edit is an example of such a server.  A
+&ldquo;Massive Multiauthor Collaboration&rdquo; (or &ldquo;MMC&rdquo;) contained in the
+site means any set of copyrightable works thus published on the MMC
+site.
+</p>
+<p>&ldquo;CC-BY-SA&rdquo; means the Creative Commons Attribution-Share Alike 3.0
+license published by Creative Commons Corporation, a not-for-profit
+corporation with a principal place of business in San Francisco,
+California, as well as future copyleft versions of that license
+published by that same organization.
+</p>
+<p>&ldquo;Incorporate&rdquo; means to publish or republish a Document, in whole or
+in part, as part of another Document.
+</p>
+<p>An MMC is &ldquo;eligible for relicensing&rdquo; if it is licensed under this
+License, and if all works that were first published under this License
+somewhere other than this MMC, and subsequently incorporated in whole
+or in part into the MMC, (1) had no cover texts or invariant sections,
+and (2) were thus incorporated prior to November 1, 2008.
+</p>
+<p>The operator of an MMC Site may republish an MMC contained in the site
+under CC-BY-SA on the same site at any time before August 1, 2009,
+provided the MMC is eligible for relicensing.
+</p>
+</li></ol>
+
+
+<a name="ADDENDUM_003a-How-to-use-this-License-for-your-documents"></a>
+<h2 class="heading">ADDENDUM: How to use this License for your documents</h2>
+
+<p>To use this License in a document you have written, include a copy of
+the License in the document and put the following copyright and
+license notices just after the title page:
+</p>
+<div class="smallexample">
+<pre class="smallexample">  Copyright (C)  <var>year</var>  <var>your name</var>.
+  Permission is granted to copy, distribute and/or modify this document
+  under the terms of the GNU Free Documentation License, Version 1.3
+  or any later version published by the Free Software Foundation;
+  with no Invariant Sections, no Front-Cover Texts, and no Back-Cover
+  Texts.  A copy of the license is included in the section entitled ``GNU
+  Free Documentation License''.
+</pre></div>
+
+<p>If you have Invariant Sections, Front-Cover Texts and Back-Cover Texts,
+replace the &ldquo;with&hellip;Texts.&rdquo; line with this:
+</p>
+<div class="smallexample">
+<pre class="smallexample">    with the Invariant Sections being <var>list their titles</var>, with
+    the Front-Cover Texts being <var>list</var>, and with the Back-Cover Texts
+    being <var>list</var>.
+</pre></div>
+
+<p>If you have Invariant Sections without Cover Texts, or some other
+combination of the three, merge those two alternatives to suit the
+situation.
+</p>
+<p>If your document contains nontrivial examples of program code, we
+recommend releasing these examples in parallel under your choice of
+free software license, such as the GNU General Public License,
+to permit their use in free software.
+</p>
+
+
+<hr size="6">
+<a name="SEC_Foot"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h1>Footnotes</h1>
+
+<h3><a name="FOOT1" href="#DOCF1">(1)</a></h3>
+<p>A good
+introduction to Git is free Pro Git book, which is available online at
+<a href="https://git-scm.com/book/en/v2">https://git-scm.com/book/en/v2</a>
+</p><hr>
+<a name="SEC_Contents"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h1>Table of Contents</h1>
+
+<div class="contents">
+
+<ul class="no-bullet">
+  <li><a name="toc-Introduction-1" href="#Introduction">1 Introduction</a></li>
+  <li><a name="toc-Installation-1" href="#Installation">2 Installation</a>
+  <ul class="no-bullet">
+    <li><a name="toc-GNU-Guix" href="#GNU-Guix">2.1 GNU Guix</a>
+    <ul class="no-bullet">
+      <li><a name="toc-Development-version" href="#Development-version">2.1.1 Development version</a></li>
+    </ul></li>
+    <li><a name="toc-Manual-Installation" href="#Manual-Installation">2.2 Manual Installation</a></li>
+  </ul></li>
+  <li><a name="toc-API-Reference-1" href="#API-Reference">3 API Reference</a>
+  <ul class="no-bullet">
+    <li><a name="toc-iCalendar-streams" href="#iCalendar-streams">3.1 iCalendar streams</a></li>
+    <li><a name="toc-Guile_002dICS-Main-Classes" href="#Guile_002dICS-Main-Classes">3.2 Guile-ICS Main Classes</a>
+    <ul class="no-bullet">
+      <li><a name="toc-_003cics_002dcontent_003e" href="#g_t_003cics_002dcontent_003e">3.2.1 &lt;ics-content&gt;</a>
+      <ul class="no-bullet">
+        <li><a name="toc-Fields-3" href="#Fields-3">3.2.1.1 Fields</a></li>
+        <li><a name="toc-Public-Methods-2" href="#Public-Methods-2">3.2.1.2 Public Methods</a></li>
+        <li><a name="toc-Miscellaneous-Procedures" href="#Miscellaneous-Procedures">3.2.1.3 Miscellaneous Procedures</a></li>
+      </ul></li>
+      <li><a name="toc-_003cics_002dobject_003e" href="#g_t_003cics_002dobject_003e">3.2.2 &lt;ics-object&gt;</a>
+      <ul class="no-bullet">
+        <li><a name="toc-Fields" href="#Fields">3.2.2.1 Fields</a></li>
+        <li><a name="toc-Public-Methods" href="#Public-Methods">3.2.2.2 Public Methods</a></li>
+      </ul></li>
+      <li><a name="toc-_003cics_002dproperty_003e" href="#g_t_003cics_002dproperty_003e">3.2.3 &lt;ics-property&gt;</a>
+      <ul class="no-bullet">
+        <li><a name="toc-Fields-2" href="#Fields-2">3.2.3.1 Fields</a></li>
+        <li><a name="toc-Public-Methods-6" href="#Public-Methods-6">3.2.3.2 Public Methods</a></li>
+        <li><a name="toc-Miscellaneous-Methods" href="#Miscellaneous-Methods">3.2.3.3 Miscellaneous Methods</a></li>
+      </ul></li>
+      <li><a name="toc-_003cics_002dstream_003e" href="#g_t_003cics_002dstream_003e">3.2.4 &lt;ics-stream&gt;</a>
+      <ul class="no-bullet">
+        <li><a name="toc-Fields-1" href="#Fields-1">3.2.4.1 Fields</a></li>
+        <li><a name="toc-Public-Methods-1" href="#Public-Methods-1">3.2.4.2 Public Methods</a></li>
+      </ul>
+</li>
+    </ul></li>
+    <li><a name="toc-Guile_002dICS-Property-Types" href="#Guile_002dICS-Property-Types">3.3 Guile-ICS Property Types</a>
+    <ul class="no-bullet">
+      <li><a name="toc-_003cics_002dproperty_003abinary_003e" href="#g_t_003cics_002dproperty_003abinary_003e">3.3.1 &lt;ics-property:binary&gt;</a>
+      <ul class="no-bullet">
+        <li><a name="toc-Public-Methods-9" href="#Public-Methods-9">3.3.1.1 Public Methods</a></li>
+      </ul></li>
+      <li><a name="toc-_003cics_002dproperty_003aboolean_003e" href="#g_t_003cics_002dproperty_003aboolean_003e">3.3.2 &lt;ics-property:boolean&gt;</a>
+      <ul class="no-bullet">
+        <li><a name="toc-Public-Methods-3" href="#Public-Methods-3">3.3.2.1 Public Methods</a></li>
+      </ul></li>
+      <li><a name="toc-_003cics_002dproperty_003acal_002daddress_003e" href="#g_t_003cics_002dproperty_003acal_002daddress_003e">3.3.3 &lt;ics-property:cal-address&gt;</a>
+      <ul class="no-bullet">
+        <li><a name="toc-Public-Methods-15" href="#Public-Methods-15">3.3.3.1 Public Methods</a></li>
+      </ul></li>
+      <li><a name="toc-_003cics_002dproperty_003adate_003e" href="#g_t_003cics_002dproperty_003adate_003e">3.3.4 &lt;ics-property:date&gt;</a>
+      <ul class="no-bullet">
+        <li><a name="toc-Public-Methods-17" href="#Public-Methods-17">3.3.4.1 Public Methods</a></li>
+      </ul></li>
+      <li><a name="toc-_003cics_002dproperty_003adate_002dtime_003e" href="#g_t_003cics_002dproperty_003adate_002dtime_003e">3.3.5 &lt;ics-property:date-time&gt;</a>
+      <ul class="no-bullet">
+        <li><a name="toc-Public-Methods-8" href="#Public-Methods-8">3.3.5.1 Public Methods</a></li>
+      </ul></li>
+      <li><a name="toc-_003cics_002dproperty_003aduration_003e" href="#g_t_003cics_002dproperty_003aduration_003e">3.3.6 &lt;ics-property:duration&gt;</a>
+      <ul class="no-bullet">
+        <li><a name="toc-Public-Methods-13" href="#Public-Methods-13">3.3.6.1 Public Methods</a></li>
+      </ul></li>
+      <li><a name="toc-_003cics_002dproperty_003afloat_003e" href="#g_t_003cics_002dproperty_003afloat_003e">3.3.7 &lt;ics-property:float&gt;</a>
+      <ul class="no-bullet">
+        <li><a name="toc-Public-Methods-10" href="#Public-Methods-10">3.3.7.1 Public Methods</a></li>
+      </ul></li>
+      <li><a name="toc-_003cics_002dproperty_003ainteger_003e" href="#g_t_003cics_002dproperty_003ainteger_003e">3.3.8 &lt;ics-property:integer&gt;</a>
+      <ul class="no-bullet">
+        <li><a name="toc-Public-Methods-7" href="#Public-Methods-7">3.3.8.1 Public Methods</a></li>
+      </ul></li>
+      <li><a name="toc-_003cics_002dproperty_003aperiod_003e" href="#g_t_003cics_002dproperty_003aperiod_003e">3.3.9 &lt;ics-property:period&gt;</a>
+      <ul class="no-bullet">
+        <li><a name="toc-Public-Methods-11" href="#Public-Methods-11">3.3.9.1 Public Methods</a></li>
+      </ul></li>
+      <li><a name="toc-_003cics_002dproperty_003arecur_003e" href="#g_t_003cics_002dproperty_003arecur_003e">3.3.10 &lt;ics-property:recur&gt;</a>
+      <ul class="no-bullet">
+        <li><a name="toc-Public-Methods-5" href="#Public-Methods-5">3.3.10.1 Public Methods</a></li>
+      </ul></li>
+      <li><a name="toc-_003cics_002dproperty_003atext_003e" href="#g_t_003cics_002dproperty_003atext_003e">3.3.11 &lt;ics-property:text&gt;</a>
+      <ul class="no-bullet">
+        <li><a name="toc-Public-Methods-12" href="#Public-Methods-12">3.3.11.1 Public Methods</a></li>
+      </ul></li>
+      <li><a name="toc-_003cics_002dproperty_003atime_003e" href="#g_t_003cics_002dproperty_003atime_003e">3.3.12 &lt;ics-property:time&gt;</a>
+      <ul class="no-bullet">
+        <li><a name="toc-Public-Methods-16" href="#Public-Methods-16">3.3.12.1 Public Methods</a></li>
+      </ul></li>
+      <li><a name="toc-_003cics_002dproperty_003auri_003e" href="#g_t_003cics_002dproperty_003auri_003e">3.3.13 &lt;ics-property:uri&gt;</a>
+      <ul class="no-bullet">
+        <li><a name="toc-Public-Methods-4" href="#Public-Methods-4">3.3.13.1 Public Methods</a></li>
+      </ul></li>
+      <li><a name="toc-_003cics_002dproperty_003autc_002doffset_003e" href="#g_t_003cics_002dproperty_003autc_002doffset_003e">3.3.14 &lt;ics-property:utc-offset&gt;</a>
+      <ul class="no-bullet">
+        <li><a name="toc-Public-Methods-14" href="#Public-Methods-14">3.3.14.1 Public Methods</a></li>
+      </ul>
+</li>
+    </ul></li>
+    <li><a name="toc-iCalendar-to-Scheme-converters" href="#iCalendar-to-Scheme-converters">3.4 iCalendar to Scheme converters</a></li>
+    <li><a name="toc-Extra-Converters" href="#Extra-Converters">3.5 Extra Converters</a></li>
+    <li><a name="toc-Miscellaneous-Methods-and-Procedures" href="#Miscellaneous-Methods-and-Procedures">3.6 Miscellaneous Methods and Procedures</a></li>
+    <li><a name="toc-Examples" href="#Examples">3.7 Examples</a></li>
+    <li><a name="toc-Finite_002dState-Machine-_0028FSM_0029" href="#Finite_002dState-Machine-_0028FSM_0029">3.8 Finite-State Machine (FSM)</a></li>
+    <li><a name="toc-Version" href="#Version">3.9 Version</a></li>
+  </ul></li>
+  <li><a name="toc-Tools-1" href="#Tools">4 Tools</a></li>
+  <li><a name="toc-GNU-Free-Documentation-License-1" href="#GNU-Free-Documentation-License">Appendix A GNU Free Documentation License</a></li>
+</ul>
+</div>
+<hr>
+<a name="SEC_About"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h1>About This Document</h1>
+
+<p>
+  This document was generated on <i>November 6, 2022</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 5.0</i></a>.
+</p>
+<p>
+  The buttons in the navigation panels have the following meaning:
+</p>
+<table border="1">
+  <tr>
+    <th> Button </th>
+    <th> Name </th>
+    <th> Go to </th>
+    <th> From 1.2.3 go to</th>
+  </tr>
+  <tr>
+    <td align="center"> [ &lt;&lt; ] </td>
+    <td align="center">FastBack</td>
+    <td>Beginning of this chapter or previous chapter</td>
+    <td>1</td>
+  </tr>
+  <tr>
+    <td align="center"> [ &lt; ] </td>
+    <td align="center">Back</td>
+    <td>Previous section in reading order</td>
+    <td>1.2.2</td>
+  </tr>
+  <tr>
+    <td align="center"> [ Up ] </td>
+    <td align="center">Up</td>
+    <td>Up section</td>
+    <td>1.2</td>
+  </tr>
+  <tr>
+    <td align="center"> [ &gt; ] </td>
+    <td align="center">Forward</td>
+    <td>Next section in reading order</td>
+    <td>1.2.4</td>
+  </tr>
+  <tr>
+    <td align="center"> [ &gt;&gt; ] </td>
+    <td align="center">FastForward</td>
+    <td>Next chapter</td>
+    <td>2</td>
+  </tr>
+  <tr>
+    <td align="center"> [Top] </td>
+    <td align="center">Top</td>
+    <td>Cover (top) of document</td>
+    <td> &nbsp; </td>
+  </tr>
+  <tr>
+    <td align="center"> [Contents] </td>
+    <td align="center">Contents</td>
+    <td>Table of contents</td>
+    <td> &nbsp; </td>
+  </tr>
+  <tr>
+    <td align="center"> [Index] </td>
+    <td align="center">Index</td>
+    <td>Index</td>
+    <td> &nbsp; </td>
+  </tr>
+  <tr>
+    <td align="center"> [ ? ] </td>
+    <td align="center">About</td>
+    <td>About (help)</td>
+    <td> &nbsp; </td>
+  </tr>
+</table>
+
+<p>
+  where the <strong> Example </strong> assumes that the current position is at <strong> Subsubsection One-Two-Three </strong> of a document of the following structure:
+</p>
+
+<ul>
+  <li> 1. Section One
+    <ul>
+      <li>1.1 Subsection One-One
+        <ul>
+          <li>...</li>
+        </ul>
+      </li>
+      <li>1.2 Subsection One-Two
+        <ul>
+          <li>1.2.1 Subsubsection One-Two-One</li>
+          <li>1.2.2 Subsubsection One-Two-Two</li>
+          <li>1.2.3 Subsubsection One-Two-Three &nbsp; &nbsp;
+            <strong>&lt;== Current Position </strong></li>
+          <li>1.2.4 Subsubsection One-Two-Four</li>
+        </ul>
+      </li>
+      <li>1.3 Subsection One-Three
+        <ul>
+          <li>...</li>
+        </ul>
+      </li>
+      <li>1.4 Subsection One-Four</li>
+    </ul>
+  </li>
+</ul>
+
+<hr>
+<p>
+ <font size="-1">
+  This document was generated on <i>November 6, 2022</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 5.0</i></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>
