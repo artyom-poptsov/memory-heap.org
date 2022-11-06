@@ -4,6 +4,8 @@
 #+HTML_LINK_UP:   ./
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="./static/css/s.css" />
 
+[ [[https://github.com/artyom-poptsov/][github]] ] [ [[https://gitlab.com/a_v_p][gitlab]] ]
+
 * GNU Guile
   I know several programming languages, but in my view Lisp (and especially
   Scheme) is the most elegant and clean language among them.  So I wrote some
@@ -14,6 +16,17 @@
   - [[./projects/guile-smc/][Guile-SMC ]]-- GNU Guile State Machine Compiler.
   - [[https://github.com/artyom-poptsov/guile-dsv][Guile-DSV]] -- Delimiter-separated values (DSV) format parser for GNU Guile.
   - [[https://github.com/artyom-poptsov/guile-ics][Guile-ICS]] -- iCalendar (RFC5545) format parser for GNU Guile.
+  - [[https://github.com/artyom-poptsov/guile-png][Guile-PNG]] -- Portable Network Graphics (RFC2083) library.
   - [[https://github.com/artyom-poptsov/guile-udev][Guile-Udev]] -- GNU Guile bindings to libudev.
   - [[https://github.com/artyom-poptsov/guile-deck][Guile-Deck]] -- GNU Guile Matrix network SDK.
   - [[https://github.com/artyom-poptsov/guile-gitlab][Guile-GitLab]] -- GNU Guile interface to GitLab CE REST API.
+
+* Other
+  - [[https://gitlab.com/gkaz/mst][mst]] -- Multi-Seat Tookit that allows to create multi-seat configurations
+    using graphical interface.  I'm developing this project as part of my job in
+    "AZ" Company Group LLC.
+  - [[https://gitlab.com/gkaz/azbook][azbook]] -- File synchronization and authentication system that allows to log
+    in to a GNU/Linux system with an ID from cloud services that support the
+    WebDAV protocol (nextCloud, ownCloud, ...)  The system keeps local user
+    files in sync with the server storage.  I'm developing this project as part
+    of my job in "AZ" Company Group LLC.
