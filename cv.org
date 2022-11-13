@@ -6,7 +6,7 @@
 #+OPTIONS: html-style:nil
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="./static/css/s.css" />
 
-[[[https://memory-heap.org/~avp/cv.html][HTML]]][[[https://memory-heap.org/~avp/cv.pdf][PDF]]]
+[[[https://memory-heap.org/~avp/cv.html][HTML]]][[[./cv.pdf][PDF]]]
 
 * Introduction
   My name is Artyom V. Poptsov, I also known as "avp".
