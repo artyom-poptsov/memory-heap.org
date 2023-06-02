@@ -5,7 +5,7 @@
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="./static/css/s.css" />
 #+OPTIONS: toc:nil
 
-[[[https://memory-heap.org/][memory-heap.org]]] [[[https://\[209:81d:7123:9c1:7a4:586e:2c54:37af\]][yggdrasil]]]
+[[[https://memory-heap.org/][memory-heap.org]]] [[[https://\[200:5387:e555:14c6:b492:6b7c:f9df:98c5\]][yggdrasil]]]
 
 - [[./projects.html][projects]]
 - [[./talks.html][talks]]
