@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- This manual documents Guile-SMC version 0.5.2.
+<!-- This manual documents Guile-SMC version 0.6.2.
 
 Copyright (C) 2021 Artyom V. Poptsov poptsov.artyom@gmail.com
 
@@ -11,7 +11,7 @@ Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.  A
 copy of the license is included in the section entitled "GNU Free
 Documentation License."
  -->
-<!-- Created on September 11, 2022 by texi2html 5.0
+<!-- Created on August 15, 2023 by texi2html 5.0
 texi2html was written by: 
             Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
@@ -72,12 +72,12 @@ ul.no-bullet {list-style: none}
 <br>
 
 <h1>Guile State Machine Compiler Reference Manual</h1>
-<h3 align="right">For Guile-SMC 0.5.2</h3>
+<h3 align="right">For Guile-SMC 0.6.2</h3>
 
 <strong>Artyom V. Poptsov</strong><br>
 
 
-<p>This manual documents Guile-SMC version 0.5.2.
+<p>This manual documents Guile-SMC version 0.6.2.
 </p>
 <p>Copyright (C) 2021 Artyom V. Poptsov <a href="mailto:poptsov.artyom@gmail.com">poptsov.artyom@gmail.com</a>
 </p>
@@ -100,7 +100,7 @@ Documentation License.&rdquo;
 <a name="The-Guile_002dSMC-Reference-Manual"></a>
 <h1 class="top">The Guile-SMC Reference Manual</h1>
 
-<p>This manual documents Guile-SMC version 0.5.2.
+<p>This manual documents Guile-SMC version 0.6.2.
 </p>
 <p>Copyright (C) 2021 Artyom V. Poptsov <a href="mailto:poptsov.artyom@gmail.com">poptsov.artyom@gmail.com</a>
 </p>
@@ -271,6 +271,8 @@ Context:
 
 </pre></th></tr><tr><td align="left" valign="top"><a href="#Context">3.8 Context</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">     A generic FSM context.
 </td></tr>
+<tr><td align="left" valign="top"><a href="#Context-Memory">3.9 Context Memory</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"> Structures that provide memory for FSMs.
+</td></tr>
 <tr><th colspan="3" align="left" valign="top"><pre class="menu-comment">
 </pre></th></tr></table>
 
@@ -333,18 +335,21 @@ Context:
 <dd><p>Is the debug mode enabled?
 </p>
 </dd>
-<dt>#:transition-table (table &lt;list&gt;)</dt>
+<dt>#:transition-table (table &lt;hash-table&gt;)</dt>
 <dd><p>A transition table.
 </p>
 </dd>
 <dt>#:event-source (proc &lt;procedure&gt;)</dt>
-<dd><p>Global state machine event source.
+<dd><p>Global state machine event source.  The event source is a procedure that
+accepts a context and returns a next event.
+</p>
+<p>The default value of this parameter is a procedure that always returns
+<code>#t</code>.
 </p>
 </dd>
 </dl>
 
 </dd></dl>
-
 
 <hr>
 <a name="Public-API-1"></a>
@@ -366,8 +371,98 @@ Context:
 <h3 class="subsection">3.1.2 Public API</h3>
 
 <dl>
-<dt><a name="index-fsm_003f"></a>Scheme Procedure: <strong>fsm?</strong><em> object</em></dt>
-<dd><p>Check if an <var>object</var> is an <code>&lt;fsm&gt;</code> instance.
+<dt><a name="index-fsm_003f"></a>Scheme Procedure: <strong>fsm?</strong><em> (object &lt;top&gt;)</em></dt>
+<dd><p>Check if an <var>object</var> is an instance of <code>&lt;fsm&gt;</code> class.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-fsm_002ddescription"></a>Scheme Procedure: <strong>fsm-description</strong><em> (fsm &lt;fsm&gt;)</em></dt>
+<dd><p>Get the <var>fsm</var> description.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-fsm_002ddescription_002dset_0021"></a>Scheme Procedure: <strong>fsm-description-set!</strong><em> (fsm &lt;fsm&gt;) (description &lt;string&gt;)</em></dt>
+<dd><p>Set the <var>fsm</var> description.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-fsm_002ddebug_002dmode_003f"></a>Scheme Procedure: <strong>fsm-debug-mode?</strong><em> (fsm &lt;fsm&gt;)</em></dt>
+<dd><p>Check if the debug mode is enabled for <var>fsm</var>.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-fsm_002ddebug_002dmode_002dset_0021"></a>Scheme Procedure: <strong>fsm-debug-mode-set!</strong><em> (fsm &lt;fsm&gt;) (value &lt;boolean&gt;)</em></dt>
+<dd><p>Set the debug mode state for <var>fsm</var>.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-fsm_002dtransition_002dtable"></a>Scheme Procedure: <strong>fsm-transition-table</strong><em> (fsm &lt;fsm&gt;)</em></dt>
+<dd><p>Get the <var>fsm</var> transition table.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-fsm_002dtransition_002dtable_002dset_0021"></a>Scheme Procedure: <strong>fsm-transition-table-set!</strong><em> (fsm &lt;fsm&gt;) (table &lt;hash-table&gt;)</em></dt>
+<dd><p>Set the <var>fsm</var> transition hash table.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-fsm_002devent_002dsource"></a>Scheme Procedure: <strong>fsm-event-source</strong><em> (fsm &lt;fsm&gt;)</em></dt>
+<dd><p>Get the <var>fsm</var> event source procedure.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-fsm_002devent_002dsource_002dset_0021"></a>Scheme Procedure: <strong>fsm-event-source-set!</strong><em> (fsm &lt;fsm&gt;) (proc &lt;procedure&gt;)</em></dt>
+<dd><p>Set the <var>fsm</var> event source procedure.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-fsm_002dcurrent_002dstate"></a>Scheme Procedure: <strong>fsm-current-state</strong><em> (fsm &lt;fsm&gt;)</em></dt>
+<dd><p>Get the <var>fsm</var> current state.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-fsm_002dcurrent_002dstate_002dset_0021"></a>Scheme Procedure: <strong>fsm-current-state-set!</strong><em> (fsm &lt;fsm&gt;) (state &lt;state&gt;)</em></dt>
+<dd><p>Set the <var>fsm</var> current state.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-fsm_002dstep_002dcounter"></a>Scheme Procedure: <strong>fsm-step-counter</strong><em> (fsm &lt;fsm&gt;)</em></dt>
+<dd><p>Get the <var>fsm</var> step counter value.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-fsm_002dstep_002dcounter_002dset_0021"></a>Scheme Procedure: <strong>fsm-step-counter-set!</strong><em> (fsm &lt;fsm&gt;) (value &lt;number&gt;)</em></dt>
+<dd><p>Set the <var>fsm</var> step counter value.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-fsm_002dtransition_002dcounter"></a>Scheme Procedure: <strong>fsm-transition-counter</strong><em> (fsm &lt;fsm&gt;)</em></dt>
+<dd><p>Get the <var>fsm</var> transition counter value.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-fsm_002dtransition_002dcounter_002dset_0021"></a>Scheme Procedure: <strong>fsm-transition-counter-set!</strong><em> (fsm &lt;fsm&gt;) (value &lt;number&gt;)</em></dt>
+<dd><p>Set the <var>fsm</var> transition counter value.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-fsm_002dparent_002dfsm"></a>Scheme Procedure: <strong>fsm-parent-fsm</strong><em> (fsm &lt;fsm&gt;)</em></dt>
+<dd><p>Get the <var>fsm</var> parent FSM.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-fsm_002dparent_002dfsm_002dset_0021"></a>Scheme Procedure: <strong>fsm-parent-fsm-set!</strong><em> (fsm &lt;fsm&gt;) (value &lt;fsm&gt;)</em></dt>
+<dd><p>Set the <var>fsm</var> parent FSM.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-fsm_002dparent_002dcontext"></a>Scheme Procedure: <strong>fsm-parent-context</strong><em> (fsm &lt;fsm&gt;)</em></dt>
+<dd><p>Get the <var>fsm</var> parent FSM context.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-fsm_002dparent_002dcontext_002dset_0021"></a>Scheme Procedure: <strong>fsm-parent-context-set!</strong><em> (fsm &lt;fsm&gt;) (value &lt;top&gt;)</em></dt>
+<dd><p>Set the <var>fsm</var> parent FSM context.
 </p></dd></dl>
 
 <dl>
@@ -553,7 +648,7 @@ the list is empty then no errors were found.
 <tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Logging" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#API-Reference" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#The-PlantUML-context" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Public-API" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Command_002dLine-Interface" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -571,12 +666,12 @@ the list is empty then no errors were found.
 <a href="http://www.plantuml.com/">PlantUML</a> format.
 </p>
 <hr>
-<a name="The-PlantUML-context"></a>
+<a name="Public-API"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#PlantUML" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#PlantUML" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Public-API" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#The-PlantUML-context" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Command_002dLine-Interface" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -587,7 +682,40 @@ the list is empty then no errors were found.
 <td valign="middle" align="left">[<a href="#Type-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection">3.2.1 The PlantUML context</h3>
+<h3 class="subsection">3.2.1 Public API</h3>
+
+<dl>
+<dt><a name="index-puml_002d_003efsm"></a>Scheme Procedure: <strong>puml-&gt;fsm</strong><em> port [#:module=(current-module)] [#:keep-going?=#f] [#:debug-mode?=#f]</em></dt>
+<dd>
+<p>Read a FSM description from a <var>port</var> in the PlantUML format and convert it
+to Guile-SMC <code>&lt;fsm&gt;</code> instance.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-puml_002dstring_002d_003efsm"></a>Scheme Procedure: <strong>puml-string-&gt;fsm</strong><em> port [#:module=(current-module)] [#:keep-going?=#f] [#:debug-mode?=#f]</em></dt>
+<dd>
+<p>Convert a <var>string</var> in the PlantUML format and to Guile-SMC <code>&lt;fsm&gt;</code>
+instance.
+</p></dd></dl>
+
+<hr>
+<a name="The-PlantUML-context"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Public-API" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#PlantUML" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#FSM-Guards-and-Actions" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Command_002dLine-Interface" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#Type-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h3 class="subsection">3.2.2 The PlantUML context</h3>
 
 <dl>
 <dt><a name="index-_003cpuml_002dcontext_003e"></a>Class: <strong>&lt;puml-context&gt;</strong><em> #:module [#:keep-going?=#f]</em></dt>
@@ -609,12 +737,32 @@ variants (<code>guard:t</code> for guards, <code>action:no-op</code> for actions
 
 </dd></dl>
 
+<dl>
+<dt><a name="index-puml_002dcontext_002dfsm"></a>Scheme Procedure: <strong>puml-context-fsm</strong><em> (context &lt;puml-context&gt;)</em></dt>
+<dd><p>Get the <var>context</var> output finite state machine.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-puml_002dcontext_002dfsm_002dset_0021"></a>Scheme Procedure: <strong>puml-context-fsm-set!</strong><em> (context &lt;puml-context&gt;) (fsm &lt;fsm&gt;)</em></dt>
+<dd><p>Set the <var>context</var> output finite state machine.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-puml_002dcontext_002dmodule"></a>Scheme Procedure: <strong>puml-context-module</strong><em> (context &lt;puml-context&gt;)</em></dt>
+<dd><p>Get the <var>context</var> module.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-puml_002dcontext_002dkeep_002dgoing_003f"></a>Scheme Procedure: <strong>puml-context-keep-going?</strong><em> (context &lt;puml-context&gt;)</em></dt>
+<dd><p>Check if &ldquo;keep going&rdquo; option is enabled for an PlantUML <var>context</var>.
+</p></dd></dl>
+
 <hr>
-<a name="Public-API"></a>
+<a name="FSM-Guards-and-Actions"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#The-PlantUML-context" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#PlantUML" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#The-PlantUML-context" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="#Resolver-status" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Command_002dLine-Interface" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -626,38 +774,45 @@ variants (<code>guard:t</code> for guards, <code>action:no-op</code> for actions
 <td valign="middle" align="left">[<a href="#Type-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection">3.2.2 Public API</h3>
+<h4 class="subsubsection">3.2.2.1 FSM Guards and Actions</h4>
 
 <dl>
-<dt><a name="index-puml_002dcontext_002dfsm"></a>Scheme Procedure: <strong>puml-context-fsm</strong><em> (context &lt;puml-context&gt;)</em></dt>
-<dd><p>Get the <var>context</var> output finite state machine.
+<dt><a name="index-title_003f"></a>Scheme Procedure: <strong>title?</strong><em> ctx ch</em></dt>
+<dd><p>Check if PlantUML diagram title is found.
 </p></dd></dl>
 
 <dl>
-<dt><a name="index-puml_002dcontext_002dmodule"></a>Scheme Procedure: <strong>puml-context-module</strong><em> (context &lt;puml-context&gt;)</em></dt>
-<dd><p>Get the <var>context</var> module.
+<dt><a name="index-add_002ddescription"></a>Scheme Procedure: <strong>add-description</strong><em> ctx ch</em></dt>
+<dd><p>Add FSM description.
 </p></dd></dl>
 
 <dl>
-<dt><a name="index-puml_002d_003efsm"></a>Scheme Procedure: <strong>puml-&gt;fsm</strong><em> port [#:module=(current-module)] [#:keep-going?=#f] [#:debug-mode?=#f]</em></dt>
-<dd>
-<p>Read a FSM description from a <var>port</var> in the PlantUML format and convert it
-to Guile-SMC <code>&lt;fsm&gt;</code> instance.
+<dt><a name="index-add_002dstate_002dtransition"></a>Scheme Procedure: <strong>add-state-transition</strong><em> ctx ch</em></dt>
+<dd><p>Add FSM state transition.
 </p></dd></dl>
 
 <dl>
-<dt><a name="index-puml_002dstring_002d_003efsm"></a>Scheme Procedure: <strong>puml-string-&gt;fsm</strong><em> port [#:module=(current-module)] [#:keep-going?=#f] [#:debug-mode?=#f]</em></dt>
-<dd>
-<p>Convert a <var>string</var> in the PlantUML format and to Guile-SMC <code>&lt;fsm&gt;</code>
-instance.
+<dt><a name="index-process_002dstate_002ddescription"></a>Scheme Procedure: <strong>process-state-description</strong><em> ctx ch</em></dt>
+</dl>
+
+<dl>
+<dt><a name="index-validate_002dstart_002dtag"></a>Scheme Procedure: <strong>validate-start-tag</strong><em> ctx ch</em></dt>
+<dt><a name="index-validate_002dend_002dtag"></a>Scheme Procedure: <strong>validate-end-tag</strong><em> ctx ch</em></dt>
+<dd><p>Validate start/end tags in a PlantUML data.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-throw_002dno_002dstart_002dtag_002derror"></a>Scheme Procedure: <strong>throw-no-start-tag-error</strong><em> ctx ch</em></dt>
+<dt><a name="index-throw_002dunexpected_002dend_002dof_002dfile_002derror"></a>Scheme Procedure: <strong>throw-unexpected-end-of-file-error</strong><em> ctx ch</em></dt>
+<dd><p>PlantUML parser context error reporting.
 </p></dd></dl>
 
 <hr>
 <a name="Resolver-status"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Public-API" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Public-API" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#FSM-Guards-and-Actions" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#The-PlantUML-context" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="#Internal-procedures" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Command_002dLine-Interface" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -669,7 +824,7 @@ instance.
 <td valign="middle" align="left">[<a href="#Type-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h4 class="subsubsection">3.2.2.1 Resolver status</h4>
+<h4 class="subsubsection">3.2.2.2 Resolver status</h4>
 
 <dl>
 <dt><a name="index-puml_002dcontext_002dresolved_002dprocedures"></a>Scheme Procedure: <strong>puml-context-resolved-procedures</strong><em> (puml-context &lt;puml-context&gt;)</em></dt>
@@ -713,11 +868,58 @@ unresolved procedure name.
 <h3 class="subsection">3.2.3 Internal procedures</h3>
 
 <dl>
+<dt><a name="index-puml_002derror"></a>Scheme Procedure: <strong>puml-error</strong><em> ctx message</em></dt>
+<dt><a name="index-puml_002derror-1"></a>Scheme Procedure: <strong>puml-error</strong><em> ctx message . args</em></dt>
+<dd><p>Throw an PlantUML error.
+</p></dd></dl>
+
+<dl>
 <dt><a name="index-resolve_002dprocedure"></a>Scheme Procedure: <strong>resolve-procedure</strong><em> context proc-name default</em></dt>
 <dd><p>This procedure tries to resolve a procedure <var>proc-name</var> in the provided
 modules of a <var>context</var>. When no procedure available with the given name,
 returns <var>default</var> procedure.
 </p></dd></dl>
+
+<dl>
+<dt><a name="index-module_002dname"></a>Scheme Procedure: <strong>module-name</strong><em> module</em></dt>
+<dd><p>Get the name of a <var>module</var>.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-parse_002devent_002dsource"></a>Scheme Procedure: <strong>parse-event-source</strong><em> (line &lt;string&gt;)</em></dt>
+<dd><p>Try to parse a <var>line</var> as an event source definition.  Returns a match or
+<var>#f</var> if line does not match.
+</p>
+<p>Example event source definition:
+</p><div class="example">
+<pre class="example">event-source: some-event-source
+</pre></div>
+
+</dd></dl>
+
+<dl>
+<dt><a name="index-parse_002dentry_002daction"></a>Scheme Procedure: <strong>parse-entry-action</strong><em> (line &lt;string&gt;)</em></dt>
+<dd><p>Try to parse a <var>line</var> as an entry action definition.  Returns a match or
+<var>#f</var> if line does not match.
+</p>
+<p>Example entry action definition:
+</p><div class="example">
+<pre class="example">entry-action: some-entry-action
+</pre></div>
+
+</dd></dl>
+
+<dl>
+<dt><a name="index-parse_002dexit_002daction"></a>Scheme Procedure: <strong>parse-exit-action</strong><em> (line &lt;string&gt;)</em></dt>
+<dd><p>Try to parse a <var>line</var> as an exit action definition.  Returns a match or
+<var>#f</var> if line does not match.
+</p>
+<p>Example exit action definition:
+</p><div class="example">
+<pre class="example">exit-action: some-exit-action
+</pre></div>
+
+</dd></dl>
 
 
 <hr>
@@ -726,7 +928,7 @@ returns <var>default</var> procedure.
 <tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Internal-procedures" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#API-Reference" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Examples" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Common-Guile-Compiler-Code" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Command_002dLine-Interface" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -793,14 +995,6 @@ Guile-SMC in any way.
 <p>The compiler collects the required code from Guile-SMC and then removes all
 unused parts from it, then the code is being printed to a <var>output-port</var>.
 </p></dd>
-<dt>guile-standalone-copy</dt>
-<dd><p>Copy Guile-SMC core modules to a directory with the same name as the
-<var>fsm-name</var> and re-write all the modules such that each Guile-SMC module
-that is used by the output FSM points to the directory.
-</p>
-<p>This allows to create a FSM that does not depend on presence of Guile-SMC on a
-target system while keep the default Guile-SMC output FSM format.
-</p></dd>
 </dl>
 
 </dd>
@@ -819,10 +1013,190 @@ target system while keep the default Guile-SMC output FSM format.
 </dd></dl>
 
 <hr>
-<a name="Examples"></a>
+<a name="Common-Guile-Compiler-Code"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Compiler" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Compiler" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Guile" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Command_002dLine-Interface" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#Type-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h3 class="subsection">3.3.1 Common Guile Compiler Code</h3>
+<p><code>(smc compiler guile-common)</code> module contains the common code for the
+Guile FSM compiler.
+</p>
+<dl>
+<dt><a name="index-form_002dfeed"></a>Scheme Procedure: <strong>form-feed</strong><em> port</em></dt>
+<dd><p>Write a form feed symbol with the following newline to a <var>port</var>.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-write_002dheader"></a>Scheme Procedure: <strong>write-header</strong><em> port</em></dt>
+<dd><p>Write a header commentary to a <var>port</var>.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-write_002dsection_002dheader"></a>Scheme Procedure: <strong>write-section-header</strong><em> description port</em></dt>
+<dd><p>Write a section to a <var>port</var>.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-write_002dfooter"></a>Scheme Procedure: <strong>write-footer</strong><em> file-name port</em></dt>
+<dd><p>Write a file footer to a <var>port</var>.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-write_002dparent_002dfsm_002dinfo"></a>Scheme Procedure: <strong>write-parent-fsm-info</strong><em> (fsm &lt;fsm&gt;) (port &lt;port&gt;)</em></dt>
+<dd><p>Print the information about the parent FSM for a <var>fsm</var> to a <var>port</var>.
+</p></dd></dl>
+
+<hr>
+<a name="Guile"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Common-Guile-Compiler-Code" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Compiler" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Guile-Standalone" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Command_002dLine-Interface" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#Type-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h3 class="subsection">3.3.2 Guile</h3>
+<p><code>(smc compiler guile)</code> module contains the code for &ldquo;guile&rdquo; compiler
+target.
+</p>
+<dl>
+<dt><a name="index-write_002dmodule"></a>Scheme Procedure: <strong>write-module</strong><em> module [#:extra-modules] [#:class-name] [#:port] [#:standalone-mode=#f]</em></dt>
+<dd>
+<p>Write a <code>define-module</code> part to a <var>port</var>.  <var>class-name</var> is used
+to export a FSM class in the <code>#:export</code> part.  <var>extra-modules</var> allow
+to specify a list of extra modules that required for the output FSM to work.
+</p>
+</dd></dl>
+
+<dl>
+<dt><a name="index-write_002duse_002dmodules"></a>Scheme Procedure: <strong>write-use-modules</strong><em> extra-modules port</em></dt>
+<dd>
+<p>Write <code>use-modules</code> section to the <var>port</var>.
+</p>
+</dd></dl>
+
+<dl>
+<dt><a name="index-write_002dtransition_002dtable"></a>Scheme Procedure: <strong>write-transition-table</strong><em> (fsm &lt;fsm&gt;) (port &lt;port&gt;)</em></dt>
+<dd>
+<p>Write a <var>fsm</var> transition table to a <var>port</var>.
+</p>
+</dd></dl>
+
+<dl>
+<dt><a name="index-write_002ddefine_002dclass"></a>Scheme Procedure: <strong>write-define-class</strong><em> class-name port</em></dt>
+<dd>
+<p>Write <code>define-class</code> for a <var>class-name</var> to a <var>port</var>.
+</p>
+</dd></dl>
+
+<dl>
+<dt><a name="index-write_002dinitialize"></a>Scheme Procedure: <strong>write-initialize</strong><em> fsm class-name port</em></dt>
+<dd>
+<p>Write the class constructor for <var>class-name</var> to the <var>port</var>.
+</p>
+</dd></dl>
+
+<hr>
+<a name="Guile-Standalone"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Guile" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Compiler" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Examples" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Command_002dLine-Interface" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#Type-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h3 class="subsection">3.3.3 Guile Standalone</h3>
+<p><code>(smc compiler guile-standalone)</code> module contains the code for
+&ldquo;guile-standalone&rdquo; target.
+</p>
+<dl>
+<dt><a name="index-state_002d_003estandalone_002dcode"></a>Scheme Procedure: <strong>state-&gt;standalone-code</strong><em> (fsm &lt;fsm&gt;) (state &lt;list&gt;)</em></dt>
+<dd><p>Convert a <var>state</var> to a plain Scheme <code>define</code> that does not depend on
+Guile-SMC.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-fsm_002dtransition_002dtable_002d_003estandalone_002dcode"></a>Scheme Procedure: <strong>fsm-transition-table-&gt;standalone-code</strong><em> (fsm &lt;fsm&gt;)</em></dt>
+<dd><p>Convert a <var>fsm</var> transition table to a list of Scheme procedures that do
+not depend on Guile-SMC.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-string_002ddrop_002dboth"></a>Scheme Procedure: <strong>string-drop-both</strong><em> str</em></dt>
+<dd><p>Drop one symbol from both left and right parts of a string <var>str</var>
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-fsm_002ddefine_002dmodule"></a>Scheme Procedure: <strong>fsm-define-module</strong><em> fsm fsm-name module [#:extra-modules]</em></dt>
+<dd>
+<p>Generate a <code>define-module</code> code for an <var>fsm</var>.
+</p>
+</dd></dl>
+
+<dl>
+<dt><a name="index-tree_002dcontains_003f"></a>Scheme Procedure: <strong>tree-contains?</strong><em> root element</em></dt>
+<dd><p>Check if a <var>root</var> contains an <var>element</var>.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-prune_002dunused_002ddefinitions"></a>Scheme Procedure: <strong>prune-unused-definitions</strong><em> definitions hardwired-definitions</em></dt>
+<dd>
+<p>Remove all the definitions from the <var>definitions</var> list that are not used
+neither in the <var>definitions</var> nor <var>hardwired-definitions</var> lists.
+</p>
+</dd></dl>
+
+<dl>
+<dt><a name="index-fsm_002dget_002dcontext_002dcode"></a>Scheme Procedure: <strong>fsm-get-context-code</strong><em> guile-smc-modules-path [#:type=#f] [#:skip-define-module?=#t]</em></dt>
+<dd>
+<p>Read the Guile-SCM context from the <var>guile-smc-modules-path</var> and return
+the code as a list.
+</p>
+</dd></dl>
+
+<dl>
+<dt><a name="index-fsm_002dget_002dclass_002dcode"></a>Scheme Procedure: <strong>fsm-get-class-code</strong><em> fsm-name</em></dt>
+<dd><p>Generate class code for an <var>fsm-name</var>.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-fsm_002d_003estandalone_002dcode"></a>Scheme Procedure: <strong>fsm-&gt;standalone-code</strong><em> (fsm &lt;fsm&gt;) fsm-name</em></dt>
+<dd><p>Convert an <var>fsm</var> to a procedure that does not depend on Guile-SMC.
+</p></dd></dl>
+
+<hr>
+<a name="Examples"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Guile-Standalone" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Compiler" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="#Version" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Command_002dLine-Interface" title="Next chapter"> &gt;&gt; </a>]</td>
@@ -835,7 +1209,7 @@ target system while keep the default Guile-SMC output FSM format.
 <td valign="middle" align="left">[<a href="#Type-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h3 class="subsection">3.3.1 Examples</h3>
+<h3 class="subsection">3.3.4 Examples</h3>
 
 <p>For more examples, take a look into &lsquo;<tt>examples/compiler</tt>&rsquo; directory in the
 project repository.
@@ -1178,7 +1552,7 @@ syslog, or not.
 <tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Logging-Procedures" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#API-Reference" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Actions" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Actions-1" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Command_002dLine-Interface" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -1201,7 +1575,7 @@ the FSMs consist of states and transitions between them.
 instance of <code>&lt;state&gt;</code> class.  There are converters between these forms.
 </p>
 <hr>
-<a name="Actions"></a>
+<a name="Actions-1"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#State" title="Previous section in reading order"> &lt; </a>]</td>
@@ -1234,7 +1608,7 @@ state.
 <a name="Default-entry_002fexit-actions"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Actions" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Actions-1" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#State" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="#The-main-class-1" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Command_002dLine-Interface" title="Next chapter"> &gt;&gt; </a>]</td>
@@ -1739,13 +2113,14 @@ new transition table with the new transition.
 </p></dd></dl>
 
 
+<a name="index-Context"></a>
 <hr>
 <a name="Context"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Transition-Table" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#API-Reference" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Character-Context" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Guards" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Command_002dLine-Interface" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -1759,107 +2134,22 @@ new transition table with the new transition.
 <a name="Context-1"></a>
 <h2 class="section">3.8 Context</h2>
 
-<p><code>(smc context context)</code> contains the implementation of a generic context
-that can be used with an FSM to provide a memory.  Also a context module
-usually provides event sources, guards, actions and other vital procedures for
-a FSM to work.
+<p><code>(smc context)</code> contains the implementation of contexts that can be used
+to provide required FSM guards, actions, event sources and some data
+structures.
 </p>
-<p>Custom contexts are required for some FSMs that need store some extra state
-(e.g. number of characters read by the parser.)
+<p>In a broad sense a <em>context</em> is an aggregate of an FSM memory that is
+passed between each state, guards, actions and all the auxiliary procedures
+that are required for the FSM machinery to work.
 </p>
-<p>Guile-SMC can use any Scheme object as the context for a finite-state machine.
-</p>
-<a name="index-Stanza"></a>
-<a name="index-Buffer"></a>
-<a name="index-Context"></a>
-<dl>
-<dt><a name="index-_003ccontext_003e"></a>Class: <strong>&lt;context&gt;</strong><em> [#:debug-mode?=#f]</em></dt>
-<dd><p>The main class.
-</p>
-<p>This class holds two kinds of stack memory: a buffer to store events (data
-chunks) and a stanza that store a logical unit of data.
-</p></dd></dl>
-
-<dl>
-<dt><a name="index-context_003f"></a>Scheme Procedure: <strong>context?</strong><em> x</em></dt>
-<dd><p>Check if an <var>x</var> is a <code>&lt;context&gt;</code> instance.
-</p></dd></dl>
-
-<dl>
-<dt><a name="index-context_002dbuffer_002dclear_0021"></a>Scheme Procedure: <strong>context-buffer-clear!</strong><em> (context &lt;context&gt;)</em></dt>
-<dd><p>Clear the <var>context</var> buffer.
-</p></dd></dl>
-
-<dl>
-<dt><a name="index-context_002dstanza_002dclear_0021"></a>Scheme Procedure: <strong>context-stanza-clear!</strong><em> (context &lt;context&gt;)</em></dt>
-<dd><p>Clear the <var>context</var> stanza.
-</p></dd></dl>
-
-<dl>
-<dt><a name="index-context_002dclear_0021"></a>Scheme Procedure: <strong>context-clear!</strong><em> (context &lt;context&gt;)</em></dt>
-<dd><p>Clear both the <var>context</var> buffer and the current context stanza.
-</p></dd></dl>
-
-<dl>
-<dt><a name="index-action_003astore"></a>Scheme Procedure: <strong>action:store</strong><em> context event</em></dt>
-<dd><p>Store an <var>event</var> into a <var>context</var> buffer.
-</p></dd></dl>
-
-<dl>
-<dt><a name="index-action_003aupdate_002dstanza"></a>Scheme Procedure: <strong>action:update-stanza</strong><em> context event</em></dt>
-<dd><p>Store an <var>event</var> into a <var>context</var> stanza.
-</p></dd></dl>
-
-<hr>
-<a name="Character-Context"></a>
-<table class="header" cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Context" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Context" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Guards" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Command_002dLine-Interface" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
-<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="#Type-Index" title="Index">Index</a>]</td>
-<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
-</tr></table>
-<h3 class="subsection">3.8.1 Character Context</h3>
-
-<p><code>(smc context char-context)</code> contains an implementation of a character
-context that can be used to handle a stream of characters.
-</p>
-<dl>
-<dt><a name="index-_003cchar_002dcontext_003e"></a>Class: <strong>&lt;char-context&gt;</strong><em> [#:debug-mode?=#f]</em></dt>
-<dd><p>The main class.
-</p></dd></dl>
-
-<dl>
-<dt><a name="index-char_002dcontext_002dcounter"></a>Scheme Procedure: <strong>char-context-counter</strong><em> (ctx &lt;char-context&gt;)</em></dt>
-<dd><p>Returns the value of the character counter of a context <var>ctx</var>.
-</p></dd></dl>
-
-<dl>
-<dt><a name="index-char_002dcontext_002drow_002dnumber"></a>Scheme Procedure: <strong>char-context-row-number</strong><em> (ctx &lt;char-context&gt;)</em></dt>
-<dd><p>Returns the current row number for a context <var>ctx</var>. 
-</p></dd></dl>
-
-<dl>
-<dt><a name="index-char_002dcontext_002dcol_002dnumber"></a>Scheme Procedure: <strong>char-context-col-number</strong><em> (ctx &lt;char-context&gt;)</em></dt>
-<dd><p>Returns the current column number for a context <var>ctx</var>.
-</p></dd></dl>
-
 <a name="index-Guard"></a>
 <hr>
 <a name="Guards"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Character-Context" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Character-Context" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Actions-1" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Context" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Context" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Actions" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Command_002dLine-Interface" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -1870,38 +2160,22 @@ context that can be used to handle a stream of characters.
 <td valign="middle" align="left">[<a href="#Type-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h4 class="subsubsection">3.8.1.1 Guards</h4>
+<h3 class="subsection">3.8.1 Guards</h3>
+<p>A guard is a predicate that takes a context and an event and returns <code>#t</code>
+or <code>#f</code>.
+</p>
 <p>Each transition path in a FSM is guarded by a <em>guard</em>, when a guard
 returns <code>#t</code> the FSM transitions to the next state guarded by the guard
 and a <em>transition action</em> is performed.
 </p>
-<dl>
-<dt><a name="index-guard_003aasterisk_003f"></a>Scheme Procedure: <strong>guard:asterisk?</strong><em> ctx ch</em></dt>
-<dt><a name="index-guard_003aequals_002dsign_003f"></a>Scheme Procedure: <strong>guard:equals-sign?</strong><em> ctx ch</em></dt>
-<dt><a name="index-guard_003anewline_003f"></a>Scheme Procedure: <strong>guard:newline?</strong><em> ctx ch</em></dt>
-<dt><a name="index-guard_003ahyphen_002dminus_003f"></a>Scheme Procedure: <strong>guard:hyphen-minus?</strong><em> ctx ch</em></dt>
-<dt><a name="index-guard_003aspace_003f"></a>Scheme Procedure: <strong>guard:space?</strong><em> ctx ch</em></dt>
-<dt><a name="index-guard_003aless_002dthan_002dsign_003f"></a>Scheme Procedure: <strong>guard:less-than-sign?</strong><em> ctx ch</em></dt>
-<dt><a name="index-guard_003aletter_003f"></a>Scheme Procedure: <strong>guard:letter?</strong><em> ctx ch</em></dt>
-<dt><a name="index-guard_003amore_002dthan_002dsign_003f"></a>Scheme Procedure: <strong>guard:more-than-sign?</strong><em> ctx ch</em></dt>
-<dt><a name="index-guard_003acolon_003f"></a>Scheme Procedure: <strong>guard:colon?</strong><em> ctx ch</em></dt>
-<dt><a name="index-guard_003asemicolon_003f"></a>Scheme Procedure: <strong>guard:semicolon?</strong><em> ctx ch</em></dt>
-<dt><a name="index-guard_003aeof_002dobject_003f"></a>Scheme Procedure: <strong>guard:eof-object?</strong><em> ctx ch</em></dt>
-<dt><a name="index-guard_003asingle_002dquote_003f"></a>Scheme Procedure: <strong>guard:single-quote?</strong><em> ctx ch</em></dt>
-<dt><a name="index-guard_003aleft_002dsquare_002dbracket_003f"></a>Scheme Procedure: <strong>guard:left-square-bracket?</strong><em> ctx ch</em></dt>
-<dt><a name="index-guard_003aright_002dsquare_002dbracket_003f"></a>Scheme Procedure: <strong>guard:right-square-bracket?</strong><em> ctx ch</em></dt>
-<dt><a name="index-guard_003aat_002dsymbol_003f"></a>Scheme Procedure: <strong>guard:at-symbol?</strong><em> ctx ch</em></dt>
-<dd><p>These procedures check if a <var>ch</var> is a specific symbol.
-</p></dd></dl>
-
 <a name="index-Action"></a>
 <hr>
-<a name="Actions-1"></a>
+<a name="Actions"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Guards" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Character-Context" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#Character-Context-1" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Context" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Pre_002ddefined-Guards" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Command_002dLine-Interface" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -1912,7 +2186,7 @@ and a <em>transition action</em> is performed.
 <td valign="middle" align="left">[<a href="#Type-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h4 class="subsubsection">3.8.1.2 Actions</h4>
+<h3 class="subsection">3.8.2 Actions</h3>
 <p>An action can be attached to a state transition (thus producing a
 <em>transition action</em>) or to a state itself (in the form of either
 <em>entry action</em> or <em>exit action</em>.)
@@ -1920,17 +2194,366 @@ and a <em>transition action</em> is performed.
 <p>A <em>transition action</em> is performed when its transition guard returns
 <code>#t</code>.
 </p>
+<hr>
+<a name="Pre_002ddefined-Guards"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Actions" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Context" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_0060_0060common_0027_0027" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Command_002dLine-Interface" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#Type-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h3 class="subsection">3.8.3 Pre-defined Guards</h3>
+
+<p>Note that Guile-SMC can use any Scheme object as the context memory for a
+finite-state machine.  The pre-defined guards and actions do not depend on any
+specific context memory type.
+</p>
+<hr>
+<a name="g_t_0060_0060common_0027_0027"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Pre_002ddefined-Guards" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Pre_002ddefined-Guards" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_0060_0060char_0027_0027" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Command_002dLine-Interface" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#Type-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h4 class="subsubsection">3.8.3.1 &ldquo;common&rdquo;</h4>
+
+<dl>
+<dt><a name="index-guard_003a_0023t"></a>Scheme Procedure: <strong>guard:#t</strong><em> context event</em></dt>
+<dd><p>This is &ldquo;default&rdquo; guard that just always returns <code>#t</code>.
+</p></dd></dl>
+
 <dl>
 <dt><a name="index-action_003ano_002dop"></a>Scheme Procedure: <strong>action:no-op</strong><em> context event</em></dt>
 <dd><p>This is &ldquo;no operation&rdquo; action that just returns the <var>context</var> as is.
 </p></dd></dl>
 
 <hr>
-<a name="Character-Context-1"></a>
+<a name="g_t_0060_0060char_0027_0027"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Actions-1" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Character-Context" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_0060_0060common_0027_0027" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Pre_002ddefined-Guards" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_0060_0060u8_0027_0027" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Command_002dLine-Interface" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#Type-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h4 class="subsubsection">3.8.3.2 &ldquo;char&rdquo;</h4>
+<p><code>(smc context char)</code> module provides guards for working with characters.
+There are lots of predicates such as <code>char:left-parenthesis?</code>,
+<code>char:right-parenthesis?</code>, <code>char:single-quote?</code> etc.
+</p>
+<p>Please see the module source code for the full list of predicates.
+</p>
+<hr>
+<a name="g_t_0060_0060u8_0027_0027"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_0060_0060char_0027_0027" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Pre_002ddefined-Guards" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Context-Memory" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Command_002dLine-Interface" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#Type-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h4 class="subsubsection">3.8.3.3 &ldquo;u8&rdquo;</h4>
+
+<p><code>(smc context u8)</code> module provides guards for working with bytes.  It
+contains the same predicates as <code>(smc context char)</code> but the predicates
+are accepting numbers instead of characters.
+</p>
+
+<a name="index-Context-Memory"></a>
+<hr>
+<a name="Context-Memory"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#g_t_0060_0060u8_0027_0027" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#API-Reference" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#General-Concepts" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Command_002dLine-Interface" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#Type-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Context-Memory-1"></a>
+<h2 class="section">3.9 Context Memory</h2>
+
+<p>Some problems are hard to solve (or cannot be solved at all) by an FSM that
+stores only its state.  Thus, some kind of memory is required to approach such
+tasks.
+</p>
+<p>A stack is often used in such cases but naturally there are cases where
+several kinds of memory is required.
+</p>
+<p>Although a context memory can be represented by any data type that Scheme
+supports, Guile-SMC context memory provides pre-defined means for FSMs to
+store a complex state.
+</p>
+<hr>
+<a name="General-Concepts"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Context-Memory" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Context-Memory" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Functional-Memory" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Command_002dLine-Interface" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#Type-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h3 class="subsection">3.9.1 General Concepts</h3>
+
+<p>Guile-SMC context memory has three pre-defined stacks:
+</p>
+<ul>
+<li> Buffer
+The context <em>buffer</em> holds immediate values (e.g. recently read symbols)
+that have to be processed.
+
+<p>For example, when an FSM reads DSV table like a stream of symbols, buffer may
+hold the symbols of the DSV data field that being read.
+</p>
+</li><li> Stanza
+The context <em>stanza</em> holds logical units of parsing.
+
+<p>For example, for a DSV reader mentioned above a logical unit of parsing could
+be a single table row consisting of several fields from the input file.
+</p>
+</li><li> Result
+The context <em>result</em> holds the final result of the FSM work.
+
+<p>For example, a DSV reader could the input table and store it as a list of
+lists, where each sub-list represents a table row.
+</p>
+</li></ul>
+
+<hr>
+<a name="Functional-Memory"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#General-Concepts" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Context-Memory" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#generic" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Command_002dLine-Interface" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#Type-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h3 class="subsection">3.9.2 Functional Memory</h3>
+
+<hr>
+<a name="generic"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Functional-Memory" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Functional-Memory" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#char" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Command_002dLine-Interface" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#Type-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h4 class="subsubsection">3.9.2.1 generic</h4>
+
+<p>See the <code>(smc context functional generic)</code> module.
+</p>
+<dl>
+<dt><a name="index-_003ccontext_003e"></a>Structure: <strong>&lt;context&gt;</strong><em> debug-mode? counter buffer stanza result custom-data</em></dt>
+<dd>
+<p>Structure fields:
+</p><dl compact="compact">
+<dt><var>debug-mode?</var></dt>
+<dd><p>Flag that specifies whether the debug mode for the context is enabled.
+</p></dd>
+<dt><var>counter</var></dt>
+<dd><p>Context counter.  Can be used to count incoming events, for example.
+</p></dd>
+<dt><var>buffer</var></dt>
+<dd><p>Context buffer to store intermediate values.
+</p></dd>
+<dt><var>stanza</var></dt>
+<dd><p>Context stanza to store the chunks of intermediate context data.
+</p></dd>
+<dt><var>result</var></dt>
+<dd><p>Context result to store the end result of the parser.
+</p></dd>
+<dt><var>custom-data</var></dt>
+<dd><p>Context custom data that can be used by the custom contexts to store different
+things such as ports or some data structures.
+</p></dd>
+</dl>
+
+</dd></dl>
+
+<dl>
+<dt><a name="index-make_002dcontext"></a>Scheme Procedure: <strong>make-context</strong><em> [#:debug-mode?=#f] [#:counter=0] [#:buffer='()] [#:stanza='()] [#:result='()] [#:custom-data='()]</em></dt>
+<dd><p>The <code>&lt;context&gt;</code> constructor.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-context_002dbuffer_002freversed"></a>Scheme Procedure: <strong>context-buffer/reversed</strong><em> context</em></dt>
+<dd><p>Return the reversed <var>context</var> buffer.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-context_002dstanza_002freversed"></a>Scheme Procedure: <strong>context-stanza/reversed</strong><em> context</em></dt>
+<dd><p>Return the reversed <var>context</var> stanza.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-context_002dresult_002freversed"></a>Scheme Procedure: <strong>context-result/reversed</strong><em> context</em></dt>
+<dd><p>Return the reversed <var>context</var> result.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-context_002dcounter_002dupdate"></a>Scheme Procedure: <strong>context-counter-update</strong><em> context [delta=1]</em></dt>
+<dd>
+<p>Increment the <var>context</var> counter by <var>delta</var> value.  Return the updated
+<var>context</var>.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-clear_002dbuffer"></a>Scheme Procedure: <strong>clear-buffer</strong><em> context [event]</em></dt>
+</dl>
+
+<dl>
+<dt><a name="index-clear_002dstanza"></a>Scheme Procedure: <strong>clear-stanza</strong><em> context [event]</em></dt>
+</dl>
+
+<dl>
+<dt><a name="index-clear_002dresult"></a>Scheme Procedure: <strong>clear-result</strong><em> context [event]</em></dt>
+</dl>
+
+<dl>
+<dt><a name="index-update_002dcounter"></a>Scheme Procedure: <strong>update-counter</strong><em> context [event]</em></dt>
+</dl>
+
+<dl>
+<dt><a name="index-reverse_002dbuffer"></a>Scheme Procedure: <strong>reverse-buffer</strong><em> context [event]</em></dt>
+</dl>
+
+<dl>
+<dt><a name="index-reverse_002dstanza"></a>Scheme Procedure: <strong>reverse-stanza</strong><em> context [event]</em></dt>
+</dl>
+
+<dl>
+<dt><a name="index-reverse_002dresult"></a>Scheme Procedure: <strong>reverse-result</strong><em> context [event]</em></dt>
+</dl>
+
+<dl>
+<dt><a name="index-push_002devent_002dto_002dbuffer"></a>Scheme Procedure: <strong>push-event-to-buffer</strong><em> context event</em></dt>
+</dl>
+
+<dl>
+<dt><a name="index-push_002devent_002dto_002dstanza"></a>Scheme Procedure: <strong>push-event-to-stanza</strong><em> context event</em></dt>
+</dl>
+
+<dl>
+<dt><a name="index-push_002devent_002dto_002dresult"></a>Scheme Procedure: <strong>push-event-to-result</strong><em> context event</em></dt>
+</dl>
+
+<hr>
+<a name="char"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#generic" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Functional-Memory" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#u8" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Command_002dLine-Interface" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#Type-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h4 class="subsubsection">3.9.2.2 char</h4>
+
+<p><code>(smc context functional char)</code> module provides a memory for FSMs that
+read and parse a stream of characters.
+</p>
+<hr>
+<a name="u8"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#char" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Functional-Memory" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#OOP" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Command_002dLine-Interface" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="#Type-Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h4 class="subsubsection">3.9.2.3 u8</h4>
+
+<p><code>(smc context functional u8)</code> module provides a memory for FSMs that
+read and parse a stream of bytes.
+</p>
+<hr>
+<a name="OOP"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#u8" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Context-Memory" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="#Command_002dLine-Interface" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Command_002dLine-Interface" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -1942,58 +2565,18 @@ and a <em>transition action</em> is performed.
 <td valign="middle" align="left">[<a href="#Type-Index" title="Index">Index</a>]</td>
 <td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
-<h4 class="subsubsection">3.8.1.3 Character Context</h4>
-<dl>
-<dt><a name="index-_003cchar_002dcontext_003e-1"></a>Class: <strong>&lt;char-context&gt;</strong></dt>
-<dd><p>A context to handle streams of characters.
-</p></dd></dl>
+<h3 class="subsection">3.9.3 OOP</h3>
 
-<dl>
-<dt><a name="index-char_002dcontext_002dport"></a>Scheme Procedure: <strong>char-context-port</strong><em> (context &lt;char-context&gt;)</em></dt>
-</dl>
-
-<dl>
-<dt><a name="index-char_002dcontext_002dcounter-1"></a>Scheme Procedure: <strong>char-context-counter</strong><em> (context &lt;char-context&gt;)</em></dt>
-<dd><p>Get the <var>context</var> character counter.
-</p></dd></dl>
-
-<dl>
-<dt><a name="index-char_002dcontext_002drow"></a>Scheme Procedure: <strong>char-context-row</strong><em> (context &lt;char-context&gt;)</em></dt>
-</dl>
-
-<dl>
-<dt><a name="index-char_002dcontext_002dcol"></a>Scheme Procedure: <strong>char-context-col</strong><em> (context &lt;char-context&gt;)</em></dt>
-</dl>
-
-<dl>
-<dt><a name="index-char_002dcontext_002dupdate_002dcounters_0021"></a>Scheme Procedure: <strong>char-context-update-counters!</strong><em> (context &lt;char-context&gt;)</em></dt>
-</dl>
-
-<dl>
-<dt><a name="index-event_002dsource"></a>Scheme Procedure: <strong>event-source</strong><em> (context &lt;char-context&gt;)</em></dt>
-</dl>
-
-<dl>
-<dt><a name="index-context_002dlog_002derror"></a>Scheme Procedure: <strong>context-log-error</strong><em> ctx fmt . rest</em></dt>
-<dt><a name="index-context_002dlog_002dwarning"></a>Scheme Procedure: <strong>context-log-warning</strong><em> ctx fmt . rest</em></dt>
-<dt><a name="index-context_002dlog_002dinfo"></a>Scheme Procedure: <strong>context-log-info</strong><em> ctx fmt . rest</em></dt>
-<dt><a name="index-context_002dlog_002ddebug"></a>Scheme Procedure: <strong>context-log-debug</strong><em> ctx fmt . rest</em></dt>
-<dd><p>Context logging procedures.
-</p></dd></dl>
-
-<dl>
-<dt><a name="index-action_003asyntax_002derror"></a>Scheme Procedure: <strong>action:syntax-error</strong><em> ctx ch</em></dt>
-<dd><p>Throw a syntactic error with the current symbol <var>ch</var>, row, column and the
-context <var>ctx</var>.
-</p></dd></dl>
-
+<p><code>(smc context oop)</code> modules provide a memory for FSMs that is written in
+GOOPS style.
+</p>
 
 
 <hr>
 <a name="Command_002dLine-Interface"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Character-Context-1" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#OOP" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Top" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="#The-Compiler" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="#GNU-Free-Documentation-License" title="Next chapter"> &gt;&gt; </a>]</td>
@@ -2093,7 +2676,7 @@ target is dependent on the Guile-SMC.
 <tr><td valign="middle" align="left">[<a href="#Command_002dLine-Interface" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#guile-target" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Compilation-Targets" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#guile_002dstandalone_002dcopy-target" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#The-Context-Generator-and-Analyzer" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="#GNU-Free-Documentation-License" title="Next chapter"> &gt;&gt; </a>]</td>
 <td valign="middle" align="left"> &nbsp; </td>
 <td valign="middle" align="left"> &nbsp; </td>
@@ -2163,139 +2746,10 @@ Guile-SMC that normally goes before this procedure):
 </pre></div>
 
 <hr>
-<a name="guile_002dstandalone_002dcopy-target"></a>
-<table class="header" cellpadding="1" cellspacing="1" border="0">
-<tr><td valign="middle" align="left">[<a href="#Command_002dLine-Interface" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#guile_002dstandalone-target" title="Previous section in reading order"> &lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#Compilation-Targets" title="Up section"> Up </a>]</td>
-<td valign="middle" align="left">[<a href="#The-Context-Generator-and-Analyzer" title="Next section in reading order"> &gt; </a>]</td>
-<td valign="middle" align="left">[<a href="#GNU-Free-Documentation-License" title="Next chapter"> &gt;&gt; </a>]</td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left"> &nbsp; </td>
-<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
-<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
-<td valign="middle" align="left">[<a href="#Type-Index" title="Index">Index</a>]</td>
-<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
-</tr></table>
-<h4 class="subsubsection">4.1.1.3 <code>guile-standalone-copy</code> target</h4>
-<p>The compiler can be configured in such way that it will copy all the modules
-that are needed to run the output FSM so the FSM will not depend on Guile-SMC.
-</p>
-<p>For example, let&rsquo;s imagine that we have the following file set:
-</p>
-<div class="example">
-<pre class="example">shell
-.
-├── context.scm
-├── fsm.puml
-├── main.scm
-└── README.org
-
-0 directories, 4 files
-</pre></div>
-
-<p>The &lsquo;<tt>context.scm</tt>&rsquo; contains all actions, guards and event sources for FSM
-to run:
-</p>
-<div class="example">
-<pre class="example">lisp
-(define-module (context)
-  #:use-module (opp goops)
-  #:use-module (ice-9 textual-ports)
-  #:use-module (smc context char-context)
-  #:re-export (guard:#t
-               guard:semicolon?
-               guard:double-quote?
-               guard:newline?
-               guard:eof-object?
-               action:no-op)
-  #:export (event-source
-            action:count
-            action:validate))
-
-(define-method (event-source (ctx &lt;number&gt;))
-  (get-char (current-input-port)))
-
-(define (action:count ctx char)
-  (cond
-   ((char=? char #\()
-    (+ ctx 1))
-   ((char=? char #\))
-    (- ctx 1))
-   (else
-    ctx)))
-
-(define (action:validate ctx char)
-  (unless (zero? ctx)
-    (error &quot;Parenthesis mismatch&quot; ctx))
-  ctx)
-</pre></div>
-
-<p>The &lsquo;<tt>fsm.puml</tt>&rsquo; file contains the FSM description in the PlantUML format:
-</p>
-<div class="example">
-<pre class="example">@startuml
-[*] --&gt; DEFAULT
-DEFAULT: Count parenthesis.
-DEFAULT --&gt; [*]: guard:eof-object? -&gt; action:validate
-DEFAULT --&gt; COMMENT: guard:semicolon?
-DEFAULT --&gt; STRING: guard:double-quote?
-DEFAULT --&gt; DEFAULT: guard:#t -&gt; action:count
-
-COMMENT: Skip a comment.
-COMMENT --&gt; DEFAULT: guard:newline?
-COMMENT --&gt; COMMENT
-
-STRING: Skip a string.
-STRING --&gt; DEFAULT: guard:double-quote?
-STRING -&gt; STRING
-@enduml
-</pre></div>
-
-<p>Now let&rsquo;s compile the FSM, using the <code>guile-standalone</code> target:
-</p><div class="example">
-<pre class="example">shell
-$ cat fsm.puml | /usr/bin/smc compile -L . -U &quot;((context))&quot; -m &quot;(custom-fsm)&quot; \
-    --target guile-standalone-copy &gt; custom-fsm.scm
-</pre></div>
-
-<p>Now the project root directory looks like this:
-</p><div class="example">
-<pre class="example">shell
-$ tree
-.
-├── context.scm
-├── custom-fsm
-│   ├── context.scm
-│   └── smc
-│       ├── context
-│       │   ├── char-context.scm
-│       │   └── context.scm
-│       ├── core
-│       │   ├── common.scm
-│       │   ├── log.scm
-│       │   ├── state.scm
-│       │   └── transition.scm
-│       └── fsm.scm
-├── custom-fsm.scm
-├── fsm.puml
-├── main.scm
-└── README.org
-
-4 directories, 13 files
-</pre></div>
-
-<p>&lsquo;<tt>custom-fsm</tt>&rsquo; directory contains all the required Guile-SMC modules that
-the output FSM needs to run, plus the extra modules (like <code>(context)</code>)
-specified for the compiler.
-</p>
-<hr>
 <a name="The-Context-Generator-and-Analyzer"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
 <tr><td valign="middle" align="left">[<a href="#Command_002dLine-Interface" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
-<td valign="middle" align="left">[<a href="#guile_002dstandalone_002dcopy-target" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#guile_002dstandalone-target" title="Previous section in reading order"> &lt; </a>]</td>
 <td valign="middle" align="left">[<a href="#Command_002dLine-Interface" title="Up section"> Up </a>]</td>
 <td valign="middle" align="left">[<a href="#The-Profiler" title="Next section in reading order"> &gt; </a>]</td>
 <td valign="middle" align="left">[<a href="#GNU-Free-Documentation-License" title="Next chapter"> &gt;&gt; </a>]</td>
@@ -2309,18 +2763,62 @@ specified for the compiler.
 <td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
 </tr></table>
 <h2 class="section">4.2 The Context Generator and Analyzer</h2>
-<p><code>smc context</code> allows to generate and analyze Guile-SMC FSM contexts.
+<p><code>smc context</code> command allows to generate and analyze Guile-SMC FSM
+contexts.
 </p>
 <p>There are two modes of context generation: the command either can generate a
 custom context stub based on an input PlantUML state machine description, or
-generate a standalone (intermediate) context that can be used by custom
-contexts to relax the dependency on Guile-SMC modules (and allow to compile
-custom FSMs in standalone mode in the future.)
+generate a standalone (or intermediate) context that can be used by custom
+contexts to relax the dependency on Guile-SMC modules
 </p>
 <p>When <code>--resolve</code> option is provided the command prints to the standard
 output the list of resolved and unresolved procedures based on the input
 PlantUML file.
 </p>
+<p>Supported options:
+</p><dl compact="compact">
+<dt><code>--help</code>, <code>-h</code></dt>
+<dd><p>Print the help message and exit.
+</p></dd>
+<dt><code>--resolve</code>, <code>-r</code></dt>
+<dd><p>Print the resolver status.
+</p></dd>
+<dt><code>--standalone</code>, <code>-s</code></dt>
+<dd><p>Generate a standalone compiler context.
+</p></dd>
+<dt><code>--type &lt;type&gt;</code>, <code>-T &lt;type&gt;</code></dt>
+<dd><p>Set the context type for the output context.
+</p>
+<p>Expected format: <code>&lt;type&gt;[/&lt;sub-type&gt;]</code>
+</p>
+<p>For example: &ldquo;functional/char&rdquo;.
+</p>
+<p>To get the full list of supported formats, see <code>--help</code>.
+</p></dd>
+<dt><code>--generate</code>, <code>-g</code></dt>
+<dd><p>Generate a context stub based on a provided state machine description in a
+PlantUML format.
+</p></dd>
+<dt><code>--guile-smc-path &lt;path&gt;</code></dt>
+<dd><p>Set the path where Guile-SMC modules are stored.
+</p></dd>
+<dt><code>--module &lt;module&gt;</code>, <code>-m &lt;module&gt;</code></dt>
+<dd><p>Place the output code into a specified module
+</p></dd>
+<dt><code>--load-path &lt;load-path&gt;</code>, <code>-L &lt;load-path&gt;</code></dt>
+<dd><p>Add an extra load path.
+</p></dd>
+<dt><code>--log-driver &lt;driver&gt;</code></dt>
+<dd><p>Set the log driver.
+</p></dd>
+<dt><code>--log-opt &lt;options&gt;</code></dt>
+<dd><p>Set the logging options.  The set of options depends on the logging driver.
+</p></dd>
+<dt><code>--debug</code></dt>
+<dd><p>Enable the debug mode.
+</p></dd>
+</dl>
+
 <hr>
 <a name="The-Profiler"></a>
 <table class="header" cellpadding="1" cellspacing="1" border="0">
@@ -2345,6 +2843,35 @@ PlantUML file.
 provides facilities to detect bottlenecks in state machines in terms of
 running time.
 </p>
+<p>Input data example:
+</p>
+<div class="example">
+<pre class="example">2023-04-22 23:00:09.032625 (DEBUG): [*] -&gt; [read]
+2023-04-22 23:00:09.032748 (DEBUG): [read] -&gt; [read_section_title]
+2023-04-22 23:00:09.033559 (DEBUG): [read_section_title] -&gt; [read_section_content]
+2023-04-22 23:00:09.033613 (DEBUG): [read_section_content] -&gt; [read_section_property_key]
+2023-04-22 23:00:09.033675 (DEBUG): [read_section_property_key] -&gt; [trim_section_property_key]
+2023-04-22 23:00:09.033717 (DEBUG): [trim_section_property_key] -&gt; [trim_section_property_value]
+2023-04-22 23:00:09.033754 (DEBUG): [trim_section_property_value] -&gt; [read_section_property_value]
+2023-04-22 23:00:09.033811 (DEBUG): [read_section_property_value] -&gt; [read_section_content]
+2023-04-22 23:00:09.033840 (DEBUG): [read_section_content] -&gt; [read_section_property_key]
+2023-04-22 23:00:09.033922 (DEBUG): [read_section_property_key] -&gt; [trim_section_property_key]
+2023-04-22 23:00:09.034378 (DEBUG): [trim_section_property_key] -&gt; [trim_section_property_value]
+2023-04-22 23:00:09.034415 (DEBUG): [trim_section_property_value] -&gt; [read_section_property_value]
+2023-04-22 23:00:09.034450 (DEBUG): [read_section_property_value] -&gt; [read_section_content]
+2023-04-22 23:00:09.034478 (DEBUG): [read_section_content] -&gt; [read_section_property_key]
+2023-04-22 23:00:09.034522 (DEBUG): [read_section_property_key] -&gt; [trim_section_property_key]
+2023-04-22 23:00:09.034547 (DEBUG): [trim_section_property_key] -&gt; [trim_section_property_value]
+2023-04-22 23:00:09.034574 (DEBUG): [trim_section_property_value] -&gt; [read_section_property_value]
+2023-04-22 23:00:09.034661 (DEBUG): [read_section_property_value] -&gt; [read_section_content]
+2023-04-22 23:00:09.034700 (DEBUG): [read_section_content] -&gt; [read_section_property_key]
+2023-04-22 23:00:09.034738 (DEBUG): [read_section_property_key] -&gt; [trim_section_property_key]
+2023-04-22 23:00:09.034765 (DEBUG): [trim_section_property_key] -&gt; [trim_section_property_value]
+2023-04-22 23:00:09.034790 (DEBUG): [trim_section_property_value] -&gt; [read_section_property_value]
+2023-04-22 23:00:09.034830 (DEBUG): [read_section_property_value] -&gt; [read_section_content]
+2023-04-22 23:00:09.034889 (DEBUG): [read_section_content] -&gt; [*]
+</pre></div>
+
 <p>Usage example:
 </p>
 <div class="example">
@@ -3092,14 +3619,12 @@ to permit their use in free software.
 <tr><td></td><th align="left">Index Entry</th><td>&nbsp;</td><th align="left"> Section</th></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="Type-Index-1_tp_symbol-1">&lt;</a></th><td></td><td></td></tr>
-<tr><td></td><td valign="top"><a href="#index-_003cchar_002dcontext_003e"><code>&lt;char-context&gt;</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Character-Context">3.8.1 Character Context</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-_003cchar_002dcontext_003e-1"><code>&lt;char-context&gt;</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Character-Context-1">3.8.1.3 Character Context</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-_003ccontext_003e"><code>&lt;context&gt;</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Context">3.8 Context</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-_003ccontext_003e"><code>&lt;context&gt;</code></a></td><td>&nbsp;</td><td valign="top"><a href="#generic">3.9.2.1 generic</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_003cfsm_003e"><code>&lt;fsm&gt;</code></a></td><td>&nbsp;</td><td valign="top"><a href="#The-main-class">3.1.1 The main class</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_003cnull_002dlog_003e"><code>&lt;null-log&gt;</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Null-Log">3.5.2.4 Null Log</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_003cprecise_002dlogger_003e"><code>&lt;precise-logger&gt;</code></a></td><td>&nbsp;</td><td valign="top"><a href="#The-Precise-Logger">3.5.1 The Precise Logger</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_003cprecise_002dport_002dlog_003e"><code>&lt;precise-port-log&gt;</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Precise-Port-Log">3.5.2.2 Precise Port Log</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-_003cpuml_002dcontext_003e"><code>&lt;puml-context&gt;</code></a></td><td>&nbsp;</td><td valign="top"><a href="#The-PlantUML-context">3.2.1 The PlantUML context</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-_003cpuml_002dcontext_003e"><code>&lt;puml-context&gt;</code></a></td><td>&nbsp;</td><td valign="top"><a href="#The-PlantUML-context">3.2.2 The PlantUML context</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_003cstate_003e"><code>&lt;state&gt;</code></a></td><td>&nbsp;</td><td valign="top"><a href="#The-main-class-1">3.6.3 The main class</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_003cstderr_002dlog_003e"><code>&lt;stderr-log&gt;</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Standard-Error-Log">3.5.2.3 Standard Error Log</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-_003csystem_002dlog_003e"><code>&lt;system-log&gt;</code></a></td><td>&nbsp;</td><td valign="top"><a href="#System-Log">3.5.2.1 System Log</a></td></tr>
@@ -3145,6 +3670,8 @@ to permit their use in free software.
  &nbsp; 
 <a class="summary-letter" href="#Procedure-Index-1_fn_letter-L"><b>L</b></a>
  &nbsp; 
+<a class="summary-letter" href="#Procedure-Index-1_fn_letter-M"><b>M</b></a>
+ &nbsp; 
 <a class="summary-letter" href="#Procedure-Index-1_fn_letter-N"><b>N</b></a>
  &nbsp; 
 <a class="summary-letter" href="#Procedure-Index-1_fn_letter-P"><b>P</b></a>
@@ -3154,6 +3681,12 @@ to permit their use in free software.
 <a class="summary-letter" href="#Procedure-Index-1_fn_letter-S"><b>S</b></a>
  &nbsp; 
 <a class="summary-letter" href="#Procedure-Index-1_fn_letter-T"><b>T</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Procedure-Index-1_fn_letter-U"><b>U</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Procedure-Index-1_fn_letter-V"><b>V</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Procedure-Index-1_fn_letter-W"><b>W</b></a>
  &nbsp; 
 </td></tr></table>
 <table class="index-fn" border="0">
@@ -3165,43 +3698,49 @@ to permit their use in free software.
 <tr><td></td><td valign="top"><a href="#index-_0025precise_002dlog_002dformatter"><code>%precise-log-formatter</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Helper-Procedures">3.5.4 Helper Procedures</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="Procedure-Index-1_fn_letter-A">A</a></th><td></td><td></td></tr>
-<tr><td></td><td valign="top"><a href="#index-action_003ano_002dop"><code>action:no-op</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Actions-1">3.8.1.2 Actions</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-action_003astore"><code>action:store</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Context">3.8 Context</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-action_003asyntax_002derror"><code>action:syntax-error</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Character-Context-1">3.8.1.3 Character Context</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-action_003aupdate_002dstanza"><code>action:update-stanza</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Context">3.8 Context</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-action_003ano_002dop"><code>action:no-op</code></a></td><td>&nbsp;</td><td valign="top"><a href="#g_t_0060_0060common_0027_0027">3.8.3.1 &ldquo;common&rdquo;</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-add_002ddescription"><code>add-description</code></a></td><td>&nbsp;</td><td valign="top"><a href="#FSM-Guards-and-Actions">3.2.2.1 FSM Guards and Actions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-add_002dstate_002dtransition"><code>add-state-transition</code></a></td><td>&nbsp;</td><td valign="top"><a href="#FSM-Guards-and-Actions">3.2.2.1 FSM Guards and Actions</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="Procedure-Index-1_fn_letter-C">C</a></th><td></td><td></td></tr>
-<tr><td></td><td valign="top"><a href="#index-char_002dcontext_002dcol"><code>char-context-col</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Character-Context-1">3.8.1.3 Character Context</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-char_002dcontext_002dcol_002dnumber"><code>char-context-col-number</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Character-Context">3.8.1 Character Context</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-char_002dcontext_002dcounter"><code>char-context-counter</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Character-Context">3.8.1 Character Context</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-char_002dcontext_002dcounter-1"><code>char-context-counter</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Character-Context-1">3.8.1.3 Character Context</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-char_002dcontext_002dport"><code>char-context-port</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Character-Context-1">3.8.1.3 Character Context</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-char_002dcontext_002drow"><code>char-context-row</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Character-Context-1">3.8.1.3 Character Context</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-char_002dcontext_002drow_002dnumber"><code>char-context-row-number</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Character-Context">3.8.1 Character Context</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-char_002dcontext_002dupdate_002dcounters_0021"><code>char-context-update-counters!</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Character-Context-1">3.8.1.3 Character Context</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-clear_002dbuffer"><code>clear-buffer</code></a></td><td>&nbsp;</td><td valign="top"><a href="#generic">3.9.2.1 generic</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-clear_002dresult"><code>clear-result</code></a></td><td>&nbsp;</td><td valign="top"><a href="#generic">3.9.2.1 generic</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-clear_002dstanza"><code>clear-stanza</code></a></td><td>&nbsp;</td><td valign="top"><a href="#generic">3.9.2.1 generic</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-command_002dcompile"><code>command-compile</code></a></td><td>&nbsp;</td><td valign="top"><a href="#g_t_0028smc-cli-command_002dcompile_0029">4.5.1 <code>(smc cli command-compile)</code></a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-command_002dcontext"><code>command-context</code></a></td><td>&nbsp;</td><td valign="top"><a href="#g_t_0028smc-cli-command_002dcontext_0029">4.5.2 <code>(smc cli command-context)</code></a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-command_002dprofile"><code>command-profile</code></a></td><td>&nbsp;</td><td valign="top"><a href="#g_t_0028smc-cli-command_002dprofile_0029">4.5.3 <code>(smc cli command-profile)</code></a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-command_002drun"><code>command-run</code></a></td><td>&nbsp;</td><td valign="top"><a href="#g_t_0028smc-cli-command_002drun_0029">4.5.4 <code>(smc cli command-run)</code></a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-context_002dbuffer_002dclear_0021"><code>context-buffer-clear!</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Context">3.8 Context</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-context_002dclear_0021"><code>context-clear!</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Context">3.8 Context</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-context_002dlog_002ddebug"><code>context-log-debug</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Character-Context-1">3.8.1.3 Character Context</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-context_002dlog_002derror"><code>context-log-error</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Character-Context-1">3.8.1.3 Character Context</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-context_002dlog_002dinfo"><code>context-log-info</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Character-Context-1">3.8.1.3 Character Context</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-context_002dlog_002dwarning"><code>context-log-warning</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Character-Context-1">3.8.1.3 Character Context</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-context_002dstanza_002dclear_0021"><code>context-stanza-clear!</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Context">3.8 Context</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-context_003f"><code>context?</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Context">3.8 Context</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-context_002dbuffer_002freversed"><code>context-buffer/reversed</code></a></td><td>&nbsp;</td><td valign="top"><a href="#generic">3.9.2.1 generic</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-context_002dcounter_002dupdate"><code>context-counter-update</code></a></td><td>&nbsp;</td><td valign="top"><a href="#generic">3.9.2.1 generic</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-context_002dresult_002freversed"><code>context-result/reversed</code></a></td><td>&nbsp;</td><td valign="top"><a href="#generic">3.9.2.1 generic</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-context_002dstanza_002freversed"><code>context-stanza/reversed</code></a></td><td>&nbsp;</td><td valign="top"><a href="#generic">3.9.2.1 generic</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="Procedure-Index-1_fn_letter-E">E</a></th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-equal_003f"><code>equal?</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Public-API-2">3.6.4 Public API</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-event_002dsource"><code>event-source</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Character-Context-1">3.8.1.3 Character Context</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="Procedure-Index-1_fn_letter-F">F</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-form_002dfeed"><code>form-feed</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Common-Guile-Compiler-Code">3.3.1 Common Guile Compiler Code</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-fsm_002d_003estandalone_002dcode"><code>fsm-&gt;standalone-code</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Guile-Standalone">3.3.3 Guile Standalone</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-fsm_002dcompile"><code>fsm-compile</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Compiler">3.3 Compiler</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-fsm_002dcurrent_002dstate"><code>fsm-current-state</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Public-API-1">3.1.2 Public API</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-fsm_002dcurrent_002dstate_002dset_0021"><code>fsm-current-state-set!</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Public-API-1">3.1.2 Public API</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-fsm_002ddebug_002dmode_002dset_0021"><code>fsm-debug-mode-set!</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Public-API-1">3.1.2 Public API</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-fsm_002ddebug_002dmode_003f"><code>fsm-debug-mode?</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Public-API-1">3.1.2 Public API</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-fsm_002ddefine_002dmodule"><code>fsm-define-module</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Guile-Standalone">3.3.3 Guile Standalone</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-fsm_002ddescription"><code>fsm-description</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Public-API-1">3.1.2 Public API</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-fsm_002ddescription_002dset_0021"><code>fsm-description-set!</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Public-API-1">3.1.2 Public API</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-fsm_002devent_002dsource"><code>fsm-event-source</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Public-API-1">3.1.2 Public API</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-fsm_002devent_002dsource_002dset_0021"><code>fsm-event-source-set!</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Public-API-1">3.1.2 Public API</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-fsm_002dget_002dclass_002dcode"><code>fsm-get-class-code</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Guile-Standalone">3.3.3 Guile Standalone</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-fsm_002dget_002dcontext_002dcode"><code>fsm-get-context-code</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Guile-Standalone">3.3.3 Guile Standalone</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-fsm_002dincoming_002dtransition_002dcount"><code>fsm-incoming-transition-count</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Getting-information-about-an-FSM">3.1.2.2 Getting information about an FSM</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-fsm_002dlog_002dtransition"><code>fsm-log-transition</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Logging">3.1.2.3 Logging</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-fsm_002dlog_002dtransition-1"><code>fsm-log-transition</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Logging">3.1.2.3 Logging</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-fsm_002dlog_002dtransition-2"><code>fsm-log-transition</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Logging">3.1.2.3 Logging</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-fsm_002dparent_002dcontext"><code>fsm-parent-context</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Public-API-1">3.1.2 Public API</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-fsm_002dparent_002dcontext_002dset_0021"><code>fsm-parent-context-set!</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Public-API-1">3.1.2 Public API</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-fsm_002dparent_002dfsm"><code>fsm-parent-fsm</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Public-API-1">3.1.2 Public API</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-fsm_002dparent_002dfsm_002dset_0021"><code>fsm-parent-fsm-set!</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Public-API-1">3.1.2 Public API</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-fsm_002drun_0021"><code>fsm-run!</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Executing-a-FSM">3.1.2.1 Executing a FSM</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-fsm_002drun_0021-1"><code>fsm-run!</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Executing-a-FSM">3.1.2.1 Executing a FSM</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-fsm_002dstate"><code>fsm-state</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Public-API-1">3.1.2 Public API</a></td></tr>
@@ -3211,27 +3750,20 @@ to permit their use in free software.
 <tr><td></td><td valign="top"><a href="#index-fsm_002dstate_002dreachable_003f"><code>fsm-state-reachable?</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Getting-information-about-an-FSM">3.1.2.2 Getting information about an FSM</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-fsm_002dstep_0021"><code>fsm-step!</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Executing-a-FSM">3.1.2.1 Executing a FSM</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-fsm_002dstep_0021-1"><code>fsm-step!</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Executing-a-FSM">3.1.2.1 Executing a FSM</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-fsm_002dstep_002dcounter"><code>fsm-step-counter</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Public-API-1">3.1.2 Public API</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-fsm_002dstep_002dcounter_002dset_0021"><code>fsm-step-counter-set!</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Public-API-1">3.1.2 Public API</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-fsm_002dtransition_002dadd_0021"><code>fsm-transition-add!</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Public-API-1">3.1.2 Public API</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-fsm_002dtransition_002dcount"><code>fsm-transition-count</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Getting-information-about-an-FSM">3.1.2.2 Getting information about an FSM</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-fsm_002dtransition_002dcounter"><code>fsm-transition-counter</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Public-API-1">3.1.2 Public API</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-fsm_002dtransition_002dcounter_002dset_0021"><code>fsm-transition-counter-set!</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Public-API-1">3.1.2 Public API</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-fsm_002dtransition_002dtable"><code>fsm-transition-table</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Public-API-1">3.1.2 Public API</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-fsm_002dtransition_002dtable_002d_003estandalone_002dcode"><code>fsm-transition-table-&gt;standalone-code</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Guile-Standalone">3.3.3 Guile Standalone</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-fsm_002dtransition_002dtable_002dset_0021"><code>fsm-transition-table-set!</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Public-API-1">3.1.2 Public API</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-fsm_002dvalidate"><code>fsm-validate</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Getting-information-about-an-FSM">3.1.2.2 Getting information about an FSM</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-fsm_003f"><code>fsm?</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Public-API-1">3.1.2 Public API</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="Procedure-Index-1_fn_letter-G">G</a></th><td></td><td></td></tr>
-<tr><td></td><td valign="top"><a href="#index-guard_003aasterisk_003f"><code>guard:asterisk?</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Guards">3.8.1.1 Guards</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-guard_003aat_002dsymbol_003f"><code>guard:at-symbol?</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Guards">3.8.1.1 Guards</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-guard_003acolon_003f"><code>guard:colon?</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Guards">3.8.1.1 Guards</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-guard_003aeof_002dobject_003f"><code>guard:eof-object?</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Guards">3.8.1.1 Guards</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-guard_003aequals_002dsign_003f"><code>guard:equals-sign?</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Guards">3.8.1.1 Guards</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-guard_003ahyphen_002dminus_003f"><code>guard:hyphen-minus?</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Guards">3.8.1.1 Guards</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-guard_003aleft_002dsquare_002dbracket_003f"><code>guard:left-square-bracket?</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Guards">3.8.1.1 Guards</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-guard_003aless_002dthan_002dsign_003f"><code>guard:less-than-sign?</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Guards">3.8.1.1 Guards</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-guard_003aletter_003f"><code>guard:letter?</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Guards">3.8.1.1 Guards</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-guard_003amore_002dthan_002dsign_003f"><code>guard:more-than-sign?</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Guards">3.8.1.1 Guards</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-guard_003anewline_003f"><code>guard:newline?</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Guards">3.8.1.1 Guards</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-guard_003aright_002dsquare_002dbracket_003f"><code>guard:right-square-bracket?</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Guards">3.8.1.1 Guards</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-guard_003asemicolon_003f"><code>guard:semicolon?</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Guards">3.8.1.1 Guards</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-guard_003asingle_002dquote_003f"><code>guard:single-quote?</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Guards">3.8.1.1 Guards</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-guard_003aspace_003f"><code>guard:space?</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Guards">3.8.1.1 Guards</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-guard_003a_0023t"><code>guard:#t</code></a></td><td>&nbsp;</td><td valign="top"><a href="#g_t_0060_0060common_0027_0027">3.8.3.1 &ldquo;common&rdquo;</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="Procedure-Index-1_fn_letter-H">H</a></th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-hash_002dtable_002d_003etransition_002dlist"><code>hash-table-&gt;transition-list</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Public-API-1">3.1.2 Public API</a></td></tr>
@@ -3244,21 +3776,40 @@ to permit their use in free software.
 <tr><td></td><td valign="top"><a href="#index-log_002duse_002dstderr_0021"><code>log-use-stderr!</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Logging-Initialization-and-Configuration">3.5.3 Logging Initialization and Configuration</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-log_002dwarning"><code>log-warning</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Logging-Procedures">3.5.5 Logging Procedures</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
+<tr><th><a name="Procedure-Index-1_fn_letter-M">M</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-make_002dcontext"><code>make-context</code></a></td><td>&nbsp;</td><td valign="top"><a href="#generic">3.9.2.1 generic</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-module_002dname"><code>module-name</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Internal-procedures">3.2.3 Internal procedures</a></td></tr>
+<tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="Procedure-Index-1_fn_letter-N">N</a></th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-null_002dlog_003f"><code>null-log?</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Null-Log">3.5.2.4 Null Log</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="Procedure-Index-1_fn_letter-P">P</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-parse_002dentry_002daction"><code>parse-entry-action</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Internal-procedures">3.2.3 Internal procedures</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-parse_002devent_002dsource"><code>parse-event-source</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Internal-procedures">3.2.3 Internal procedures</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-parse_002dexit_002daction"><code>parse-exit-action</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Internal-procedures">3.2.3 Internal procedures</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-precise_002dlogger_003f"><code>precise-logger?</code></a></td><td>&nbsp;</td><td valign="top"><a href="#The-Precise-Logger">3.5.1 The Precise Logger</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-puml_002d_003efsm"><code>puml-&gt;fsm</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Public-API">3.2.2 Public API</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-puml_002dcontext_002dfsm"><code>puml-context-fsm</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Public-API">3.2.2 Public API</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-puml_002dcontext_002dmodule"><code>puml-context-module</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Public-API">3.2.2 Public API</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-puml_002dcontext_002dprint_002dresolver_002dstatus"><code>puml-context-print-resolver-status</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Resolver-status">3.2.2.1 Resolver status</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-puml_002dcontext_002dresolved_002dprocedures"><code>puml-context-resolved-procedures</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Resolver-status">3.2.2.1 Resolver status</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-puml_002dcontext_002dunresolved_002dprocedures"><code>puml-context-unresolved-procedures</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Resolver-status">3.2.2.1 Resolver status</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-puml_002dstring_002d_003efsm"><code>puml-string-&gt;fsm</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Public-API">3.2.2 Public API</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-process_002dstate_002ddescription"><code>process-state-description</code></a></td><td>&nbsp;</td><td valign="top"><a href="#FSM-Guards-and-Actions">3.2.2.1 FSM Guards and Actions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-prune_002dunused_002ddefinitions"><code>prune-unused-definitions</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Guile-Standalone">3.3.3 Guile Standalone</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-puml_002d_003efsm"><code>puml-&gt;fsm</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Public-API">3.2.1 Public API</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-puml_002dcontext_002dfsm"><code>puml-context-fsm</code></a></td><td>&nbsp;</td><td valign="top"><a href="#The-PlantUML-context">3.2.2 The PlantUML context</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-puml_002dcontext_002dfsm_002dset_0021"><code>puml-context-fsm-set!</code></a></td><td>&nbsp;</td><td valign="top"><a href="#The-PlantUML-context">3.2.2 The PlantUML context</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-puml_002dcontext_002dkeep_002dgoing_003f"><code>puml-context-keep-going?</code></a></td><td>&nbsp;</td><td valign="top"><a href="#The-PlantUML-context">3.2.2 The PlantUML context</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-puml_002dcontext_002dmodule"><code>puml-context-module</code></a></td><td>&nbsp;</td><td valign="top"><a href="#The-PlantUML-context">3.2.2 The PlantUML context</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-puml_002dcontext_002dprint_002dresolver_002dstatus"><code>puml-context-print-resolver-status</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Resolver-status">3.2.2.2 Resolver status</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-puml_002dcontext_002dresolved_002dprocedures"><code>puml-context-resolved-procedures</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Resolver-status">3.2.2.2 Resolver status</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-puml_002dcontext_002dunresolved_002dprocedures"><code>puml-context-unresolved-procedures</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Resolver-status">3.2.2.2 Resolver status</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-puml_002derror"><code>puml-error</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Internal-procedures">3.2.3 Internal procedures</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-puml_002derror-1"><code>puml-error</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Internal-procedures">3.2.3 Internal procedures</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-puml_002dstring_002d_003efsm"><code>puml-string-&gt;fsm</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Public-API">3.2.1 Public API</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-push_002devent_002dto_002dbuffer"><code>push-event-to-buffer</code></a></td><td>&nbsp;</td><td valign="top"><a href="#generic">3.9.2.1 generic</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-push_002devent_002dto_002dresult"><code>push-event-to-result</code></a></td><td>&nbsp;</td><td valign="top"><a href="#generic">3.9.2.1 generic</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-push_002devent_002dto_002dstanza"><code>push-event-to-stanza</code></a></td><td>&nbsp;</td><td valign="top"><a href="#generic">3.9.2.1 generic</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="Procedure-Index-1_fn_letter-R">R</a></th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-resolve_002dprocedure"><code>resolve-procedure</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Internal-procedures">3.2.3 Internal procedures</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-reverse_002dbuffer"><code>reverse-buffer</code></a></td><td>&nbsp;</td><td valign="top"><a href="#generic">3.9.2.1 generic</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-reverse_002dresult"><code>reverse-result</code></a></td><td>&nbsp;</td><td valign="top"><a href="#generic">3.9.2.1 generic</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-reverse_002dstanza"><code>reverse-stanza</code></a></td><td>&nbsp;</td><td valign="top"><a href="#generic">3.9.2.1 generic</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="Procedure-Index-1_fn_letter-S">S</a></th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-smc_002dlog"><code>smc-log</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Logging-Procedures">3.5.5 Logging Procedures</a></td></tr>
@@ -3270,6 +3821,7 @@ to permit their use in free software.
 <tr><td></td><td valign="top"><a href="#index-smc_002dversion_002fstring"><code>smc-version/string</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Version">3.4 Version</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-state_002d_003elist"><code>state-&gt;list</code></a></td><td>&nbsp;</td><td valign="top"><a href="#List_002fstate-conversion">3.6.4.2 List/state conversion</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-state_002d_003elist_002fserialized"><code>state-&gt;list/serialized</code></a></td><td>&nbsp;</td><td valign="top"><a href="#List_002fstate-conversion">3.6.4.2 List/state conversion</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-state_002d_003estandalone_002dcode"><code>state-&gt;standalone-code</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Guile-Standalone">3.3.3 Guile Standalone</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-state_002ddead_002dend_003f"><code>state-dead-end?</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Public-API-2">3.6.4 Public API</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-state_002ddescription"><code>state-description</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Public-API-2">3.6.4 Public API</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-state_002dentry_002daction"><code>state-entry-action</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Public-API-2">3.6.4 Public API</a></td></tr>
@@ -3299,9 +3851,13 @@ to permit their use in free software.
 <tr><td></td><td valign="top"><a href="#index-state_003aname"><code>state:name</code></a></td><td>&nbsp;</td><td valign="top"><a href="#State-as-a-list">3.6.4.1 State as a list</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-state_003atransitions"><code>state:transitions</code></a></td><td>&nbsp;</td><td valign="top"><a href="#State-as-a-list">3.6.4.1 State as a list</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-state_003f"><code>state?</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Public-API-2">3.6.4 Public API</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-string_002ddrop_002dboth"><code>string-drop-both</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Guile-Standalone">3.3.3 Guile Standalone</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-system_002dlog_003f"><code>system-log?</code></a></td><td>&nbsp;</td><td valign="top"><a href="#System-Log">3.5.2.1 System Log</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="Procedure-Index-1_fn_letter-T">T</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-throw_002dno_002dstart_002dtag_002derror"><code>throw-no-start-tag-error</code></a></td><td>&nbsp;</td><td valign="top"><a href="#FSM-Guards-and-Actions">3.2.2.1 FSM Guards and Actions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-throw_002dunexpected_002dend_002dof_002dfile_002derror"><code>throw-unexpected-end-of-file-error</code></a></td><td>&nbsp;</td><td valign="top"><a href="#FSM-Guards-and-Actions">3.2.2.1 FSM Guards and Actions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-title_003f"><code>title?</code></a></td><td>&nbsp;</td><td valign="top"><a href="#FSM-Guards-and-Actions">3.2.2.1 FSM Guards and Actions</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-transition_002dlist_002d_003ehash_002dtable"><code>transition-list-&gt;hash-table</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Public-API-1">3.1.2 Public API</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-transition_002dtable_002dappend"><code>transition-table-append</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Transition-Table">3.7.2 Transition Table</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-transition_002dtable_002dcount"><code>transition-table-count</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Transition-Table">3.7.2 Transition Table</a></td></tr>
@@ -3309,6 +3865,25 @@ to permit their use in free software.
 <tr><td></td><td valign="top"><a href="#index-transition_003aaction"><code>transition:action</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Transition-Accessors">3.7.1 Transition Accessors</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-transition_003aguard"><code>transition:guard</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Transition-Accessors">3.7.1 Transition Accessors</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-transition_003anext_002dstate"><code>transition:next-state</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Transition-Accessors">3.7.1 Transition Accessors</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-tree_002dcontains_003f"><code>tree-contains?</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Guile-Standalone">3.3.3 Guile Standalone</a></td></tr>
+<tr><td colspan="4"> <hr></td></tr>
+<tr><th><a name="Procedure-Index-1_fn_letter-U">U</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-update_002dcounter"><code>update-counter</code></a></td><td>&nbsp;</td><td valign="top"><a href="#generic">3.9.2.1 generic</a></td></tr>
+<tr><td colspan="4"> <hr></td></tr>
+<tr><th><a name="Procedure-Index-1_fn_letter-V">V</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-validate_002dend_002dtag"><code>validate-end-tag</code></a></td><td>&nbsp;</td><td valign="top"><a href="#FSM-Guards-and-Actions">3.2.2.1 FSM Guards and Actions</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-validate_002dstart_002dtag"><code>validate-start-tag</code></a></td><td>&nbsp;</td><td valign="top"><a href="#FSM-Guards-and-Actions">3.2.2.1 FSM Guards and Actions</a></td></tr>
+<tr><td colspan="4"> <hr></td></tr>
+<tr><th><a name="Procedure-Index-1_fn_letter-W">W</a></th><td></td><td></td></tr>
+<tr><td></td><td valign="top"><a href="#index-write_002ddefine_002dclass"><code>write-define-class</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Guile">3.3.2 Guile</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-write_002dfooter"><code>write-footer</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Common-Guile-Compiler-Code">3.3.1 Common Guile Compiler Code</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-write_002dheader"><code>write-header</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Common-Guile-Compiler-Code">3.3.1 Common Guile Compiler Code</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-write_002dinitialize"><code>write-initialize</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Guile">3.3.2 Guile</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-write_002dmodule"><code>write-module</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Guile">3.3.2 Guile</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-write_002dparent_002dfsm_002dinfo"><code>write-parent-fsm-info</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Common-Guile-Compiler-Code">3.3.1 Common Guile Compiler Code</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-write_002dsection_002dheader"><code>write-section-header</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Common-Guile-Compiler-Code">3.3.1 Common Guile Compiler Code</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-write_002dtransition_002dtable"><code>write-transition-table</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Guile">3.3.2 Guile</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-write_002duse_002dmodules"><code>write-use-modules</code></a></td><td>&nbsp;</td><td valign="top"><a href="#Guile">3.3.2 Guile</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 </table>
 <table><tr><th valign="top">Jump to: &nbsp; </th><td><a class="summary-letter" href="#Procedure-Index-1_fn_symbol-1"><b>%</b></a>
@@ -3328,6 +3903,8 @@ to permit their use in free software.
  &nbsp; 
 <a class="summary-letter" href="#Procedure-Index-1_fn_letter-L"><b>L</b></a>
  &nbsp; 
+<a class="summary-letter" href="#Procedure-Index-1_fn_letter-M"><b>M</b></a>
+ &nbsp; 
 <a class="summary-letter" href="#Procedure-Index-1_fn_letter-N"><b>N</b></a>
  &nbsp; 
 <a class="summary-letter" href="#Procedure-Index-1_fn_letter-P"><b>P</b></a>
@@ -3337,6 +3914,12 @@ to permit their use in free software.
 <a class="summary-letter" href="#Procedure-Index-1_fn_letter-S"><b>S</b></a>
  &nbsp; 
 <a class="summary-letter" href="#Procedure-Index-1_fn_letter-T"><b>T</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Procedure-Index-1_fn_letter-U"><b>U</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Procedure-Index-1_fn_letter-V"><b>V</b></a>
+ &nbsp; 
+<a class="summary-letter" href="#Procedure-Index-1_fn_letter-W"><b>W</b></a>
  &nbsp; 
 </td></tr></table>
 
@@ -3362,8 +3945,6 @@ to permit their use in free software.
 
 <table><tr><th valign="top">Jump to: &nbsp; </th><td><a class="summary-letter" href="#Concept-Index-1_cp_letter-A"><b>A</b></a>
  &nbsp; 
-<a class="summary-letter" href="#Concept-Index-1_cp_letter-B"><b>B</b></a>
- &nbsp; 
 <a class="summary-letter" href="#Concept-Index-1_cp_letter-C"><b>C</b></a>
  &nbsp; 
 <a class="summary-letter" href="#Concept-Index-1_cp_letter-F"><b>F</b></a>
@@ -3383,29 +3964,26 @@ to permit their use in free software.
 <tr><td></td><th align="left">Index Entry</th><td>&nbsp;</td><th align="left"> Section</th></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="Concept-Index-1_cp_letter-A">A</a></th><td></td><td></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Action">Action</a></td><td>&nbsp;</td><td valign="top"><a href="#Guards">3.8.1.1 Guards</a></td></tr>
-<tr><td colspan="4"> <hr></td></tr>
-<tr><th><a name="Concept-Index-1_cp_letter-B">B</a></th><td></td><td></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Buffer">Buffer</a></td><td>&nbsp;</td><td valign="top"><a href="#Context">3.8 Context</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Action">Action</a></td><td>&nbsp;</td><td valign="top"><a href="#Guards">3.8.1 Guards</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="Concept-Index-1_cp_letter-C">C</a></th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-CLI">CLI</a></td><td>&nbsp;</td><td valign="top"><a href="#Command_002dLine-Interface">4 Command-Line Interface</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-Compilation-Targets">Compilation Targets</a></td><td>&nbsp;</td><td valign="top"><a href="#Compilation-Targets">4.1.1 Compilation Targets</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-Compiler">Compiler</a></td><td>&nbsp;</td><td valign="top"><a href="#Compiler">3.3 Compiler</a></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Context">Context</a></td><td>&nbsp;</td><td valign="top"><a href="#Context">3.8 Context</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Context">Context</a></td><td>&nbsp;</td><td valign="top"><a href="#Transition-Table">3.7.2 Transition Table</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Context-Memory">Context Memory</a></td><td>&nbsp;</td><td valign="top"><a href="#g_t_0060_0060u8_0027_0027">3.8.3.3 &ldquo;u8&rdquo;</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="Concept-Index-1_cp_letter-F">F</a></th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-FSM">FSM</a></td><td>&nbsp;</td><td valign="top"><a href="#FSM">3.1 FSM</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-FSM-logging">FSM logging</a></td><td>&nbsp;</td><td valign="top"><a href="#Logging">3.1.2.3 Logging</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="Concept-Index-1_cp_letter-G">G</a></th><td></td><td></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Guard">Guard</a></td><td>&nbsp;</td><td valign="top"><a href="#Character-Context">3.8.1 Character Context</a></td></tr>
+<tr><td></td><td valign="top"><a href="#index-Guard">Guard</a></td><td>&nbsp;</td><td valign="top"><a href="#Context">3.8 Context</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="Concept-Index-1_cp_letter-P">P</a></th><td></td><td></td></tr>
 <tr><td></td><td valign="top"><a href="#index-Profiler">Profiler</a></td><td>&nbsp;</td><td valign="top"><a href="#The-Profiler">4.3 The Profiler</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="Concept-Index-1_cp_letter-S">S</a></th><td></td><td></td></tr>
-<tr><td></td><td valign="top"><a href="#index-Stanza">Stanza</a></td><td>&nbsp;</td><td valign="top"><a href="#Context">3.8 Context</a></td></tr>
 <tr><td></td><td valign="top"><a href="#index-State">State</a></td><td>&nbsp;</td><td valign="top"><a href="#State">3.6 State</a></td></tr>
 <tr><td colspan="4"> <hr></td></tr>
 <tr><th><a name="Concept-Index-1_cp_letter-T">T</a></th><td></td><td></td></tr>
@@ -3420,8 +3998,6 @@ to permit their use in free software.
 <tr><td colspan="4"> <hr></td></tr>
 </table>
 <table><tr><th valign="top">Jump to: &nbsp; </th><td><a class="summary-letter" href="#Concept-Index-1_cp_letter-A"><b>A</b></a>
- &nbsp; 
-<a class="summary-letter" href="#Concept-Index-1_cp_letter-B"><b>B</b></a>
  &nbsp; 
 <a class="summary-letter" href="#Concept-Index-1_cp_letter-C"><b>C</b></a>
  &nbsp; 
@@ -3469,16 +4045,20 @@ to permit their use in free software.
     </ul></li>
     <li><a name="toc-PlantUML-1" href="#PlantUML">3.2 PlantUML</a>
     <ul class="no-bullet">
-      <li><a name="toc-The-PlantUML-context" href="#The-PlantUML-context">3.2.1 The PlantUML context</a></li>
-      <li><a name="toc-Public-API" href="#Public-API">3.2.2 Public API</a>
+      <li><a name="toc-Public-API" href="#Public-API">3.2.1 Public API</a></li>
+      <li><a name="toc-The-PlantUML-context" href="#The-PlantUML-context">3.2.2 The PlantUML context</a>
       <ul class="no-bullet">
-        <li><a name="toc-Resolver-status" href="#Resolver-status">3.2.2.1 Resolver status</a></li>
+        <li><a name="toc-FSM-Guards-and-Actions" href="#FSM-Guards-and-Actions">3.2.2.1 FSM Guards and Actions</a></li>
+        <li><a name="toc-Resolver-status" href="#Resolver-status">3.2.2.2 Resolver status</a></li>
       </ul></li>
       <li><a name="toc-Internal-procedures" href="#Internal-procedures">3.2.3 Internal procedures</a></li>
     </ul></li>
     <li><a name="toc-Compiler-1" href="#Compiler">3.3 Compiler</a>
     <ul class="no-bullet">
-      <li><a name="toc-Examples" href="#Examples">3.3.1 Examples</a></li>
+      <li><a name="toc-Common-Guile-Compiler-Code" href="#Common-Guile-Compiler-Code">3.3.1 Common Guile Compiler Code</a></li>
+      <li><a name="toc-Guile" href="#Guile">3.3.2 Guile</a></li>
+      <li><a name="toc-Guile-Standalone" href="#Guile-Standalone">3.3.3 Guile Standalone</a></li>
+      <li><a name="toc-Examples" href="#Examples">3.3.4 Examples</a></li>
     </ul></li>
     <li><a name="toc-Version-1" href="#Version">3.4 Version</a></li>
     <li><a name="toc-Log-1" href="#Log">3.5 Log</a>
@@ -3497,7 +4077,7 @@ to permit their use in free software.
     </ul></li>
     <li><a name="toc-State-1" href="#State">3.6 State</a>
     <ul class="no-bullet">
-      <li><a name="toc-Actions" href="#Actions">3.6.1 Actions</a></li>
+      <li><a name="toc-Actions-1" href="#Actions-1">3.6.1 Actions</a></li>
       <li><a name="toc-Default-entry_002fexit-actions" href="#Default-entry_002fexit-actions">3.6.2 Default entry/exit actions</a></li>
       <li><a name="toc-The-main-class-1" href="#The-main-class-1">3.6.3 The main class</a></li>
       <li><a name="toc-Public-API-2" href="#Public-API-2">3.6.4 Public API</a>
@@ -3514,13 +4094,26 @@ to permit their use in free software.
     </ul></li>
     <li><a name="toc-Context-1" href="#Context">3.8 Context</a>
     <ul class="no-bullet">
-      <li><a name="toc-Character-Context" href="#Character-Context">3.8.1 Character Context</a>
+      <li><a name="toc-Guards" href="#Guards">3.8.1 Guards</a></li>
+      <li><a name="toc-Actions" href="#Actions">3.8.2 Actions</a></li>
+      <li><a name="toc-Pre_002ddefined-Guards" href="#Pre_002ddefined-Guards">3.8.3 Pre-defined Guards</a>
       <ul class="no-bullet">
-        <li><a name="toc-Guards" href="#Guards">3.8.1.1 Guards</a></li>
-        <li><a name="toc-Actions-1" href="#Actions-1">3.8.1.2 Actions</a></li>
-        <li><a name="toc-Character-Context-1" href="#Character-Context-1">3.8.1.3 Character Context</a></li>
+        <li><a name="toc-_0060_0060common_0027_0027" href="#g_t_0060_0060common_0027_0027">3.8.3.1 &ldquo;common&rdquo;</a></li>
+        <li><a name="toc-_0060_0060char_0027_0027" href="#g_t_0060_0060char_0027_0027">3.8.3.2 &ldquo;char&rdquo;</a></li>
+        <li><a name="toc-_0060_0060u8_0027_0027" href="#g_t_0060_0060u8_0027_0027">3.8.3.3 &ldquo;u8&rdquo;</a></li>
       </ul>
 </li>
+    </ul></li>
+    <li><a name="toc-Context-Memory-1" href="#Context-Memory">3.9 Context Memory</a>
+    <ul class="no-bullet">
+      <li><a name="toc-General-Concepts" href="#General-Concepts">3.9.1 General Concepts</a></li>
+      <li><a name="toc-Functional-Memory" href="#Functional-Memory">3.9.2 Functional Memory</a>
+      <ul class="no-bullet">
+        <li><a name="toc-generic" href="#generic">3.9.2.1 generic</a></li>
+        <li><a name="toc-char" href="#char">3.9.2.2 char</a></li>
+        <li><a name="toc-u8" href="#u8">3.9.2.3 u8</a></li>
+      </ul></li>
+      <li><a name="toc-OOP" href="#OOP">3.9.3 OOP</a></li>
     </ul>
 </li>
   </ul></li>
@@ -3532,7 +4125,6 @@ to permit their use in free software.
       <ul class="no-bullet">
         <li><a name="toc-guile-target" href="#guile-target">4.1.1.1 <code>guile</code> target</a></li>
         <li><a name="toc-guile_002dstandalone-target" href="#guile_002dstandalone-target">4.1.1.2 <code>guile-standalone</code> target</a></li>
-        <li><a name="toc-guile_002dstandalone_002dcopy-target" href="#guile_002dstandalone_002dcopy-target">4.1.1.3 <code>guile-standalone-copy</code> target</a></li>
       </ul>
 </li>
     </ul></li>
@@ -3565,7 +4157,7 @@ to permit their use in free software.
 <h1>About This Document</h1>
 
 <p>
-  This document was generated on <i>September 11, 2022</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 5.0</i></a>.
+  This document was generated on <i>August 15, 2023</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 5.0</i></a>.
 </p>
 <p>
   The buttons in the navigation panels have the following meaning:
@@ -3667,7 +4259,7 @@ to permit their use in free software.
 <hr>
 <p>
  <font size="-1">
-  This document was generated on <i>September 11, 2022</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 5.0</i></a>.
+  This document was generated on <i>August 15, 2023</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 5.0</i></a>.
  </font>
  <br>
 
