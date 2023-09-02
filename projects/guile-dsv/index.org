@@ -1,0 +1,38 @@
+#+TITLE: memory heap / projects / guile-dsv
+#+OPTIONS: html-style:nil
+#+HTML_LINK_HOME: ../../
+#+HTML_LINK_UP:   ../../projects.html
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../../static/css/s.css" />
+
+
+* Guile-DSV
+
+Guile-DSV is a GNU Guile module for working with the [[https://en.wikipedia.org/wiki/Delimiter-separated_values][delimiter-separated
+values]] (DSV) data format.
+
+Also Guile-DSV ships with a program named =dsv= (source code is here:
+=utils/dsv.in=) that allows to read and process DSV format (including
+delimiter change and conversion from one standard to another.)
+
+** Features
+
+- Guile-DSV supports [[http://www.catb.org/~esr/writings/taoup/html/ch05s02.html#id2901882][the Unix-style DSV format]] and [[https://tools.ietf.org/html/rfc4180][RFC 4180]] format.
+- Conversion between formats.
+- CLI tool that provides convenient UI for the library capabilities.
+- Pretty-printing of DSV tables in console.
+
+** Source Code Repository
+
+[[https://github.com/artyom-poptsov/guile-dsv]]
+
+** Documentation
+
+You can read the documentation online [[./manual/][here]] or use =info guile-dsv= on your
+GNU/Linux distribution with Guile-DSV installed.
+
+** License
+
+Guile-DSV is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later
+version.

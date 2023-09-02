@@ -13,8 +13,8 @@
   to help the language grow and mature.
 
   - [[./projects/guile-ssh/index.html][Guile-SSH]] -- libssh bindings for GNU Guile.
-  - [[./projects/guile-smc/][Guile-SMC ]]-- GNU Guile State Machine Compiler.
-  - [[https://github.com/artyom-poptsov/guile-dsv][Guile-DSV]] -- Delimiter-separated values (DSV) format parser for GNU Guile.
+  - [[./projects/guile-smc/][Guile-SMC]] -- GNU Guile State Machine Compiler.
+  - [[./projects/guile-dsv/][Guile-DSV]] -- Delimiter-separated values (DSV) format parser for GNU Guile.
   - [[./projects/guile-ics/][Guile-ICS]] -- iCalendar (RFC5545) format parser for GNU Guile.
   - [[https://github.com/artyom-poptsov/guile-png][Guile-PNG]] -- Portable Network Graphics (RFC2083) library.
   - [[https://github.com/artyom-poptsov/guile-udev][Guile-Udev]] -- GNU Guile bindings to libudev.

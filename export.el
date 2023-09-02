@@ -78,6 +78,18 @@
          :publishing-directory ,(concat %projects-dir "/guile-ics/manual/")
          :publishing-function  org-publish-attachment)
 
+        ;; Guile-DSV
+        ("memory-heap-projects-guile-dsv"
+         :base-directory       "./projects/guile-dsv/"
+         :base-extension       "org"
+         :publishing-directory ,(concat %projects-dir "/guile-dsv/")
+         :publishing-function  org-html-publish-to-html)
+        ("memory-heap-projects-guile-dsv-manual"
+         :base-directory       "./projects/guile-dsv/manual/"
+         :base-extension       "html"
+         :publishing-directory ,(concat %projects-dir "/guile-dsv/manual/")
+         :publishing-function  org-publish-attachment)
+
         ;; Static
         ("memory-heap-static"
          :base-directory       "./static/"
@@ -184,6 +196,9 @@
 
   (org-publish-project "memory-heap-projects-guile-ics")
   (org-publish-project "memory-heap-projects-guile-ics-manual")
+
+  (org-publish-project "memory-heap-projects-guile-dsv")
+  (org-publish-project "memory-heap-projects-guile-dsv-manual")
 
   (unless (file-exists-p %static-dir)
     (make-directory %static-dir))

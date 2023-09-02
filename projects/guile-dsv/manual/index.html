@@ -1,0 +1,1372 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- This manual documents Guile-DSV version 0.7.0.
+
+Copyright (C) 2014-2023 Artyom V. Poptsov
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.  A
+copy of the license is included in the section entitled "GNU Free
+Documentation License."
+ -->
+<!-- Created on September 2, 2023 by texi2html 5.0
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Guile-DSV Reference Manual</title>
+
+<meta name="description" content="Guile-DSV Reference Manual">
+<meta name="keywords" content="Guile-DSV Reference Manual">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 5.0">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nocodebreak {white-space:pre}
+span.nolinebreak {white-space:pre}
+span.roman {font-family:serif; font-weight:normal}
+span.sansserif {font-family:sans-serif; font-weight:normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<h1>Guile-DSV Reference Manual</h1>
+<h3 align="right">For Guile-DSV 0.7.0</h3>
+
+<strong>Artyom V. Poptsov</strong><br>
+
+
+<p>This manual documents Guile-DSV version 0.7.0.
+</p>
+<p>Copyright (C) 2014-2023 Artyom V. Poptsov
+</p>
+<p>Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.  A
+copy of the license is included in the section entitled &ldquo;GNU Free
+Documentation License.&rdquo;
+</p><hr>
+<a name="Top"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[ &lt; ]</td>
+<td valign="middle" align="left">[<a href="#Introduction" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="The-Guile_002dDSV-Reference-Manual"></a>
+<h1 class="top">The Guile-DSV Reference Manual</h1>
+
+<p>This manual documents Guile-DSV version 0.7.0.
+</p>
+<p>Copyright (C) 2014-2023 Artyom V. Poptsov
+</p>
+<p>Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.3 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.  A
+copy of the license is included in the section entitled &ldquo;GNU Free
+Documentation License.&rdquo;
+</p><br>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#Introduction">1 Introduction</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Installation">2 Installation</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#API-Reference">3 API Reference</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><th colspan="3" align="left" valign="top"><pre class="menu-comment">
+Appendices
+
+</pre></th></tr><tr><td align="left" valign="top"><a href="#GNU-Free-Documentation-License">Appendix A GNU Free Documentation License</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">  The license of this manual.
+</td></tr>
+<tr><th colspan="3" align="left" valign="top"><pre class="menu-comment">
+</pre></th></tr></table>
+
+
+<hr size="6">
+<a name="Introduction"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Top" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Top" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Installation" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Introduction-1"></a>
+<h1 class="chapter">1 Introduction</h1>
+
+<p>Guile-DSV is a module that provides procedures for working with
+<a href="https://en.wikipedia.org/wiki/Delimiter-separated_values">delimiter-separated values</a> (DSV) format for programs written in
+<a href="https://www.gnu.org/software/guile/">GNU Guile</a>.
+</p>
+<p>Guile-DSV supports both
+<a href="http://www.catb.org/~esr/writings/taoup/html/ch05s02.html#id2901882">the Unix-style DSV format</a> and <a href="https://tools.ietf.org/html/rfc4180">RFC 4180</a>.
+</p>
+<hr>
+<a name="Installation"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Introduction" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Introduction" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#GNU-Guix" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#API-Reference" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Installation-1"></a>
+<h1 class="chapter">2 Installation</h1>
+
+<p>Guile-DSV sources are available from GitHub at
+<a href="https://github.com/artyom-poptsov/guile-dsv/">https://github.com/artyom-poptsov/guile-dsv/</a>.  This section
+describes requirements of Guile-DSV and installation process.
+</p>
+<p>Guile-DSV depends on the following packages:
+</p>
+<ul>
+<li> <a href="https://www.gnu.org/software/guile/">GNU Guile</a>, 2.2+
+</li><li> <a href="http://www.nongnu.org/guile-lib/">Guile Library</a>, 0.1.9+
+</li><li> <a href="https://github.com/artyom-poptsov/guile-smc">Guile-SMC</a>, 0.6.2+
+</li></ul>
+
+<hr>
+<a name="GNU-Guix"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Installation" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Installation" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Installation" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Manual" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#API-Reference" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h2 class="section">2.1 GNU Guix</h2>
+
+<p>On <a href="https://guix.gnu.org/">GNU Guix</a> the package can be installed as
+follows:
+</p>
+<div class="example">
+<pre class="example">$ guix install guile-dsv
+</pre></div>
+
+<p>If you want to install the most recent version of Guile-DSV right from the
+&ldquo;master&rdquo; branch (on your own risk), you can use the following set of
+commands:
+</p>
+<div class="example">
+<pre class="example">$ git clone git@github.com:artyom-poptsov/guile-dsv.git
+$ cd guile-dsv
+$ guix package -f guix.scm
+</pre></div>
+
+<hr>
+<a name="Manual"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Installation" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#GNU-Guix" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Installation" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#API-Reference" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#API-Reference" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h2 class="section">2.2 Manual</h2>
+
+<p>On Ubuntu GNU/Linux, you will need the following packages:
+</p><div class="example">
+<pre class="example">$ sudo apt install \
+    make \
+    automake \
+    autoconf \
+    guile-3.0 \
+    guile-3.0-dev \
+    guile-library \
+    texinfo \
+    help2man
+</pre></div>
+
+<p>Get the sources of Guile-DSV from GitHub using Git (a good introduction to Git
+is <a href="https://git-scm.com/book/en/v2">Pro Git</a> book, which is available
+online):
+</p>
+<div class="example">
+<pre class="example">$ git clone git@github.com:artyom-poptsov/guile-dsv.git
+</pre></div>
+
+<p>Configure the sources:
+</p>
+<div class="example">
+<pre class="example">$ cd guile-dsv/
+$ autoreconf -vif
+$ ./configure --prefix=/usr
+</pre></div>
+
+<p>Build and install the library:
+</p>
+<div class="example">
+<pre class="example">$ make -j$(nproc)
+$ make install
+</pre></div>
+
+<p>For a basic explanation of the installation of the package, see the
+&lsquo;<tt>INSTALL</tt>&rsquo; file.
+</p>
+<p>Please <strong>note</strong> that you will need
+<a href="https://www.gnu.org/software/automake/">Automake</a> version 1.12 or
+later to run self-tests with <code>make check</code> (but the library
+itself can be built with older Automake version such as 1.11).
+</p>
+<p><strong>important</strong> You probably want to call <code>configure</code> with
+the &lsquo;<samp>--with-guilesitedir</samp>&rsquo; option so that this package is
+installed in Guile&rsquo;s default path.  But, if you don&rsquo;t know where your
+Guile site directory is, run <code>configure</code> without the option,
+and it will give you a suggestion.
+</p>
+<hr>
+<a name="API-Reference"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Installation" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Manual" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Tables" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#GNU-Free-Documentation-License" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="API-Reference-1"></a>
+<h1 class="chapter">3 API Reference</h1>
+
+<p>These procedures are provided by <code>(dsv)</code> module.
+</p>
+<p>All the procedures accept an optional <var>format</var> argument that specifies the
+format of DSV data.  Allowed formats are the following symbols:
+</p>
+<dl compact="compact">
+<dt>&lsquo;<samp>unix</samp>&rsquo;</dt>
+<dd><p><a href="http://www.catb.org/~esr/writings/taoup/html/ch05s02.html#id2901882">the Unix-style DSV format</a>
+</p></dd>
+<dt>&lsquo;<samp>rfc4180</samp>&rsquo;</dt>
+<dd><p><a href="https://tools.ietf.org/html/rfc4180">RFC 4180</a>
+</p></dd>
+</dl>
+
+<p>By default a <var>format</var> is set to <code>'unix</code>.
+</p>
+<dl>
+<dt><a name="index-dsv_002d_003escm"></a>Scheme Procedure: <strong>dsv-&gt;scm</strong><em> [port [delimiter]] [#:format='unix] [#:comment-prefix='default] [#:debug-mode?=#f] [#:log-driver=#f] [#:log-opt='()]</em></dt>
+<dt><a name="index-dsv_002dstring_002d_003escm"></a>Scheme Procedure: <strong>dsv-string-&gt;scm</strong><em> string [delimiter] [#:format='unix] [#:comment-prefix='default] [#:debug-mode?=#f] [#:log-driver=#f] [#:log-opt='()]</em></dt>
+<dd><p>Read DSV data in a specified <var>format</var> from a <var>port</var>.  If the
+<var>port</var> is not set, read from the default input port.  If a <var>delimiter</var>
+is not set, use the default delimiter for the format.
+</p>
+<p>When a <var>format</var> is set to <code>'unix</code>, lines commented with a
+<var>comment-prefix</var> will be skipped.  <var>comment-prefix</var> is expected to be
+either a string or <code>'default</code> symbol (which means to use the default
+prefix for the format), or <code>'none</code> symbol (that tells the procedure not
+to skip anything); default value of <var>comment-prefix</var> for Unix format is
+&ldquo;#&rdquo;.
+</p>
+<p>Empty lines in DSV data will be converted to lists that contain one element
+(an empty string.)
+</p>
+<p>When format is set to <code>'unix</code>, then following nonprintable characters
+will be escaped with backslashes: <code>#\page</code>, <code>#\newline</code>,
+<code>#\return</code>, <code>#\tab</code>, <code>#\vtab</code>.  E.g. <code>#\page</code> will become
+&ldquo;\f&rdquo;.
+</p>
+<p>The procedure returns a list of lists that represents a DSV table, or throws
+an error.
+</p>
+<p><var>log-driver</var> allows to set the logging driver. Possible values are:
+&ldquo;syslog&rdquo; (used by default when <code>log-driver</code> is set to <code>#f</code>),
+&ldquo;file&rdquo;, &ldquo;null&rdquo;.  Using <var>log-opt</var> parameter one can pass additional
+options for a logging driver.
+</p>
+<p>The <code>dsv-string-&gt;scm</code> procedure works the same way as <code>dsv-&gt;scm</code>,
+except it takes a DSV <var>string</var> instead of a port.
+</p>
+<p>Examples:
+</p>
+<div class="lisp">
+<pre class="lisp">(dsv-&gt;scm (open-input-file &quot;/etc/passwd&quot;))
+&rArr;
+(...
+ (&quot;news&quot; &quot;x&quot; &quot;9&quot; &quot;13&quot; &quot;news&quot; &quot;/usr/lib/news&quot; &quot;/bin/false&quot;)
+ (&quot;root&quot; &quot;x&quot; &quot;0&quot; &quot;0&quot; &quot;root&quot; &quot;/root&quot; &quot;/bin/zsh&quot;))
+
+(dsv-string-&gt;scm &quot;a:b:c&quot;)
+&rArr; '((&quot;a&quot; &quot;b&quot; &quot;c&quot;))
+
+(dsv-string-&gt;scm &quot;a;b;c&quot; #\;)
+&rArr; '((&quot;a&quot; &quot;b&quot; &quot;c&quot;))
+
+(dsv-string-&gt;scm &quot;a,b\\,c&quot; #\,)
+&rArr; '((&quot;a&quot; &quot;b,c&quot;))
+
+;; Handle backslash escapes:
+(dsv-string-&gt;scm &quot;a\\nb\\\\c\n&quot;)
+&rArr; '((&quot;a\nb\\c&quot;))
+
+;; Handle record continuation by ignoring backslash-escaped newlines:
+(dsv-string-&gt;scm &quot;a \\\nb:c&quot;)
+&rArr; '((&quot;a b&quot; &quot;c&quot;))
+
+</pre></div>
+
+</dd></dl>
+
+<dl>
+<dt><a name="index-scm_002d_003edsv"></a>Scheme Procedure: <strong>scm-&gt;dsv</strong><em> list [port [delimiter]] [#:format='unix]</em></dt>
+<dt><a name="index-scm_002d_003edsv_002dstring"></a>Scheme Procedure: <strong>scm-&gt;dsv-string</strong><em> list [delimiter] [#:format='unix]</em></dt>
+<dd><p>Write a list of values <var>list</var> as a sequence of DSV strings in a specified
+<var>format</var> to a <var>port</var>.  If the <var>port</var> is not set, write to the
+default output port.  If a <var>delimiter</var> is not set, use the default
+delimiter for a <var>format</var>.
+</p>
+<p>The procedure accepts either a DSV table (as a two-dimensional <var>list</var>), or
+a single table row (as a one-dimesional <var>list</var> of strings).
+</p>
+<p>When format is set to <code>'unix</code>, then the following escaped nonprintable
+characters will be accepted: <code>#\page</code>, <code>#\newline</code>, <code>#\return</code>,
+<code>#\tab</code>, <code>#\vtab</code>.  E.g. &ldquo;\f&rdquo; will be read as <code>#\page</code>.
+</p>
+<p>Return value is undefined.  The procedure throws a <code>dsv-parser-error</code> on
+an error.
+</p>
+<p>The <code>scm-&gt;dsv-string</code> procedure works the same way as <code>scm-&gt;dsv</code>,
+except it returns DSV data as a string instead of printing it to a port.
+</p>
+<p>Examples:
+</p>
+<div class="lisp">
+<pre class="lisp">(scm-&gt;dsv '(&quot;news&quot; &quot;x&quot; &quot;9&quot; &quot;13&quot; &quot;news&quot; &quot;/usr/lib/news&quot; &quot;/bin/false&quot;))
+-| news:x:9:13:news:/usr/lib/news:/bin/false
+
+(scm-&gt;dsv '((&quot;news&quot; &quot;x&quot; &quot;9&quot; &quot;13&quot; &quot;news&quot; &quot;/usr/lib/news&quot; &quot;/bin/false&quot;)
+            (&quot;root&quot; &quot;x&quot; &quot;0&quot; &quot;0&quot; &quot;root&quot; &quot;/root&quot; &quot;/bin/zsh&quot;)))
+-|
+news:x:9:13:news:/usr/lib/news:/bin/false
+root:x:0:0:root:/root:/bin/zsh
+
+(scm-&gt;dsv-string '(&quot;a&quot; &quot;b&quot; &quot;c&quot;))
+&rArr; &quot;a:b:c\n&quot;
+
+;; If a delimiter occures inside a field, it will be escaped with a backslash:
+(scm-&gt;dsv-string '(&quot;a&quot; &quot;b:c&quot;))
+&rArr; &quot;a:b\\:c\n&quot;
+
+;; Use a custom field delimiter:
+(scm-&gt;dsv-string '(&quot;a&quot; &quot;b&quot; &quot;c&quot;) #\,)
+&rArr; &quot;a,b,c\n&quot;
+
+;; Make use of RFC 4180:
+(scm-&gt;dsv-string '(&quot;a&quot; &quot;b&quot; &quot;c,d&quot;) #:format 'rfc4180)
+&rArr; &quot;a,b,\&quot;c,d\&quot;\r\n&quot;
+
+;; Escape non-printable characters and backslashes:
+(scm-&gt;dsv-string '(&quot;a\nb&quot; &quot;c\\d&quot;))
+&rArr; &quot;a\\nb:c\\\\d\n&quot;
+
+</pre></div>
+
+</dd></dl>
+
+<dl>
+<dt><a name="index-guess_002ddelimiter"></a>Scheme Procedure: <strong>guess-delimiter</strong><em> string [known-delimiters] [#:format='unix]</em></dt>
+<dd><p>Guess a DSV <var>string</var> delimiter.  Optionally accept a list of
+<var>known-delimiters</var> as an argument.  Default known delimiters are:
+<code>#\,</code>, <code>#\:</code>, <code>#\;</code>, <code>#\|</code>, <code>#\tab</code>, <code>#\space</code>.
+</p>
+<p>The procedure returns <code>#f</code> if it cannot determine a delimiter based on
+the given arguments.  If an error occured then it throws
+<code>dsv-parser-error</code>.
+</p>
+<p>Note that when <var>known-delimiters</var> list contains less than two elements,
+the procedure returns <code>#f</code>.
+</p>
+<p>Examples:
+</p>
+<div class="lisp">
+<pre class="lisp">(guess-delimiter &quot;a:b,c,d&quot;)
+&rArr; #\,
+
+(guess-delimiter &quot;a,b:c&quot;)
+&rArr; #f
+
+(guess-delimiter &quot;a,b,c&quot; #:format 'rfc4180)
+&rArr; #\,
+
+;; Using custom known delimiters list:
+(guess-delimiter &quot;a-b-c&quot; '(#\- #\,))
+&rArr; #\-
+</pre></div>
+
+</dd></dl>
+
+<a name="index-Tables"></a>
+<hr>
+<a name="Tables"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#API-Reference" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#API-Reference" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Table-Presets" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#GNU-Free-Documentation-License" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h2 class="section">3.1 Tables</h2>
+
+<p>Module <code>(dsv table)</code> provides procedures for working with parsed DSV
+tables.
+</p>
+<dl>
+<dt><a name="index-string_002a"></a>Scheme Procedure: <strong>string*</strong><em> str k</em></dt>
+<dd><p>Multiply a string <var>str</var> by <var>k</var> in a Python way to construct a new
+string from Kth instances of <var>str</var>.  Return the new string.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-stylize"></a>Scheme Procedure: <strong>stylize</strong><em> str style</em></dt>
+<dd><p>Use a <var>style</var> terminal escape codes to change the style of a string
+<var>str</var>.  Return the styled string with escape codes.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-table_002dprint_002delement"></a>Scheme Procedure: <strong>table-print-element</strong><em> element port</em></dt>
+<dd><p>Print an <var>element</var> of a table to a <var>port</var>.  If an <var>element</var> is
+<code>#f</code>, then print a single space.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-print_002dtable_002dparameters"></a>Scheme Procedure: <strong>print-table-parameters</strong><em> port</em></dt>
+<dd><p>Print all known table parameters to a <var>port</var>.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-shorthand_002d_003etable_002dparameter"></a>Scheme Procedure: <strong>shorthand-&gt;table-parameter</strong><em> sh</em></dt>
+<dd><p>Convert a shorthand <var>sh</var> to a table parameter.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-get_002dwidth"></a>Scheme Procedure: <strong>get-width</strong><em> table</em></dt>
+<dd><p>Get maximum field width for each row of <var>table</var>.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-format_002dtable"></a>Scheme Procedure: <strong>format-table</strong><em> table borders [#:with-header?=#f] [#:port=(current-output-port)]</em></dt>
+<dd>
+<p>Print a formatted <var>table</var> to a <var>port</var>, using <var>borders</var>
+specification.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-table_002dmap"></a>Scheme Procedure: <strong>table-map</strong><em> proc table</em></dt>
+<dd><p>Apply a procedure <var>PROC</var> to each cell of a <var>table</var>.  Return a new
+table.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-table_002dfilter_002drow"></a>Scheme Procedure: <strong>table-filter-row</strong><em> proc table</em></dt>
+<dd><p>Remove all the rows from a <var>table</var> for which procedure <var>proc</var> returns
+<code>#f</code>.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-table_002dfilter_002dcolumn"></a>Scheme Procedure: <strong>table-filter-column</strong><em> proc table</em></dt>
+<dd><p>Remove all the columns from a <var>table</var> for which procedure <var>proc</var>
+returns <code>#f</code>.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-table_002dwrap"></a>Scheme Procedure: <strong>table-wrap</strong><em> table current-column-widths [#:width=80] [#:padding=0]</em></dt>
+<dd>
+<p>Wrap a <var>table</var> in such way that the table will fit into <var>width</var>
+columns.
+</p>
+<p><var>current-column-widths</var> should be the value returned by <code>get-width</code>
+procedure.
+</p>
+</dd></dl>
+
+<dl>
+<dt><a name="index-table_002dwrap_002drow"></a>Scheme Procedure: <strong>table-wrap-row</strong><em> row widths</em></dt>
+<dd><p>Wrap a table <var>row</var> to fit each cell it into the specified <var>widths</var>.
+Return a list where each row is represented as a sub-list of strings.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-string_002dslice"></a>Scheme Procedure: <strong>string-slice</strong><em> s width</em></dt>
+<dd><p>Slice a string <var>s</var> into parts of <var>width</var> length.  Return the list of
+strings.
+</p></dd></dl>
+
+<a name="index-Table-Presets"></a>
+<hr>
+<a name="Table-Presets"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Tables" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#API-Reference" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Version-Information" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#GNU-Free-Documentation-License" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h2 class="section">3.2 Table Presets</h2>
+
+<p>Module <code>(dsv table-preset)</code> provides procedures for working with table
+presets.  A table preset is a pre-defined table style that specifies table
+outer borders, row separators etc.
+</p>
+<dl>
+<dt><a name="index-print_002dtable_002dpresets"></a>Scheme Procedure: <strong>print-table-presets</strong><em> port</em></dt>
+<dd><p>Print all known table presets to a <var>port</var>.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-load_002dtable_002dpreset"></a>Scheme Procedure: <strong>load-table-preset</strong><em> name</em></dt>
+<dd><p>Read table preset <var>name</var> from a file.  Return the preset as a list.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-table_002dpreset_002doverride"></a>Scheme Procedure: <strong>table-preset-override</strong><em> preset borders</em></dt>
+<dd><p>Override a table <var>preset</var> with a <var>borders</var> specification.  Return the
+updated table preset.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-table_002dpreset_002dname_003f"></a>Scheme Procedure: <strong>table-preset-name?</strong><em> string</em></dt>
+<dd><p>Check if a <var>string</var> is a table preset name.
+</p></dd></dl>
+
+<hr>
+<a name="Version-Information"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Table-Presets" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#API-Reference" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#Debugging" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#GNU-Free-Documentation-License" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h2 class="section">3.3 Version Information</h2>
+
+<p>Module <code>(dsv version)</code> contains procedures that allow to acquire
+information about the Guile-DSV version in the <a href="https://semver.org/">Semantic Versioning</a> format.
+</p>
+<p>Guile-DSV version consists of three parts:
+</p><div class="example">
+<pre class="example">   MAJOR.MINOR.PATCH
+</pre></div>
+
+<p>The procedures below allow to get any of the version part or the version as a
+whole.
+</p>
+<dl>
+<dt><a name="index-dsv_002dversion_002fstring"></a>Scheme Procedure: <strong>dsv-version/string</strong></dt>
+<dd><p>Get the raw Guile-DSV version as a string.
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-dsv_002dversion"></a>Scheme Procedure: <strong>dsv-version</strong></dt>
+<dd><p>Return the Guile-DSV version as a list of the following form:
+<code>'(MAJOR MINOR PATCH)</code>
+</p></dd></dl>
+
+<dl>
+<dt><a name="index-dsv_002dversion_002fmajor"></a>Scheme Procedure: <strong>dsv-version/major</strong></dt>
+<dt><a name="index-dsv_002dversion_002fminor"></a>Scheme Procedure: <strong>dsv-version/minor</strong></dt>
+<dt><a name="index-dsv_002dversion_002fpatch"></a>Scheme Procedure: <strong>dsv-version/patch</strong></dt>
+<dd><p>Get the MAJOR, MINOR or PATCH parts of the Guile-DSV version.
+</p></dd></dl>
+
+<hr>
+<a name="Debugging"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Version-Information" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#API-Reference" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="#GNU-Free-Documentation-License" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left">[<a href="#GNU-Free-Documentation-License" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h2 class="section">3.4 Debugging</h2>
+
+<dl>
+<dt><a name="index-set_002ddebug_0021"></a>Scheme Procedure: <strong>set-debug!</strong><em> enabled?</em></dt>
+<dd><p>Enable or disable debugging traces by setting the debug mode to an
+<var>enabled?</var> boolean value.
+</p>
+<p>By default the debug mode is disabled.
+</p></dd></dl>
+
+<hr>
+<a name="GNU-Free-Documentation-License"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#API-Reference" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Debugging" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[ &gt; ]</td>
+<td valign="middle" align="left">[ &gt;&gt; ]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="GNU-Free-Documentation-License-1"></a>
+<h1 class="appendix">Appendix A GNU Free Documentation License</h1>
+
+<p align="center">Version 1.3, 3 November 2008
+</p>
+
+<div class="display">
+<pre class="display">Copyright &copy; 2000, 2001, 2002, 2007, 2008 Free Software Foundation, Inc.
+<a href="http://fsf.org/">http://fsf.org/</a>
+
+Everyone is permitted to copy and distribute verbatim copies
+of this license document, but changing it is not allowed.
+</pre></div>
+
+<ol>
+<li>
+PREAMBLE
+
+<p>The purpose of this License is to make a manual, textbook, or other
+functional and useful document <em>free</em> in the sense of freedom: to
+assure everyone the effective freedom to copy and redistribute it,
+with or without modifying it, either commercially or noncommercially.
+Secondarily, this License preserves for the author and publisher a way
+to get credit for their work, while not being considered responsible
+for modifications made by others.
+</p>
+<p>This License is a kind of &ldquo;copyleft&rdquo;, which means that derivative
+works of the document must themselves be free in the same sense.  It
+complements the GNU General Public License, which is a copyleft
+license designed for free software.
+</p>
+<p>We have designed this License in order to use it for manuals for free
+software, because free software needs free documentation: a free
+program should come with manuals providing the same freedoms that the
+software does.  But this License is not limited to software manuals;
+it can be used for any textual work, regardless of subject matter or
+whether it is published as a printed book.  We recommend this License
+principally for works whose purpose is instruction or reference.
+</p>
+</li><li>
+APPLICABILITY AND DEFINITIONS
+
+<p>This License applies to any manual or other work, in any medium, that
+contains a notice placed by the copyright holder saying it can be
+distributed under the terms of this License.  Such a notice grants a
+world-wide, royalty-free license, unlimited in duration, to use that
+work under the conditions stated herein.  The &ldquo;Document&rdquo;, below,
+refers to any such manual or work.  Any member of the public is a
+licensee, and is addressed as &ldquo;you&rdquo;.  You accept the license if you
+copy, modify or distribute the work in a way requiring permission
+under copyright law.
+</p>
+<p>A &ldquo;Modified Version&rdquo; of the Document means any work containing the
+Document or a portion of it, either copied verbatim, or with
+modifications and/or translated into another language.
+</p>
+<p>A &ldquo;Secondary Section&rdquo; is a named appendix or a front-matter section
+of the Document that deals exclusively with the relationship of the
+publishers or authors of the Document to the Document&rsquo;s overall
+subject (or to related matters) and contains nothing that could fall
+directly within that overall subject.  (Thus, if the Document is in
+part a textbook of mathematics, a Secondary Section may not explain
+any mathematics.)  The relationship could be a matter of historical
+connection with the subject or with related matters, or of legal,
+commercial, philosophical, ethical or political position regarding
+them.
+</p>
+<p>The &ldquo;Invariant Sections&rdquo; are certain Secondary Sections whose titles
+are designated, as being those of Invariant Sections, in the notice
+that says that the Document is released under this License.  If a
+section does not fit the above definition of Secondary then it is not
+allowed to be designated as Invariant.  The Document may contain zero
+Invariant Sections.  If the Document does not identify any Invariant
+Sections then there are none.
+</p>
+<p>The &ldquo;Cover Texts&rdquo; are certain short passages of text that are listed,
+as Front-Cover Texts or Back-Cover Texts, in the notice that says that
+the Document is released under this License.  A Front-Cover Text may
+be at most 5 words, and a Back-Cover Text may be at most 25 words.
+</p>
+<p>A &ldquo;Transparent&rdquo; copy of the Document means a machine-readable copy,
+represented in a format whose specification is available to the
+general public, that is suitable for revising the document
+straightforwardly with generic text editors or (for images composed of
+pixels) generic paint programs or (for drawings) some widely available
+drawing editor, and that is suitable for input to text formatters or
+for automatic translation to a variety of formats suitable for input
+to text formatters.  A copy made in an otherwise Transparent file
+format whose markup, or absence of markup, has been arranged to thwart
+or discourage subsequent modification by readers is not Transparent.
+An image format is not Transparent if used for any substantial amount
+of text.  A copy that is not &ldquo;Transparent&rdquo; is called &ldquo;Opaque&rdquo;.
+</p>
+<p>Examples of suitable formats for Transparent copies include plain
+<small>ASCII</small> without markup, Texinfo input format, LaTeX input
+format, <acronym>SGML</acronym> or <acronym>XML</acronym> using a publicly available
+<acronym>DTD</acronym>, and standard-conforming simple <acronym>HTML</acronym>,
+PostScript or <acronym>PDF</acronym> designed for human modification.  Examples
+of transparent image formats include <acronym>PNG</acronym>, <acronym>XCF</acronym> and
+<acronym>JPG</acronym>.  Opaque formats include proprietary formats that can be
+read and edited only by proprietary word processors, <acronym>SGML</acronym> or
+<acronym>XML</acronym> for which the <acronym>DTD</acronym> and/or processing tools are
+not generally available, and the machine-generated <acronym>HTML</acronym>,
+PostScript or <acronym>PDF</acronym> produced by some word processors for
+output purposes only.
+</p>
+<p>The &ldquo;Title Page&rdquo; means, for a printed book, the title page itself,
+plus such following pages as are needed to hold, legibly, the material
+this License requires to appear in the title page.  For works in
+formats which do not have any title page as such, &ldquo;Title Page&rdquo; means
+the text near the most prominent appearance of the work&rsquo;s title,
+preceding the beginning of the body of the text.
+</p>
+<p>The &ldquo;publisher&rdquo; means any person or entity that distributes copies
+of the Document to the public.
+</p>
+<p>A section &ldquo;Entitled XYZ&rdquo; means a named subunit of the Document whose
+title either is precisely XYZ or contains XYZ in parentheses following
+text that translates XYZ in another language.  (Here XYZ stands for a
+specific section name mentioned below, such as &ldquo;Acknowledgements&rdquo;,
+&ldquo;Dedications&rdquo;, &ldquo;Endorsements&rdquo;, or &ldquo;History&rdquo;.)  To &ldquo;Preserve the Title&rdquo;
+of such a section when you modify the Document means that it remains a
+section &ldquo;Entitled XYZ&rdquo; according to this definition.
+</p>
+<p>The Document may include Warranty Disclaimers next to the notice which
+states that this License applies to the Document.  These Warranty
+Disclaimers are considered to be included by reference in this
+License, but only as regards disclaiming warranties: any other
+implication that these Warranty Disclaimers may have is void and has
+no effect on the meaning of this License.
+</p>
+</li><li>
+VERBATIM COPYING
+
+<p>You may copy and distribute the Document in any medium, either
+commercially or noncommercially, provided that this License, the
+copyright notices, and the license notice saying this License applies
+to the Document are reproduced in all copies, and that you add no other
+conditions whatsoever to those of this License.  You may not use
+technical measures to obstruct or control the reading or further
+copying of the copies you make or distribute.  However, you may accept
+compensation in exchange for copies.  If you distribute a large enough
+number of copies you must also follow the conditions in section 3.
+</p>
+<p>You may also lend copies, under the same conditions stated above, and
+you may publicly display copies.
+</p>
+</li><li>
+COPYING IN QUANTITY
+
+<p>If you publish printed copies (or copies in media that commonly have
+printed covers) of the Document, numbering more than 100, and the
+Document&rsquo;s license notice requires Cover Texts, you must enclose the
+copies in covers that carry, clearly and legibly, all these Cover
+Texts: Front-Cover Texts on the front cover, and Back-Cover Texts on
+the back cover.  Both covers must also clearly and legibly identify
+you as the publisher of these copies.  The front cover must present
+the full title with all words of the title equally prominent and
+visible.  You may add other material on the covers in addition.
+Copying with changes limited to the covers, as long as they preserve
+the title of the Document and satisfy these conditions, can be treated
+as verbatim copying in other respects.
+</p>
+<p>If the required texts for either cover are too voluminous to fit
+legibly, you should put the first ones listed (as many as fit
+reasonably) on the actual cover, and continue the rest onto adjacent
+pages.
+</p>
+<p>If you publish or distribute Opaque copies of the Document numbering
+more than 100, you must either include a machine-readable Transparent
+copy along with each Opaque copy, or state in or with each Opaque copy
+a computer-network location from which the general network-using
+public has access to download using public-standard network protocols
+a complete Transparent copy of the Document, free of added material.
+If you use the latter option, you must take reasonably prudent steps,
+when you begin distribution of Opaque copies in quantity, to ensure
+that this Transparent copy will remain thus accessible at the stated
+location until at least one year after the last time you distribute an
+Opaque copy (directly or through your agents or retailers) of that
+edition to the public.
+</p>
+<p>It is requested, but not required, that you contact the authors of the
+Document well before redistributing any large number of copies, to give
+them a chance to provide you with an updated version of the Document.
+</p>
+</li><li>
+MODIFICATIONS
+
+<p>You may copy and distribute a Modified Version of the Document under
+the conditions of sections 2 and 3 above, provided that you release
+the Modified Version under precisely this License, with the Modified
+Version filling the role of the Document, thus licensing distribution
+and modification of the Modified Version to whoever possesses a copy
+of it.  In addition, you must do these things in the Modified Version:
+</p>
+<ol>
+<li>
+Use in the Title Page (and on the covers, if any) a title distinct
+from that of the Document, and from those of previous versions
+(which should, if there were any, be listed in the History section
+of the Document).  You may use the same title as a previous version
+if the original publisher of that version gives permission.
+
+</li><li>
+List on the Title Page, as authors, one or more persons or entities
+responsible for authorship of the modifications in the Modified
+Version, together with at least five of the principal authors of the
+Document (all of its principal authors, if it has fewer than five),
+unless they release you from this requirement.
+
+</li><li>
+State on the Title page the name of the publisher of the
+Modified Version, as the publisher.
+
+</li><li>
+Preserve all the copyright notices of the Document.
+
+</li><li>
+Add an appropriate copyright notice for your modifications
+adjacent to the other copyright notices.
+
+</li><li>
+Include, immediately after the copyright notices, a license notice
+giving the public permission to use the Modified Version under the
+terms of this License, in the form shown in the Addendum below.
+
+</li><li>
+Preserve in that license notice the full lists of Invariant Sections
+and required Cover Texts given in the Document&rsquo;s license notice.
+
+</li><li>
+Include an unaltered copy of this License.
+
+</li><li>
+Preserve the section Entitled &ldquo;History&rdquo;, Preserve its Title, and add
+to it an item stating at least the title, year, new authors, and
+publisher of the Modified Version as given on the Title Page.  If
+there is no section Entitled &ldquo;History&rdquo; in the Document, create one
+stating the title, year, authors, and publisher of the Document as
+given on its Title Page, then add an item describing the Modified
+Version as stated in the previous sentence.
+
+</li><li>
+Preserve the network location, if any, given in the Document for
+public access to a Transparent copy of the Document, and likewise
+the network locations given in the Document for previous versions
+it was based on.  These may be placed in the &ldquo;History&rdquo; section.
+You may omit a network location for a work that was published at
+least four years before the Document itself, or if the original
+publisher of the version it refers to gives permission.
+
+</li><li>
+For any section Entitled &ldquo;Acknowledgements&rdquo; or &ldquo;Dedications&rdquo;, Preserve
+the Title of the section, and preserve in the section all the
+substance and tone of each of the contributor acknowledgements and/or
+dedications given therein.
+
+</li><li>
+Preserve all the Invariant Sections of the Document,
+unaltered in their text and in their titles.  Section numbers
+or the equivalent are not considered part of the section titles.
+
+</li><li>
+Delete any section Entitled &ldquo;Endorsements&rdquo;.  Such a section
+may not be included in the Modified Version.
+
+</li><li>
+Do not retitle any existing section to be Entitled &ldquo;Endorsements&rdquo; or
+to conflict in title with any Invariant Section.
+
+</li><li>
+Preserve any Warranty Disclaimers.
+</li></ol>
+
+<p>If the Modified Version includes new front-matter sections or
+appendices that qualify as Secondary Sections and contain no material
+copied from the Document, you may at your option designate some or all
+of these sections as invariant.  To do this, add their titles to the
+list of Invariant Sections in the Modified Version&rsquo;s license notice.
+These titles must be distinct from any other section titles.
+</p>
+<p>You may add a section Entitled &ldquo;Endorsements&rdquo;, provided it contains
+nothing but endorsements of your Modified Version by various
+parties&mdash;for example, statements of peer review or that the text has
+been approved by an organization as the authoritative definition of a
+standard.
+</p>
+<p>You may add a passage of up to five words as a Front-Cover Text, and a
+passage of up to 25 words as a Back-Cover Text, to the end of the list
+of Cover Texts in the Modified Version.  Only one passage of
+Front-Cover Text and one of Back-Cover Text may be added by (or
+through arrangements made by) any one entity.  If the Document already
+includes a cover text for the same cover, previously added by you or
+by arrangement made by the same entity you are acting on behalf of,
+you may not add another; but you may replace the old one, on explicit
+permission from the previous publisher that added the old one.
+</p>
+<p>The author(s) and publisher(s) of the Document do not by this License
+give permission to use their names for publicity for or to assert or
+imply endorsement of any Modified Version.
+</p>
+</li><li>
+COMBINING DOCUMENTS
+
+<p>You may combine the Document with other documents released under this
+License, under the terms defined in section 4 above for modified
+versions, provided that you include in the combination all of the
+Invariant Sections of all of the original documents, unmodified, and
+list them all as Invariant Sections of your combined work in its
+license notice, and that you preserve all their Warranty Disclaimers.
+</p>
+<p>The combined work need only contain one copy of this License, and
+multiple identical Invariant Sections may be replaced with a single
+copy.  If there are multiple Invariant Sections with the same name but
+different contents, make the title of each such section unique by
+adding at the end of it, in parentheses, the name of the original
+author or publisher of that section if known, or else a unique number.
+Make the same adjustment to the section titles in the list of
+Invariant Sections in the license notice of the combined work.
+</p>
+<p>In the combination, you must combine any sections Entitled &ldquo;History&rdquo;
+in the various original documents, forming one section Entitled
+&ldquo;History&rdquo;; likewise combine any sections Entitled &ldquo;Acknowledgements&rdquo;,
+and any sections Entitled &ldquo;Dedications&rdquo;.  You must delete all
+sections Entitled &ldquo;Endorsements.&rdquo;
+</p>
+</li><li>
+COLLECTIONS OF DOCUMENTS
+
+<p>You may make a collection consisting of the Document and other documents
+released under this License, and replace the individual copies of this
+License in the various documents with a single copy that is included in
+the collection, provided that you follow the rules of this License for
+verbatim copying of each of the documents in all other respects.
+</p>
+<p>You may extract a single document from such a collection, and distribute
+it individually under this License, provided you insert a copy of this
+License into the extracted document, and follow this License in all
+other respects regarding verbatim copying of that document.
+</p>
+</li><li>
+AGGREGATION WITH INDEPENDENT WORKS
+
+<p>A compilation of the Document or its derivatives with other separate
+and independent documents or works, in or on a volume of a storage or
+distribution medium, is called an &ldquo;aggregate&rdquo; if the copyright
+resulting from the compilation is not used to limit the legal rights
+of the compilation&rsquo;s users beyond what the individual works permit.
+When the Document is included in an aggregate, this License does not
+apply to the other works in the aggregate which are not themselves
+derivative works of the Document.
+</p>
+<p>If the Cover Text requirement of section 3 is applicable to these
+copies of the Document, then if the Document is less than one half of
+the entire aggregate, the Document&rsquo;s Cover Texts may be placed on
+covers that bracket the Document within the aggregate, or the
+electronic equivalent of covers if the Document is in electronic form.
+Otherwise they must appear on printed covers that bracket the whole
+aggregate.
+</p>
+</li><li>
+TRANSLATION
+
+<p>Translation is considered a kind of modification, so you may
+distribute translations of the Document under the terms of section 4.
+Replacing Invariant Sections with translations requires special
+permission from their copyright holders, but you may include
+translations of some or all Invariant Sections in addition to the
+original versions of these Invariant Sections.  You may include a
+translation of this License, and all the license notices in the
+Document, and any Warranty Disclaimers, provided that you also include
+the original English version of this License and the original versions
+of those notices and disclaimers.  In case of a disagreement between
+the translation and the original version of this License or a notice
+or disclaimer, the original version will prevail.
+</p>
+<p>If a section in the Document is Entitled &ldquo;Acknowledgements&rdquo;,
+&ldquo;Dedications&rdquo;, or &ldquo;History&rdquo;, the requirement (section 4) to Preserve
+its Title (section 1) will typically require changing the actual
+title.
+</p>
+</li><li>
+TERMINATION
+
+<p>You may not copy, modify, sublicense, or distribute the Document
+except as expressly provided under this License.  Any attempt
+otherwise to copy, modify, sublicense, or distribute it is void, and
+will automatically terminate your rights under this License.
+</p>
+<p>However, if you cease all violation of this License, then your license
+from a particular copyright holder is reinstated (a) provisionally,
+unless and until the copyright holder explicitly and finally
+terminates your license, and (b) permanently, if the copyright holder
+fails to notify you of the violation by some reasonable means prior to
+60 days after the cessation.
+</p>
+<p>Moreover, your license from a particular copyright holder is
+reinstated permanently if the copyright holder notifies you of the
+violation by some reasonable means, this is the first time you have
+received notice of violation of this License (for any work) from that
+copyright holder, and you cure the violation prior to 30 days after
+your receipt of the notice.
+</p>
+<p>Termination of your rights under this section does not terminate the
+licenses of parties who have received copies or rights from you under
+this License.  If your rights have been terminated and not permanently
+reinstated, receipt of a copy of some or all of the same material does
+not give you any rights to use it.
+</p>
+</li><li>
+FUTURE REVISIONS OF THIS LICENSE
+
+<p>The Free Software Foundation may publish new, revised versions
+of the GNU Free Documentation License from time to time.  Such new
+versions will be similar in spirit to the present version, but may
+differ in detail to address new problems or concerns.  See
+<a href="http://www.gnu.org/copyleft/">http://www.gnu.org/copyleft/</a>.
+</p>
+<p>Each version of the License is given a distinguishing version number.
+If the Document specifies that a particular numbered version of this
+License &ldquo;or any later version&rdquo; applies to it, you have the option of
+following the terms and conditions either of that specified version or
+of any later version that has been published (not as a draft) by the
+Free Software Foundation.  If the Document does not specify a version
+number of this License, you may choose any version ever published (not
+as a draft) by the Free Software Foundation.  If the Document
+specifies that a proxy can decide which future versions of this
+License can be used, that proxy&rsquo;s public statement of acceptance of a
+version permanently authorizes you to choose that version for the
+Document.
+</p>
+</li><li>
+RELICENSING
+
+<p>&ldquo;Massive Multiauthor Collaboration Site&rdquo; (or &ldquo;MMC Site&rdquo;) means any
+World Wide Web server that publishes copyrightable works and also
+provides prominent facilities for anybody to edit those works.  A
+public wiki that anybody can edit is an example of such a server.  A
+&ldquo;Massive Multiauthor Collaboration&rdquo; (or &ldquo;MMC&rdquo;) contained in the
+site means any set of copyrightable works thus published on the MMC
+site.
+</p>
+<p>&ldquo;CC-BY-SA&rdquo; means the Creative Commons Attribution-Share Alike 3.0
+license published by Creative Commons Corporation, a not-for-profit
+corporation with a principal place of business in San Francisco,
+California, as well as future copyleft versions of that license
+published by that same organization.
+</p>
+<p>&ldquo;Incorporate&rdquo; means to publish or republish a Document, in whole or
+in part, as part of another Document.
+</p>
+<p>An MMC is &ldquo;eligible for relicensing&rdquo; if it is licensed under this
+License, and if all works that were first published under this License
+somewhere other than this MMC, and subsequently incorporated in whole
+or in part into the MMC, (1) had no cover texts or invariant sections,
+and (2) were thus incorporated prior to November 1, 2008.
+</p>
+<p>The operator of an MMC Site may republish an MMC contained in the site
+under CC-BY-SA on the same site at any time before August 1, 2009,
+provided the MMC is eligible for relicensing.
+</p>
+</li></ol>
+
+
+<a name="ADDENDUM_003a-How-to-use-this-License-for-your-documents"></a>
+<h2 class="heading">ADDENDUM: How to use this License for your documents</h2>
+
+<p>To use this License in a document you have written, include a copy of
+the License in the document and put the following copyright and
+license notices just after the title page:
+</p>
+<div class="smallexample">
+<pre class="smallexample">  Copyright (C)  <var>year</var>  <var>your name</var>.
+  Permission is granted to copy, distribute and/or modify this document
+  under the terms of the GNU Free Documentation License, Version 1.3
+  or any later version published by the Free Software Foundation;
+  with no Invariant Sections, no Front-Cover Texts, and no Back-Cover
+  Texts.  A copy of the license is included in the section entitled ``GNU
+  Free Documentation License''.
+</pre></div>
+
+<p>If you have Invariant Sections, Front-Cover Texts and Back-Cover Texts,
+replace the &ldquo;with&hellip;Texts.&rdquo; line with this:
+</p>
+<div class="smallexample">
+<pre class="smallexample">    with the Invariant Sections being <var>list their titles</var>, with
+    the Front-Cover Texts being <var>list</var>, and with the Back-Cover Texts
+    being <var>list</var>.
+</pre></div>
+
+<p>If you have Invariant Sections without Cover Texts, or some other
+combination of the three, merge those two alternatives to suit the
+situation.
+</p>
+<p>If your document contains nontrivial examples of program code, we
+recommend releasing these examples in parallel under your choice of
+free software license, such as the GNU General Public License,
+to permit their use in free software.
+</p>
+
+
+<hr size="6">
+<a name="SEC_Contents"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h1>Table of Contents</h1>
+
+<div class="contents">
+
+<ul class="no-bullet">
+  <li><a name="toc-Introduction-1" href="#Introduction">1 Introduction</a></li>
+  <li><a name="toc-Installation-1" href="#Installation">2 Installation</a>
+  <ul class="no-bullet">
+    <li><a name="toc-GNU-Guix" href="#GNU-Guix">2.1 GNU Guix</a></li>
+    <li><a name="toc-Manual" href="#Manual">2.2 Manual</a></li>
+  </ul></li>
+  <li><a name="toc-API-Reference-1" href="#API-Reference">3 API Reference</a>
+  <ul class="no-bullet">
+    <li><a name="toc-Tables" href="#Tables">3.1 Tables</a></li>
+    <li><a name="toc-Table-Presets" href="#Table-Presets">3.2 Table Presets</a></li>
+    <li><a name="toc-Version-Information" href="#Version-Information">3.3 Version Information</a></li>
+    <li><a name="toc-Debugging" href="#Debugging">3.4 Debugging</a></li>
+  </ul></li>
+  <li><a name="toc-GNU-Free-Documentation-License-1" href="#GNU-Free-Documentation-License">Appendix A GNU Free Documentation License</a></li>
+</ul>
+</div>
+<hr>
+<a name="SEC_About"></a>
+<table class="header" cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[Index]</td>
+<td valign="middle" align="left">[<a href="#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h1>About This Document</h1>
+
+<p>
+  This document was generated on <i>September 2, 2023</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 5.0</i></a>.
+</p>
+<p>
+  The buttons in the navigation panels have the following meaning:
+</p>
+<table border="1">
+  <tr>
+    <th> Button </th>
+    <th> Name </th>
+    <th> Go to </th>
+    <th> From 1.2.3 go to</th>
+  </tr>
+  <tr>
+    <td align="center"> [ &lt;&lt; ] </td>
+    <td align="center">FastBack</td>
+    <td>Beginning of this chapter or previous chapter</td>
+    <td>1</td>
+  </tr>
+  <tr>
+    <td align="center"> [ &lt; ] </td>
+    <td align="center">Back</td>
+    <td>Previous section in reading order</td>
+    <td>1.2.2</td>
+  </tr>
+  <tr>
+    <td align="center"> [ Up ] </td>
+    <td align="center">Up</td>
+    <td>Up section</td>
+    <td>1.2</td>
+  </tr>
+  <tr>
+    <td align="center"> [ &gt; ] </td>
+    <td align="center">Forward</td>
+    <td>Next section in reading order</td>
+    <td>1.2.4</td>
+  </tr>
+  <tr>
+    <td align="center"> [ &gt;&gt; ] </td>
+    <td align="center">FastForward</td>
+    <td>Next chapter</td>
+    <td>2</td>
+  </tr>
+  <tr>
+    <td align="center"> [Top] </td>
+    <td align="center">Top</td>
+    <td>Cover (top) of document</td>
+    <td> &nbsp; </td>
+  </tr>
+  <tr>
+    <td align="center"> [Contents] </td>
+    <td align="center">Contents</td>
+    <td>Table of contents</td>
+    <td> &nbsp; </td>
+  </tr>
+  <tr>
+    <td align="center"> [Index] </td>
+    <td align="center">Index</td>
+    <td>Index</td>
+    <td> &nbsp; </td>
+  </tr>
+  <tr>
+    <td align="center"> [ ? ] </td>
+    <td align="center">About</td>
+    <td>About (help)</td>
+    <td> &nbsp; </td>
+  </tr>
+</table>
+
+<p>
+  where the <strong> Example </strong> assumes that the current position is at <strong> Subsubsection One-Two-Three </strong> of a document of the following structure:
+</p>
+
+<ul>
+  <li> 1. Section One
+    <ul>
+      <li>1.1 Subsection One-One
+        <ul>
+          <li>...</li>
+        </ul>
+      </li>
+      <li>1.2 Subsection One-Two
+        <ul>
+          <li>1.2.1 Subsubsection One-Two-One</li>
+          <li>1.2.2 Subsubsection One-Two-Two</li>
+          <li>1.2.3 Subsubsection One-Two-Three &nbsp; &nbsp;
+            <strong>&lt;== Current Position </strong></li>
+          <li>1.2.4 Subsubsection One-Two-Four</li>
+        </ul>
+      </li>
+      <li>1.3 Subsection One-Three
+        <ul>
+          <li>...</li>
+        </ul>
+      </li>
+      <li>1.4 Subsection One-Four</li>
+    </ul>
+  </li>
+</ul>
+
+<hr>
+<p>
+ <font size="-1">
+  This document was generated on <i>September 2, 2023</i> using <a href="http://www.nongnu.org/texi2html/"><i>texi2html 5.0</i></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>
