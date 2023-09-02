@@ -14,6 +14,6 @@
 - [[./cv.html][cv]]
 - [[./about.html][about]]
 
-Copyright © 2021-2022 Artyom V. Poptsov
+Copyright © 2021-2023 Artyom V. Poptsov
 
 Verbatim copying and redistribution of this entire page are permitted provided this notice is preserved.
