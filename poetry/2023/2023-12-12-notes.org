@@ -1,0 +1,4 @@
+#+BEGIN_EXPORT html
+<img src="/static/images/2023-12-12-inkscape-drawing.gif"
+     alt="Рисунок пейзажа в Inkscape."/>
+#+END_EXPORT
