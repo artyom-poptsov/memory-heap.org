@@ -39,13 +39,11 @@
     3D-printing lab in [[https://nntc.nnov.ru/][Nizhniy Novgorod Technical Colledge]].
 
 * Technical Skills
-
 ** Operating Systems
-
 *** GNU/Linux
     :PROPERTIES:
     :knowledge-level: master
-    :experience: more than 10 years
+    :experience: more than 11 years
     :active-skill?: yes
     :END:
     Userspace programs and drivers development, administration, cron user, LVM
@@ -53,7 +51,7 @@
 
     CLI tools: =sed=, =awk=, =grep=, =find=, ssh tunneling, =screen= etc.
 
-    - source-based: Gentoo (for several years was my main desktop/server and
+    - source-based: Gentoo (for several years it was my main desktop/server and
       development system), Gentoo Hardened.
     - deb-based: Ubuntu (regular use as desktop/development system), Debian.
     - rpm-based: Fedora (also have an experience with preparing of
@@ -61,7 +59,7 @@
 
 *** GNU Guix
     :PROPERTIES:
-    :experience: less than 1 year
+    :experience: more than 2 years
     :knowledge-level: good
     :active-skill?: yes
     :END:
@@ -105,7 +103,12 @@
     :knowledge-level: basic
     :active-skill?: no
     :END:
-*** Microsoft Windows (98, XP)
+*** Microsoft Windows (98, XP, ...)
+    :PROPERTIES:
+    :experience: more than 4 years
+    :knowledge-level: basic
+    :active-skill?: no
+    :END:
 
 ** Programming Languages
 *** C
@@ -176,22 +179,26 @@
     :knowledge-level: master
     :active-skill?:   yes
     :END:
+
     Bash, CShell
 
-    I participated in a commercial Bash/system administration course
-    development.
+    I [[https://www.basealt.ru/about/news/archive/view/v-2023-godu-prepodavateli-kolledzhei-iz-20-regionov-rossii-obuchilis-rabote-s-os-alt-i-vnedrili-ee-v-uchebnyi-process][participated]] in a commercial Bash/system administration course
+    development for "BaseALT" LLC.
+
 *** JavaScript
     :PROPERTIES:
     :knowledge-level: good
     :experience: more than 2 years
     :active-skill?:   yes
     :END:
+
 *** Emacs Lisp
     :PROPERTIES:
     :knowledge-level: basic
     :experience: more than 10 years
     :active-skill?:   yes
     :END:
+
 *** Ruby
     :PROPERTIES:
     :experience: more than 10 years
@@ -212,6 +219,7 @@
 
     Examples:
     - [[https://github.com/artyom-poptsov/moinmoin-abbr-parser][MoinMoin Abbreviation Parser]]
+    - Contributed a [[https://github.com/FreeCAD/FreeCAD/pull/9279][patch]] to FreeCAD.
 
 *** AVR Assembly
     :PROPERTIES:
@@ -240,6 +248,7 @@
 
     Examples:
     - [[https://gitlab.com/gkaz/mst][MST]]: Multi-seat toolkit that allows to make multi-seat configurations.
+
 *** Ruby On Rails
     :PROPERTIES:
     :knowledge-level: basic
@@ -248,7 +257,7 @@
     :END:
 
 ** Markup Languages
-   Emacs org-mode, Texinfo, HTML, Wiki syntax, Markdown.
+   Emacs org-mode, Texinfo, HTML, Wiki syntax, Markdown, LaTeX.
 
    Texinfo examples:
    - [[https://github.com/artyom-poptsov/guile-ssh/tree/master/doc][Guile-SSH documentation]]
@@ -286,6 +295,15 @@
 
 ** Network Protocols
    SSH, TCP/IP family, ONC RPC, SCTP, CoAP, WebSocket.
+** File Formats/Standards
+*** CSV / DSV (Unix-style / RFC 4180)
+- Related projects: [[https://github.com/artyom-poptsov/guile-dsv][Guile-DSV]].
+*** iCalendar (RFC 5545) / vCard (RFC 6350)
+- Related projects: [[https://github.com/artyom-poptsov/guile-ics][Guile-ICS]].
+*** Portable Network Format (PNG)
+- Related projects: [[https://github.com/artyom-poptsov/guile-png][Guile-PNG]].
+*** INI
+- Related projects: [[https://github.com/artyom-poptsov/guile-ini][Guile-INI]].
 ** Server-Side Software
 *** Web Servers
     lighttpd, apache
@@ -363,26 +381,48 @@
 
    Gave a talk in 2015 on version control systems for students of NNTC. Slides:
    https://github.com/artyom-poptsov/talks/tree/master/vcs
+
 ** Embedded Development/MCU Firmware Development
-*** Arduino (AVR Family)
+*** Tools
+**** OpenOCD
+    :PROPERTIES:
+    :knowledge-level: basic
+    :experience: less than 1 year
+    :active-skill?:   no
+    :END:
+*** Buses
+**** Serial
+    :PROPERTIES:
+    :knowledge-level: basic
+    :experience: more than 4 years
+    :active-skill?:   yes
+    :END:
+**** I2C
+    :PROPERTIES:
+    :knowledge-level: basic
+    :experience: more than 3 years
+    :active-skill?:   yes
+    :END:
+*** Platforms
+**** Arduino (AVR Family)
     :PROPERTIES:
     :knowledge-level: master
     :experience: more than 4 years
     :active-skill?:   yes
     :END:
-*** STM32
+**** STM32
     :PROPERTIES:
     :knowledge-level: basic
     :experience: less than 1 year
     :active-skill?:   yes
     :END:
-*** ESP8266 / ESP32
+**** ESP8266 / ESP32
     :PROPERTIES:
     :knowledge-level: good
     :experience: more than 3 years
     :active-skill?:   yes
     :END:
-*** Raspberry Pi
+**** Raspberry Pi
     :PROPERTIES:
     :knowledge-level: good
     :experience: more than 2 years
@@ -406,13 +446,21 @@
 ** Other
    - Good knowledge of Linux kernel standards and GNU coding standards.
    - Expirience of interaction with free software community. Contributions to:
-     GNU Guile-RPC, libssh.
+     - GNU Guix ([[https://git.savannah.gnu.org/cgit/guix.git/log/?qt=author&q=poptsov.artyom%40gmail.com][list]])
+     - GNU Guile-RPC
+     - libssh ([[https://git.libssh.org/projects/libssh.git/log/?qt=grep&q=poptsov.artyom][list]])
+     - FreeCAD ([[https://github.com/FreeCAD/FreeCAD/pull/9279][list]])
    - Backus-Naur Form (BNF), ABNF
    - Gnuplot
 ** Licenses
    I have basic understanding of the following licenses:
    - Creative Commons
    - GNU GPLv3
+* Writing Skills
+** Science, Programming, Art and Radio-electronics Club (SPARC) book
+An open-source book (CC-BY-SA 4.0) I'm working on.  The book is written in LaTeX
+and [[https://github.com/artyom-poptsov/SPARC][published]] on GitHub.  Also the book is [[https://packages.guix.gnu.org/packages/book-sparc][in the GNU Guix official repository]].
+
 * Languages
 ** Russian
    Native speaker.
@@ -431,6 +479,6 @@
 <hr/>
 #+END_EXPORT
 
-Copyright © 2021-2022 Artyom V. Poptsov
+Copyright © 2021-2024 Artyom V. Poptsov
 
 Verbatim copying and redistribution of this entire page are permitted provided this notice is preserved.
