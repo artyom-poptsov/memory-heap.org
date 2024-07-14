@@ -14,6 +14,11 @@
 
 (defconst %input-poetry-dir "./poetry/")
 
+(defun publish-poetry (plist filename pub-dir)
+  (if (string= (file-name-extension filename) "org")
+      (org-html-publish-to-html plist filename pub-dir)
+    (org-publish-attachment plist filename pub-dir)))
+
 
 (setq org-publish-project-alist
       `(("memory-heap"
@@ -24,8 +29,8 @@
          :table-of-contents    nil)
         ("memory-heap-poetry"
          :base-directory       "./poetry/"
-         :base-extension       "org"
-         :publishing-function  org-html-publish-to-html
+         :base-extension       "org\\|ogg"
+         :publishing-function  publish-poetry
          :publishing-directory ,%poetry-dir
          :section-numbers      nil
          :table-of-contents    nil
