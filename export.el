@@ -177,8 +177,8 @@
 
 
 (defun export-to-html ()
-    (unless (file-exists-p %output-dir)
-      (make-directory %output-dir))
+  (unless (file-exists-p %output-dir)
+    (make-directory %output-dir))
   (org-publish-project "memory-heap")
 
   (unless (file-exists-p %poetry-dir)
@@ -212,4 +212,3 @@
 ;; Local Variables:
 ;; mode: Emacs-Lisp
 ;; End:
-
