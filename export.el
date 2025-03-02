@@ -9,6 +9,7 @@
 (defconst %images-dir    (concat %static-dir "/images"))
 (defconst %photos-dir    (concat %output-dir "/photos"))
 (defconst %projects-dir  (concat %output-dir "/projects"))
+(defconst %poetry-license         "poetry-license.html")
 (defconst %poetry-page-template   "poetry-page-template.org")
 (defconst %poetry-list-template   "poetry-list-template.org")
 
@@ -131,12 +132,25 @@
                                                         template)))
           (notes-file (concat (file-name-directory input-file)
                               (file-name-base input-file)
-                              "-notes.org")))
-      (let ((result (if (file-exists-p notes-file)
-                        (concat result
-                                "\n"
-                                (get-string-from-file notes-file))
-                      result)))
+                              "-notes.org"))
+          (common-license-text (get-string-from-file %poetry-license))
+          (custom-license-file (concat (file-name-directory input-file)
+                                       (file-name-base input-file)
+                                       "-license.html")))
+      (let* ((result (if (file-exists-p notes-file)
+                         (concat result
+                                 "\n"
+                                 (get-string-from-file notes-file))
+                       result))
+             (license
+              (if (file-exists-p custom-license-file)
+                  (replace-in-string "{{title}}"
+                                     title
+                                     (get-string-from-file custom-license-file))
+                (replace-in-string "{{title}}"
+                                   title
+                                   common-license-text)))
+             (result (replace-in-string "{{license}}" license result)))
         (princ  (concat
                  (file-name-directory input-file)
                  (file-name-base input-file)
