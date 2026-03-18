@@ -28,45 +28,52 @@
 
 ** Contacts
    - Home page: https://memory-heap.org/~avp/
-   - GitHub account: https://github.com/artyom-poptsov
-   - GitLab account: https://gitlab.com/a_v_p
-   - Email: =(string-join (reverse '("gmail.com" "@" "artyom" "." "poptsov")))=
-   - Matrix: =@a_v_p:matrix.org=
+   - Source code repositories: [[https://github.com/artyom-poptsov][GitHub]], [[https://gitlab.com/a_v_p][GitLab]], [[https://codeberg.org/avp][Codeberg]]
+   - Email: =poptsov.artyom-AT-gmail.com= (replace =-AT-= with =@=.)
+   - [[https://i.delta.chat/#E716BE2750B4F1D48E1EDC66C042DEA3F6171E3B&i=dZR0GMpnVtfQYVo9vFmnwcfn&s=1fZQmPhkniQv2nk9yY1qLIyh&a=wg8zikz2l%40chika.aangat.lahat.computer&n=avp][Delta.Chat]]
 
-* Current job
-  - CTO @ [[http://gkaz.ru][AZ Company Group LLC]]
-  - Head of "MCU and microprocessor systems programming laboratory" and
-    3D-printing lab in [[https://nntc.nnov.ru/][Nizhniy Novgorod Technical Colledge]].
+* Experience
+  - 2011-2014: Software designer @ MERA.
+  - 2014-2016: Software designer @ El-Sys.
+  - 2013-present: Free software hacker.
+  - 2017-2026: CTO @ [[http://gkaz.ru][AZ Company Group LLC]]
+  - 2017-2025: Head of "MCU and microprocessor systems programming laboratory"
+    and 3D-printing lab @ [[https://nntc.nnov.ru/][Nizhniy Novgorod Technical Colledge]].
+  - 2025-present: Teacher @ [[https://nntc.nnov.ru/][Nizhniy Novgorod Technical Colledge]].
 
 * Technical Skills
 ** Operating Systems
 *** GNU/Linux
     :PROPERTIES:
     :knowledge-level: master
-    :experience: more than 11 years
+    :experience: more than 13 years
     :active-skill?: yes
     :END:
-    Userspace programs and drivers development, administration, cron user, LVM
-    user.
+    Userspace programs and kernel drivers development, administration,
+    debugging, kernel configuration and compilation.
 
-    CLI tools: =sed=, =awk=, =grep=, =find=, ssh tunneling, =screen= etc.
+    CLI tools: =sed=, =awk=, =grep=, =find=, =rsync=, ssh tunneling, =screen=
+    etc.
+
+    Technologies: LVM, mdadm, rsnapshot, SystemD, AppArmor, buildroot.
 
     - source-based: Gentoo (for several years it was my main desktop/server and
-      development system), Gentoo Hardened.
+      development system), Gentoo Hardened, GNU Guix.
     - deb-based: Ubuntu (regular use as desktop/development system), Debian.
     - rpm-based: Fedora (also have an experience with preparing of
       RPM-packages), ALT Linux.
 
 *** GNU Guix
     :PROPERTIES:
-    :experience: more than 2 years
+    :experience: more than 4 years
     :knowledge-level: good
     :active-skill?: yes
     :END:
 
     https://guix.gnu.org/
 
-    User, [[https://git.savannah.gnu.org/cgit/guix.git/log/?qt=author&q=Artyom+V.+Poptsov][contributor]].
+    User, [[https://git.savannah.gnu.org/cgit/guix.git/log/?qt=author&q=Artyom+V.+Poptsov][contributor]].  My [[https://github.com/artyom-poptsov/guile-ssh][Guile-SSH]] library is used in GNU Guix for distributed
+    compilation and systems deployment.
 
 *** Android
     :PROPERTIES:
@@ -74,8 +81,8 @@
     :knowledge-level: basic
     :active-skill?: yes
     :END:
-    Application develpment, debugging with ADB. Took a part in [[http://merasws.com/newsroom/news/mera-has-revamped-android-improved-real-time-kernel-characteristics][RT Android
-    project]] in Mera.
+    Application develpment in Java, debugging with ADB. Took a part in [[http://merasws.com/newsroom/news/mera-has-revamped-android-improved-real-time-kernel-characteristics][RT
+    Android project]] at MERA.
 
     Taught classes on Android development for students in a college.
 
@@ -97,24 +104,75 @@
     :knowledge-level: basic
     :active-skill?: no
     :END:
+
+    Worked with Xenomai during my involvement in [[http://merasws.com/newsroom/news/mera-has-revamped-android-improved-real-time-kernel-characteristics][RT Android project]] at MERA.
+
 *** RT GNU/Linux
     :PROPERTIES:
     :experience: less than 1 year
     :knowledge-level: basic
     :active-skill?: no
     :END:
+
+    Worked with RT Linux patches during my involvement in [[http://merasws.com/newsroom/news/mera-has-revamped-android-improved-real-time-kernel-characteristics][RT Android project]] at
+    MERA.
 *** Microsoft Windows (98, XP, ...)
     :PROPERTIES:
     :experience: more than 4 years
     :knowledge-level: basic
     :active-skill?: no
     :END:
+** Platforms
+*** Architectures
+**** x86, x86_64
+I have experience in programming for those platforms on several languages.  Also
+I have experience in building and maintaining computers and servers.
+**** RISC-V
+- I'm tinkering with StarFive VisionFive2: installed an official Debian image on
+  it; also created a [[https://codeberg.org/guix/guix/pulls/4855][patch series]] in 2025 (which was successfully merged into
+  the upstream) for GNU Guix to create a better image for the board.
+- CH32V003 programming (C, Assembly.)
+- Also I've built PC based on Milk-V Jupiter, Spacemit M1/K1 Octa-core RVA22
+  RVV1.0 RISC-V SoC, 2TOPS Mini-ITX.  I'm planning to run GNU Guix on it.
+*** Hardware
+**** Arduino (AVR Family)
+    :PROPERTIES:
+    :knowledge-level: master
+    :experience: more than 5 years
+    :active-skill?:   yes
+    :END:
+**** STM32
+    :PROPERTIES:
+    :knowledge-level: good
+    :experience: more than 1 year
+    :active-skill?:   yes
+    :END:
 
+    STM32F103, STM32F407, STM32H750IBK6.
+**** CH32V003
+    :PROPERTIES:
+    :knowledge-level: basic
+    :experience: less than 1 year
+    :active-skill?:   yes
+    :END:
+**** ESP8266 / ESP32
+    :PROPERTIES:
+    :knowledge-level: good
+    :experience: more than 3 years
+    :active-skill?:   yes
+    :END:
+**** Raspberry Pi
+    :PROPERTIES:
+    :knowledge-level: good
+    :experience: more than 2 years
+    :active-skill?:   no
+    :END:
+    Kernel compilation, GPIOs, etc.
 ** Programming Languages
 *** C
     :PROPERTIES:
     :knowledge-level: master
-    :experience:      more than 10 years
+    :experience:      more than 13 years
     :active-skill?:   yes
     :END:
 
@@ -137,24 +195,29 @@
     :active-skill?:   yes
     :END:
 
+    Qt, Arduino.
+
     Examples:
     - [[https://gitlab.com/gkaz/mst][MST]]: Multi-seat toolkit that allows to make multi-seat configurations.
     - [[https://gitlab.com/gkaz/azbook][Azbook]]: Generic authentication and file synchronization system for WebDAV
       servers.
+    - [[https://github.com/the-nexi/yggtray][yggtray]]: A system tray application written in Qt for managing Yggdrasil
+      mesh networking service (contributor.)
 
 *** Scheme
     :PROPERTIES:
     :knowledge-level: master
-    :experience: more than 10 years
+    :experience: more than 12 years
     :active-skill?:   yes
     :END:
 
     Examples:
+    - [[https://github.com/artyom-poptsov/guile-ssh][Guile-SSH]]: GNU Guile libssh bindings.
     - [[https://github.com/artyom-poptsov/guile-smc][Guile-SMC]]: GNU Guile State Machine Compiler.
+    - [[https://github.com/artyom-poptsov/guile-dsv][Guile-DSV]]: GNU Guile DSV/CSV format parser.
+    - [[https://github.com/artyom-poptsov/guile-png][Guile-PNG]]: Portable Network Graphics (PNG) library for GNU Guile.
     - [[https://github.com/artyom-poptsov/guile-ini][Guile-INI]]: GNU Guile INI Format parser.
     - [[https://github.com/artyom-poptsov/guile-deck][Guile-Deck]]: GNU Guile Matrix client.
-    - [[https://github.com/artyom-poptsov/guile-dsv][Guile-DSV]]: GNU Guile DSV/CSV format parser.
-    - [[https://github.com/artyom-poptsov/guile-ssh][Guile-SSH]]: GNU Guile libssh bindings.
     - [[https://github.com/artyom-poptsov/metabash][Metabash]]: Distributed pipes for GNU Guile.
 
 *** Java
@@ -231,6 +294,15 @@
     - [[https://github.com/cadrspace/arduino-projects/tree/master/asm/chasing-lights]["Chasing lights"]] in AVR Assembly.
     - [[https://www.youtube.com/watch?v=_0HFB44Xntc&list=PLoAJ3Bxlddnqzfco6HLxfUt4f8R0VAtAr]["AVR assembly with AVP"]] series on YouTube.
 
+*** RISC-V Assembly
+    :PROPERTIES:
+    :knowledge-level: basic
+    :experience: less than 1 year
+    :active-skill?:   yes
+    :END:
+
+    - CH32V003 assembly programming.
+    - Tinkering with StarFive VisionFive2 board.
 *** Lua
     :PROPERTIES:
     :knowledge-level: basic
@@ -264,7 +336,7 @@
 
 ** Software Testing
    - GitLab/GitHub CI
-   - JUnit
+   - JUnit, [[https://libcheck.github.io/check/][Check]].
    - SRFI-64 (a testing framework for Scheme.)
 
 ** Administration
@@ -277,11 +349,24 @@
     - Dockerfile
     - Docker Hub
     - Docker Compose
+*** Kubernetes
+    :PROPERTIES:
+    :knowledge-level: basic
+    :experience: less than 2 years
+    :active-skill?:   no
+    :END:
+    - k8s
 *** LVM
     :PROPERTIES:
     :experience: more than 2 years
     :knowledge-level: basic
     :active-skill?:   yes
+    :END:
+*** AppArmor
+    :PROPERTIES:
+    :knowledge-level: basic
+    :experience: less than 1 year
+    :active-skill?:   no
     :END:
 *** SELinux
     :PROPERTIES:
@@ -294,7 +379,7 @@
 *** SystemD
 
 ** Network Protocols
-   SSH, TCP/IP family, ONC RPC, SCTP, CoAP, WebSocket.
+   SSH, TCP/IP family, ONC RPC, SCTP, CoAP, WebSocket, MQTT.
 ** File Formats/Standards
 *** CSV / DSV (Unix-style / RFC 4180)
 - Related projects: [[https://github.com/artyom-poptsov/guile-dsv][Guile-DSV]].
@@ -306,7 +391,7 @@
 - Related projects: [[https://github.com/artyom-poptsov/guile-ini][Guile-INI]].
 ** Server-Side Software
 *** Web Servers
-    lighttpd, apache
+    lighttpd, apache, nginx.
 *** Wiki
     - MediaWiki -- administration, maintenance, usage (I used to write some
       articles for Wikipedia.)
@@ -319,17 +404,22 @@
      :PROPERTIES:
      :experience: more than 1 year
      :knowledge-level: basic
-    :active-skill?:   no
+     :active-skill?:   no
      :END:
      Deployment, maintenance, interaction with the API.
 **** NextCloud
      :PROPERTIES:
      :knowledge-level: good
      :experience: more than 3 years
-    :active-skill?:   yes
+     :active-skill?:   yes
      :END:
      Deployment, maintenance, interaction with the API.
 **** FreedomBox
+     :PROPERTIES:
+     :knowledge-level: good
+     :experience: more than 5 years
+     :active-skill?:   yes
+     :END:
 ** Telecommunication software
 *** Jitsi
     :PROPERTIES:
@@ -376,8 +466,8 @@
     :END:
     Home and production use.
 ** Development and Build Tools
-   RCS/Git/SVN, GNU Make, GNU Autotools (Automake, Autoconf, Libtool), scons,
-   GDB/DDD, =strace=, GNU Emacs, NetBeans, Eclipse, distcc
+   Git/RCS/SVN, GNU Make, GNU Autotools (Automake, Autoconf, Libtool), scons,
+   GDB/DDD, =strace=, GNU Emacs, NetBeans, Eclipse, distcc.
 
    Gave a talk in 2015 on version control systems for students of NNTC. Slides:
    https://github.com/artyom-poptsov/talks/tree/master/vcs
@@ -403,32 +493,6 @@
     :experience: more than 3 years
     :active-skill?:   yes
     :END:
-*** Platforms
-**** Arduino (AVR Family)
-    :PROPERTIES:
-    :knowledge-level: master
-    :experience: more than 4 years
-    :active-skill?:   yes
-    :END:
-**** STM32
-    :PROPERTIES:
-    :knowledge-level: basic
-    :experience: less than 1 year
-    :active-skill?:   yes
-    :END:
-**** ESP8266 / ESP32
-    :PROPERTIES:
-    :knowledge-level: good
-    :experience: more than 3 years
-    :active-skill?:   yes
-    :END:
-**** Raspberry Pi
-    :PROPERTIES:
-    :knowledge-level: good
-    :experience: more than 2 years
-    :active-skill?:   no
-    :END:
-    Kernel compilation, GPIOs, etc.
 
 ** Parametric 3D modeling
     :PROPERTIES:
@@ -474,11 +538,14 @@ and [[https://github.com/artyom-poptsov/SPARC][published]] on GitHub.  Also the 
    - [[https://github.com/artyom-poptsov/guile-ssh/tree/master/doc][Guile-SSH documentation]]
 ** German
    Very basic reading/writing skills.
+** Norwegian
+   Very basic reading skills.
 
 #+BEGIN_EXPORT html
 <hr/>
 #+END_EXPORT
 
-Copyright © 2021-2024 Artyom V. Poptsov
+Copyright © 2021-2026 Artyom V. Poptsov
 
-Verbatim copying and redistribution of this entire page are permitted provided this notice is preserved.
+Verbatim copying and redistribution of this entire page are permitted provided
+this notice is preserved.
