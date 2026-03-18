@@ -9,6 +9,9 @@
 [[[https://memory-heap.org/~avp/cv.html][HTML]]][[[./cv.pdf][PDF]]]
 
 * Introduction
+  #+ATTR_HTML: :width 480px
+  [[./static/images/avp.png]]
+  
   My name is Artyom V. Poptsov, I also known as "avp".
 
   I'm creative, self-motivated and hard-working; atheist and skeptic, very
