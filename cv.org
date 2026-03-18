@@ -124,10 +124,10 @@
     :END:
 ** Platforms
 *** Architectures
-**** x86, x86_64
+**** =x86=, =x86_64=
 I have experience in programming for those platforms on several languages.  Also
 I have experience in building and maintaining computers and servers.
-**** RISC-V
+**** =RISC-V=
 - I'm tinkering with StarFive VisionFive2: installed an official Debian image on
   it; also created a [[https://codeberg.org/guix/guix/pulls/4855][patch series]] in 2025 (which was successfully merged into
   the upstream) for GNU Guix to create a better image for the board.
