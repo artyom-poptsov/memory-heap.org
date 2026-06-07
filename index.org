@@ -15,7 +15,7 @@
 - [[./about.html][about]]
 
 contacts:
-- dev: [[[https://github.com/artyom-poptsov][github]]] [[[https://gitlab.com/a_v_p][gitlab]]]
+- dev: [[[https://github.com/artyom-poptsov][github]]] [[[https://gitlab.com/a_v_p][gitlab]]] [[[https://codeberg.org/avp][codeberg]]]
 #+BEGIN_EXPORT html
 <ul style="margin-top: -15px;">
   <li>
@@ -26,6 +26,7 @@ contacts:
 </ul>
 #+END_EXPORT
 
-Copyright © 2021-2023 Artyom V. Poptsov
+Copyright © 2021-2026 Artyom V. Poptsov
 
-Verbatim copying and redistribution of this entire page are permitted provided this notice is preserved.
+Verbatim copying and redistribution of this entire page are permitted provided
+this notice is preserved.
