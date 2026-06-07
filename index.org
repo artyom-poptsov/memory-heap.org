@@ -21,6 +21,10 @@ contacts:
   <li>
     social:
     [<a rel="me" href="https://fosstodon.org/@avp">mastodon</a>]
+  </li>
+  <li>
+    chat:
+    [<a rel="me" href="https://i.delta.chat/#E716BE2750B4F1D48E1EDC66C042DEA3F6171E3B&v=3&i=dZR0GMpnVtfQYVo9vFmnwcfn&s=GTavLpXyjLmKnSOSuBKiUHnz&a=wg8zikz2l%40chika.aangat.lahat.computer&n=avp">delta.chat</a>]
     [<a rel="me" href="https://matrix.to/#/@a_v_p:matrix.org">matrix</a>]
   </li>
 </ul>
